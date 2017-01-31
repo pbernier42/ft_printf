@@ -14,74 +14,82 @@
 #include <stdarg.h>
 #include <stdio.h>
 
-static int		counter(int nb)
+static int	counter(int nb)
 {
 	int		count;
 
 	count = 0;
 	while ((nb /= 10) != 0)
 		count++;
-	return (count + 1);
+	return (++count);
 }
 
 int				ft_printf(const char *format, ...)
 {
 	va_list		ap;
-	int			d;
 	int			i;
-	int			c;
 	int			len;
-	char		*s;
+
+	int			dig;
+	char		*str;
+	char		cha;
 
 	i = 0;
-	len = 0;
+	len = ft_strlen(format);
 	va_start(ap, format);
 	while (format[i])
 	{
-		if (format[i] == '%' && format[i + 1] == 'd')
+		while (format[i] && format[i] != '%')
+			ft_putchar(format[i++]);
+		if (!(format[i]))
+			break;
+
+		if (format[i + 1] == 'd' || format[i + 1] == 'i')
 		{
-			d = va_arg(ap, int);
-			ft_putnbr(d);
+			dig = va_arg(ap, int);
+			ft_putnbr(dig);
 			i += 2;
-			len += counter(d);
+			len += (counter(dig) - 2);
 		}
-		else if (format[i] == '%' && format[i + 1] == 's')
+
+		if (format[i + 1] == 's')
 		{
-			s = va_arg(ap, char*);
-			ft_putstr(s);
+			str = va_arg(ap, char*);
+			ft_putstr(str);
 			i += 2;
-			len += ft_strlen(s);
+			len += (ft_strlen(str) - 2);
 		}
-		else if (format[i] == '%' && format[i + 1] == 'c')
+
+		if (format[i + 1] == 'c')
 		{
-			c = va_arg(ap, int);
-			ft_putchar(c);
+			cha = va_arg(ap, int);
+			ft_putchar(cha);
 			i += 2;
-			len += 1;
+			len += -1;
 		}
-		else
+
+		/*if (format[i + 1] == 'o')
 		{
-			ft_putchar(format[i]);
-			i++;
-			len++;
-		}
+			//ft_putchar(cha);
+			i += 2;
+			len += -1;
+		}*/
 	}
+
 	va_end(ap);
 	return (len);
 }
-/*U
-int				main(int argc, char **argv)
-{
-	int		i;
 
-	i = 0;
-	printf("%d\n", ft_printf("argc = %d\n", argc));
-	printf("%d\n", printf("argc = %d\n", argc));
-	while (argv[i])
+int				main(void)
+{
+	int		i = -10;
+
+	/*printf("F result = %i\n", ft_printf("F = %o\n", i));
+	printf("V result = %i\n", printf("V = %o\n", i));*/
+
+	while (++i < 400)
 	{
-		printf("%d\n", ft_printf("argv[%d] = %s ### %c\n", i, argv[i], 'g'));
-		printf("%d\n", printf("argv[%d] = %s ### %c\n", i, argv[i], 'g'));
-		i++;
+		printf("%d = [%o	~	%s]\n", i, i, ft_itoa_base(i, 8));
 	}
 	return (0);
-}*/
+}
