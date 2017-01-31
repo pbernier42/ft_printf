@@ -16,7 +16,7 @@ FILE	=	ft_putstr.c \
 			ft_strlen.c \
 			ft_putnbr.c \
 			ft_printf.c \
-			ft_itoa_base.c
+			ft_itoo.c
 SRC		=	$(FILE)
 OBJ		=	$(SRC:.c=.o)
 CC		=	gcc

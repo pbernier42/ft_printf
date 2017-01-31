@@ -21,7 +21,7 @@ static int	counter(int nb)
 	count = 0;
 	while ((nb /= 10) != 0)
 		count++;
-	return (++count);
+	return (count + 1);
 }
 
 int				ft_printf(const char *format, ...)
@@ -80,16 +80,15 @@ int				ft_printf(const char *format, ...)
 	return (len);
 }
 
-int				main(void)
-{
-	int		i = -10;
+//int				main(void)
+//	//int		i = 2147483647;
 
 	/*printf("F result = %i\n", ft_printf("F = %o\n", i));
 	printf("V result = %i\n", printf("V = %o\n", i));*/
 
-	while (++i < 400)
-	{
-		printf("%d = [%o	~	%s]\n", i, i, ft_itoa_base(i, 8));
-	}
-	return (0);
-}
+	//while (--i > -100)
+	//{
+		//printf("%d = [%o	~	%d]\n", i, i, ft_itoo(i));
+	//}
+	//return (0);
+//}

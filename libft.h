@@ -16,11 +16,11 @@
 # include <string.h>
 # include <stdarg.h>
 
-void				ft_putstr(char *str);
-void				ft_putchar(char c);
-void				ft_putnbr(int n);
-size_t				ft_strlen(const char *s);
-int					ft_printf(const char *format, ...);
-char				*ft_itoa_base(int value, int base);
+void					ft_putstr(char *str);
+void					ft_putchar(char c);
+void					ft_putnbr(int n);
+size_t					ft_strlen(const char *s);
+int						ft_printf(const char *format, ...);
+long					ft_itoo(int value);
 
 #endif
