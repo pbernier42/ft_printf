@@ -6,17 +6,29 @@
 #    By: rlecart <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/11/10 12:55:07 by rlecart           #+#    #+#              #
-#    Updated: 2017/01/26 18:10:34 by rlecart          ###   ########.fr        #
+#    Updated: 2017/02/01 16:36:45 by rlecart          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME	=	libftprintf.a
-FILE	=	ft_putstr.c \
-			ft_putchar.c \
-			ft_strlen.c \
-			ft_putnbr.c \
+FILE	=	ft_atoi.c \
+			ft_itoa.c \
+			ft_itoa_base.c \
+			ft_memalloc.c \
+			ft_memdel.c \
+			ft_memset.c \
 			ft_printf.c \
-			ft_itoo.c
+			ft_putchar.c \
+			ft_putnbr.c \
+			ft_putstr.c \
+			ft_strcat.c \
+			ft_strchr.c \
+			ft_strcmp.c \
+			ft_strdel.c \
+			ft_strdup.c \
+			ft_strjoin.c \
+			ft_strlen.c \
+			ft_strnew.c
 SRC		=	$(FILE)
 OBJ		=	$(SRC:.c=.o)
 CC		=	gcc

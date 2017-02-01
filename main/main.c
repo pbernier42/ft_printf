@@ -1,28 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strcat.c                                        :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rlecart <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/10 02:21:10 by rlecart           #+#    #+#             */
-/*   Updated: 2017/02/01 15:50:19 by rlecart          ###   ########.fr       */
+/*   Created: 2017/02/01 16:01:40 by rlecart           #+#    #+#             */
+/*   Updated: 2017/02/01 17:04:43 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../ft_printf.h"
 
-char	*ft_strcat(char *s1, const char *s2)
+int				main(void)
 {
-	char	*s1_cpy;
-	char	*s2_cpy;
-
-	s1_cpy = s1;
-	s2_cpy = (char*)s2;
-	while (*s1_cpy)
-		s1_cpy++;
-	while (*s2_cpy)
-		*s1_cpy++ = *s2_cpy++;
-	*s1_cpy = '\0';
-	return (s1);
+	printf("printf = %d %s\n", 42, "bonjour");
+	ft_printf("ft_printf = %d %s\n", 42, "bonjour");
+	return (0);
 }

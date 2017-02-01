@@ -6,13 +6,13 @@
 /*   By: exam <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/03 12:51:01 by exam              #+#    #+#             */
-/*   Updated: 2017/01/03 13:30:42 by exam             ###   ########.fr       */
+/*   Updated: 2017/02/01 15:47:42 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
+#include "libft.h"
 
-int		int_len(int nb, int base)
+static int		int_len(int nb, int base)
 {
 	int		len = 0;
 
@@ -24,7 +24,7 @@ int		int_len(int nb, int base)
 }
 
 
-char	*ft_itoa_base(int value, int base)
+char			*ft_itoa_base(int value, int base)
 {
 	int		len;
 	int		tmp;

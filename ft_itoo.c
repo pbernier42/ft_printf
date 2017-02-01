@@ -6,13 +6,11 @@
 /*   By: exam <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/03 12:51:01 by exam              #+#    #+#             */
-/*   Updated: 2017/01/03 13:30:42 by exam             ###   ########.fr       */
+/*   Updated: 2017/02/01 15:47:31 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-#include <stdio.h>
-#include <stdlib.h>
+#include "libft.h"
 
 long		ft_itoo(int value)
 {
@@ -31,7 +29,7 @@ long		ft_itoo(int value)
 	}
 	return (oct);
 }
-
+/*
 int main(int ac, char **av)
 {
 	int	i = atoi(av[1]);
@@ -39,4 +37,4 @@ int main(int ac, char **av)
 	ac = 0;
 	printf("%o - %ld\n", i , ft_itoo(i));
 	return (0);
-}
+}*/

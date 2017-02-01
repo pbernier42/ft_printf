@@ -6,14 +6,14 @@
 /*   By: rlecart <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/26 18:10:45 by rlecart           #+#    #+#             */
-/*   Updated: 2017/02/01 18:12:13 by rlecart          ###   ########.fr       */
+/*   Updated: 2017/02/01 15:30:53 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 #include <stdio.h>
 
-static int		counter(int nb)
+static int	counter(int nb)
 {
 	int		count;
 
@@ -23,51 +23,19 @@ static int		counter(int nb)
 	return (count + 1);
 }
 
-static int		init(t_struct **pf, const char *format)
-{
-	if (!((*pf) = (t_struct*)malloc(sizeof(t_struct))))
-		return (-1);
-	(*pf)->i = 0;
-	(*pf)->len = 0;
-	(*pf)->dig = 0;
-	(*pf)->str = NULL;
-	(*pf)->cha = 0;
-	if (!((*pf)->compa = (char**)malloc(sizeof(char*) * 15)))
-		return (-1);
-	(*pf)->compa[0] = ft_strdup("BONJOUR");
-	(*pf)->buff = ft_strnew(0);
-	(*pf)->head = (*pf)->buff;
-	(*pf)->tmp = NULL;
-	(*pf)->tmp2[0] = '\0';
-	(*pf)->tmp2[1] = '\0';
-	return (0);
-}
-
-static void		*id(char *str)
-{
-
-	return (0);
-}
-
-int				ft_printf(char const *format, ...)
+int				ft_printf(const char *format, ...)
 {
 	t_struct	*pf;
 
-	if ((init(&pf, format)) == -1)
+	if (!(pf = (t_struct*)malloc(sizeof(t_struct))))
 		return (-1);
+	pf->i = 0;
+	pf->len = ft_strlen(format);
 	va_start(pf->ap, format);
 	while (format[pf->i])
 	{
 		while (format[pf->i] && format[pf->i] != '%')
-		{
-			pf->tmp2[0] = format[pf->i];
-			pf->tmp = ft_strjoin(pf->buff, pf->tmp2);
-			pf->buff = ft_strdup(pf->tmp);
-			ft_strdel(&(pf->head));
-			ft_strdel(&(pf->tmp));
-			pf->head = pf->buff;
-			pf->i++;
-		}
+			ft_putchar(format[(pf->i)++]);
 		if (!(format[pf->i]))
 			break;
 
@@ -104,8 +72,20 @@ int				ft_printf(char const *format, ...)
 	}
 
 	va_end(pf->ap);
-	pf->len = ft_strlen(format);
-	write(1, pf->buff, pf->len);
 	free(pf);
 	return (pf->len);
+}
+
+int				main(void)
+{
+	long		i = 2147483647;
+
+	printf("F result = %i\n", ft_printf("F = %o\n", i));
+	printf("V result = %i\n", printf("V = %o\n", i));
+
+	while (--i > -100)
+	{
+		printf("%d = [%o	~	%d]\n", i, i, ft_itoo(i));
+	}
+	return (0);
 }
