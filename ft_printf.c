@@ -6,31 +6,18 @@
 /*   By: rlecart <rlecart@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/26 18:10:45 by rlecart           #+#    #+#             */
-/*   Updated: 2017/02/02 21:40:35 by pbernier         ###   ########.fr       */
+/*   Updated: 2017/02/02 23:07:37 by pbernier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdarg.h>
 #include <stdio.h>
-#include <unistd.h>
-
-static int	counter(int nb)
-{
-	int		count;
-
-	count = 0;
-	while ((nb /= 10) != 0)
-		count++;
-	return (count + 1);
-}
 
 int				ft_printf(const char *format, ...)
 {
 	va_list		ap;
 	int			i;
 	int			len;
-
 	int			dig;
 	char		*str;
 	char		cha;
@@ -47,10 +34,10 @@ int				ft_printf(const char *format, ...)
 
 		if (format[i + 1] == 'd' || format[i + 1] == 'i')
 		{
-			dig = va_arg(ap, typeof(ft_decrypt()));
+			dig = va_arg(ap, int);
 			ft_putnbr(dig);
 			i += 2;
-			len += (counter(dig) - 2);
+			len += (ft_intlen(dig) - 2);
 		}
 
 		if (format[i + 1] == 's')
@@ -68,13 +55,13 @@ int				ft_printf(const char *format, ...)
 			i += 2;
 			len += -1;
 		}
-
-		/*if (format[i + 1] == 'o')
+		if (format[i + 1] == 'o')
 		{
-			//ft_putchar(cha);
+			str = ft_itoa_base(va_arg(ap, int), 8);
+			ft_putstr(str);
 			i += 2;
 			len += -1;
-		}*/
+		}
 	}
 
 	va_end(ap);
@@ -83,14 +70,9 @@ int				ft_printf(const char *format, ...)
 
 int				main(void)
 {
-	printf("%d\n", -42);
+	int i = 99999999;
 
-	/*printf("F result = %i\n", ft_printf("F = %o\n", i));
-	printf("V result = %i\n", printf("V = %o\n", i));*/
-
-	//while (--i > -100)
-	//{
-		//printf("%d = [%o	~	%d]\n", i, i, ft_itoo(i));
-	//}
+	printf("F result = %i\n", ft_printf("F = %o\n", i));
+	printf("V result = %i\n", printf("V = %o\n", i));
 	return (0);
 }
