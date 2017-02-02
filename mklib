@@ -6,14 +6,12 @@
 #    By: rlecart <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/11/10 12:55:07 by rlecart           #+#    #+#              #
-#    Updated: 2017/02/02 23:33:21 by rlecart          ###   ########.fr        #
+#    Updated: 2017/02/02 22:41:25 by rlecart          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME	=	libftprintf.a
-PRINTF	=	ft_printf.c \
-			ft_decrypt.c
-LIBFT	=	ft_putstr.c \
+NAME	=	libft.a
+FILE	=	ft_putstr.c \
 			ft_putchar.c \
 			ft_strlen.c \
 			ft_strdup.c \
@@ -79,23 +77,18 @@ LIBFT	=	ft_putstr.c \
 			ft_range.c \
 			ft_strrev.c \
 			ft_lstlast.c
-SRC		=	$(addprefix libft/,$(LIBFT)) \
-			$(addprefix printf/,$(PRINTF))
-OBJ		=	$(LIBFT:.c=.o) \
-			$(PRINTF:.c=.o)
+SRC		=	$(FILE)
+OBJ		=	$(SRC:.c=.o)
 CC		=	gcc
 FLAGS	=	-Wall -Werror -Wextra
 
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	ar rc $(NAME) $(SRC)
+	ar rc $(NAME) $(OBJ)
 	ranlib $(NAME)
 
-libft/%.o: %.c
-	$(CC) -c $< $(FLAGS)
-
-printf/%.o: %.c
+%.o: %.c
 	$(CC) -c $< $(FLAGS)
 
 clean:
