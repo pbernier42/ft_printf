@@ -17,16 +17,16 @@
 # include <stdarg.h>
 # include <stdlib.h>
 
-# define BONJOUR pf->cha
+# define BONJOUR pf->cha //??
 
 typedef struct		s_struct
 {
 	va_list			ap;
-	int				i;
-	int				len;
-	int				dig;
-	char			*str;
-	char			cha;
+	int				i;		//iterateur.
+	int				len;	//nombre de caractére lu.
+	int				dig;	//stockage d'un int.
+	char			*str;	//stockage d'une chaine de caractére.
+	char			cha;	//stockage d'un caractére.
 /*
       c         Character
       d or i    Signed decimal integer
@@ -44,11 +44,11 @@ typedef struct		s_struct
       n         Nothing printed
       %         Character
 */
-	char			**compa;
-	char			*buff;
-	char			*head;
-	char			*tmp;
-	char			tmp2[2];
+	char			**compa;//??
+	char			*buff;	//??
+	char			*head;	//??
+	char			*tmp;	//??
+	char			tmp2[2];//??
 }					t_struct;
 
 #endif

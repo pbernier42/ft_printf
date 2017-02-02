@@ -13,6 +13,7 @@
 #include "ft_printf.h"
 #include <stdio.h>
 
+//conteur de chiffre, dans un nombre.
 static int		counter(int nb)
 {
 	int		count;
@@ -23,6 +24,7 @@ static int		counter(int nb)
 	return (count + 1);
 }
 
+//Creation de la structure
 static int		init(t_struct **pf, const char *format)
 {
 	if (!((*pf) = (t_struct*)malloc(sizeof(t_struct))))
