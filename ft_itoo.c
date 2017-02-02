@@ -18,7 +18,7 @@ long		ft_itoo(int value)
 {
 	long		oct;
 	long		ten;
-	long		tmp;
+	//long		tmp;
 
 	oct = 0;
 	ten = 1;

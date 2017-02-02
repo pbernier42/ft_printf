@@ -22,5 +22,6 @@ void					ft_putnbr(int n);
 size_t					ft_strlen(const char *s);
 int						ft_printf(const char *format, ...);
 long					ft_itoo(int value);
+char					*ft_itoa_base(int value, int base);
 
 #endif

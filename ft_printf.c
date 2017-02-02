@@ -3,16 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rlecart <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: rlecart <rlecart@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/26 18:10:45 by rlecart           #+#    #+#             */
-/*   Updated: 2017/01/28 15:53:06 by rlecart          ###   ########.fr       */
+/*   Updated: 2017/02/02 21:40:35 by pbernier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include <stdarg.h>
 #include <stdio.h>
+#include <unistd.h>
 
 static int	counter(int nb)
 {
@@ -46,7 +47,7 @@ int				ft_printf(const char *format, ...)
 
 		if (format[i + 1] == 'd' || format[i + 1] == 'i')
 		{
-			dig = va_arg(ap, int);
+			dig = va_arg(ap, typeof(ft_decrypt()));
 			ft_putnbr(dig);
 			i += 2;
 			len += (counter(dig) - 2);
@@ -80,8 +81,9 @@ int				ft_printf(const char *format, ...)
 	return (len);
 }
 
-//int				main(void)
-//	//int		i = 2147483647;
+int				main(void)
+{
+	printf("%d\n", -42);
 
 	/*printf("F result = %i\n", ft_printf("F = %o\n", i));
 	printf("V result = %i\n", printf("V = %o\n", i));*/
@@ -90,5 +92,5 @@ int				ft_printf(const char *format, ...)
 	//{
 		//printf("%d = [%o	~	%d]\n", i, i, ft_itoo(i));
 	//}
-	//return (0);
-//}
+	return (0);
+}

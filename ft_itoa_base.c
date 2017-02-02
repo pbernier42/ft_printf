@@ -3,47 +3,35 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa_base.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: exam <marvin@42.fr>                        +#+  +:+       +#+        */
+/*   By: exam <exam@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/01/03 12:51:01 by exam              #+#    #+#             */
-/*   Updated: 2017/01/03 13:30:42 by exam             ###   ########.fr       */
+/*   Created: 2017/01/31 10:14:27 by exam              #+#    #+#             */
+/*   Updated: 2017/02/02 22:28:46 by pbernier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 
-int		int_len(int nb, int base)
-{
-	int		len = 0;
-
-	if (nb < 0 && base == 10)
-		len++;
-	while ((nb /= 10) != 0)
-		len++;
-	return (++len);
-}
-
-
 char	*ft_itoa_base(int value, int base)
 {
-	int		len;
-	int		tmp;
 	char	*str;
-	char	*b = "0123456789ABCDEF";
+	int		save = value;
+	int		len = 1;
+	char	syn[16] = "0123456789abcdef";
+	int		res = 0;
 
-	len = int_len(value, base);
+	while ((save /= base) != 0)
+		++len;
 	if (!(str = (char *)malloc(sizeof(char) * (len + 1))))
-		return (0);
-	str[len--] = '\0';
-	while (value != 0)
+		return (NULL);
+	str[len] = '\0';
+	while (--len != -1)
 	{
-		tmp = (value % base);
-		if (tmp < 0)
-			tmp = -tmp;
-		str[len--] = b[tmp];
+		res = value % base;
+		if (res < 0)
+			res = -res;
+		str[len] = syn[res];
 		value = value / base;
-		if (len == 0 && value == 0)
-			str[len] = '-';
 	}
 	return (str);
 }
