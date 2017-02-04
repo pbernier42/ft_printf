@@ -6,7 +6,7 @@
 /*   By: pbernier <pbernier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/02 19:07:17 by pbernier          #+#    #+#             */
-/*   Updated: 2017/02/02 23:00:59 by pbernier         ###   ########.fr       */
+/*   Updated: 2017/02/04 16:48:08 by pbernier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,19 +21,8 @@
 
 //%[flags][width][.precision][length]specifier
 //Modificateur de longeur, attributs
-/*
-
-void	*()
-{
-
-	while ()
-	{
 
 
-	}
-	return()
-}
-*/
 
 int		main(void)
 {
@@ -44,6 +33,6 @@ int		main(void)
 //	char		*flags = "hljz";
 //	char		*spec = "sSpdDioOuUxXcC";*/
 
-	ft_putnbr(-5456);
+	printf("%s\n", isolate_per("%#-0.7dje jj"));
 	return (0);
 }

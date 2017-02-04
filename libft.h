@@ -6,7 +6,7 @@
 /*   By: rlecart <rlecart@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/09 00:30:13 by rlecart           #+#    #+#             */
-/*   Updated: 2017/02/02 22:48:12 by pbernier         ###   ########.fr       */
+/*   Updated: 2017/02/04 15:21:16 by pbernier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,5 +24,6 @@ size_t					ft_strlen(const char *s);
 int						ft_printf(const char *format, ...);
 char					*ft_itoa_base(int value, int base);
 size_t					ft_intlen(int nb);
+void*					ft_memcpy(void *dest, const void *src, size_t n);
 
 #endif

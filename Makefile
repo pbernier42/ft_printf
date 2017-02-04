@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: rlecart <marvin@42.fr>                     +#+  +:+       +#+         #
+#    By: rlecart <rlecart@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/11/10 12:55:07 by rlecart           #+#    #+#              #
-#    Updated: 2017/01/26 18:10:34 by rlecart          ###   ########.fr        #
+#    Updated: 2017/02/04 15:07:59 by pbernier         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,8 @@ FILE	=	ft_putstr.c \
 			ft_putnbr.c \
 			ft_printf.c \
 			ft_itoo.c \
-			ft_itoa_base.c
+			ft_itoa_base.c \
+			ft_memcpy.c
 SRC		=	$(FILE)
 OBJ		=	$(SRC:.c=.o)
 CC		=	gcc
