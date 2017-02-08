@@ -6,7 +6,7 @@
 /*   By: pbernier <pbernier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/02 23:36:11 by pbernier          #+#    #+#             */
-/*   Updated: 2017/02/04 17:06:05 by pbernier         ###   ########.fr       */
+/*   Updated: 2017/02/04 17:27:14 by pbernier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,5 +29,6 @@ char	*ft_decrypt()
 	int		*nb;
 
 	spec = "sSpdDioOuUxXcC%";
-	nb =  isolate_per(, spec);
+	nb = isolate_per(, spec);
+	return ();
 }
