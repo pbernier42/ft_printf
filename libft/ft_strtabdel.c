@@ -1,20 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr.c                                        :+:      :+:    :+:   */
+/*   ft_tabdel.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rlecart <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/10 12:44:14 by rlecart           #+#    #+#             */
-/*   Updated: 2017/02/06 14:46:20 by rlecart          ###   ########.fr       */
+/*   Created: 2017/02/08 22:11:14 by rlecart           #+#    #+#             */
+/*   Updated: 2017/02/08 22:31:24 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_putstr(char *str)
+void	ft_strtabdel(char ***tab)
 {
-	if (!str)
-		return ;
-	write(1, str, ft_strlen(str));
+	int		i;
+
+	i = 0;
+	while (tab[i])
+		ft_strdel(tab[i++]);
 }

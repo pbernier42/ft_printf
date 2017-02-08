@@ -6,17 +6,33 @@
 /*   By: rlecart <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/09 00:30:13 by rlecart           #+#    #+#             */
-/*   Updated: 2017/02/03 00:12:48 by rlecart          ###   ########.fr       */
+/*   Updated: 2017/02/08 22:20:02 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
 
+# define BUFF_SIZE 100
 # include <string.h>
 # include <stdlib.h>
 # include <stdio.h>
 # include <unistd.h>
+# include <fcntl.h>
+# include <sys/types.h>
+# include <sys/uio.h>
+
+typedef struct		s_gnl
+{
+	char			*adr;
+	char			*head;
+	char			*keep;
+	int				gol;
+	int				ret;
+	int				fd;
+	struct s_gnl	*before;
+	struct s_gnl	*next;
+}					t_gnl;
 
 typedef struct		s_list
 {
@@ -32,6 +48,7 @@ typedef struct		s_strsplit
 }					t_strsplit;
 
 void				ft_putstr(char *str);
+void				ft_puttab(char **tab);
 void				ft_putchar(char c);
 size_t				ft_strlen(const char *s);
 char				*ft_strdup(const char *s1);
@@ -97,5 +114,7 @@ void				ft_swap(int *a, int *b);
 int					*ft_range(int min, int max);
 char				*ft_strrev(char *str);
 t_list				*ft_lstlast(t_list **alst);
+int					get_next_line(const int fd, char **line);
+void				ft_strtabdel(char ***tab);
 
 #endif

@@ -5,94 +5,68 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: rlecart <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/22 00:43:17 by rlecart           #+#    #+#             */
-/*   Updated: 2017/02/03 00:12:36 by rlecart          ###   ########.fr       */
+/*   Created: 2017/02/08 22:47:06 by rlecart           #+#    #+#             */
+/*   Updated: 2017/02/08 22:48:48 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static t_strsplit		*ft_memset_new(t_strsplit *ptr)
+static int		ft_cnt_parts(const char *s, char c)
 {
-	int		i;
+	int		cnt;
+	int		in_substring;
 
-	i = 0;
-	while (i < ptr->count_tab)
-		ptr->len_by_tab[i++] = 0;
-	return (ptr);
-}
-
-static t_strsplit		*ft_gsm(char const *s, char c, t_strsplit *ptr)
-{
-	int		i;
-	int		j;
-
-	i = 0;
-	j = 0;
-	if (!(ptr->len_by_tab = (int*)malloc(sizeof(int) * ptr->count_tab)))
-		return (NULL);
-	ptr = ft_memset_new(ptr);
-	while (s[i])
+	in_substring = 0;
+	cnt = 0;
+	while (*s != '\0')
 	{
-		while (s[i] == c)
-			i++;
-		while (s[i] != c && s[i])
+		if (in_substring == 1 && *s == c)
+			in_substring = 0;
+		if (in_substring == 0 && *s != c)
 		{
-			ptr->len_by_tab[j]++;
-			i++;
-			if (s[i] == c || s[i] == '\0')
-				j++;
+			in_substring = 1;
+			cnt++;
 		}
+		s++;
 	}
-	return (ptr);
+	return (cnt);
 }
 
-static t_strsplit		*ft_len_tab(char const *s, char c)
+static int		ft_wlen(const char *s, char c)
 {
-	t_strsplit		*ptr;
-	int				i;
+	int		len;
 
-	ptr = NULL;
-	if (!(ptr = (t_strsplit*)malloc(sizeof(t_strsplit))))
+	len = 0;
+	while (*s != c && *s != '\0')
+	{
+		len++;
+		s++;
+	}
+	return (len);
+}
+
+char            **ft_strsplit(char const *s, char c)
+{
+	char	**t;
+	int		nb_word;
+	int		index;
+
+	index = 0;
+	nb_word = ft_cnt_parts((const char *)s, c);
+	t = (char **)malloc(sizeof(*t) * (ft_cnt_parts((const char *)s, c) + 1));
+	if (t == NULL)
 		return (NULL);
-	ptr->count_tab = 0;
-	ptr->len_by_tab = NULL;
-	i = 0;
-	while (s[i])
+	while (nb_word--)
 	{
-		if (s[i] != c && (s[i + 1] == c || s[i + 1] == '\0'))
-			ptr->count_tab++;
-		i++;
-	}
-	ptr = ft_gsm(s, c, ptr);
-	return (ptr);
-}
-
-char					**ft_strsplit(char const *s, char c)
-{
-	t_strsplit		*ptr;
-	char			**tab;
-	int				i;
-	int				j;
-
-	tab = NULL;
-	if (s)
-	{
-		if (!(ptr = ft_len_tab(s, c)))
+		while (*s == c && *s != '\0')
+			s++;
+		t[index] = ft_strsub((const char *)s, 0, ft_wlen((const char *)s, c));
+		if (t[index] == NULL)
 			return (NULL);
-		i = -1;
-		j = 0;
-		if (!(tab = (char**)malloc(sizeof(char*) * (ptr->count_tab + 1))))
-			return (NULL);
-		while (++i < ptr->count_tab)
-		{
-			while (s[j] == c)
-				j++;
-			tab[i] = ft_strsub(s, j, ptr->len_by_tab[i]);
-			j = j + ptr->len_by_tab[i];
-		}
-		tab[i] = NULL;
-		free(ptr);
+		s = s + ft_wlen(s, c);
+		index++;
 	}
-	return (tab);
+	t[index] = NULL;
+	return (t);
 }

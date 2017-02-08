@@ -6,12 +6,13 @@
 #    By: rlecart <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/11/10 12:55:07 by rlecart           #+#    #+#              #
-#    Updated: 2017/02/02 22:41:25 by rlecart          ###   ########.fr        #
+#    Updated: 2017/02/09 00:10:20 by rlecart          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME	=	libft.a
+NAME	=	libftprintf.a
 FILE	=	ft_putstr.c \
+			ft_puttab.c \
 			ft_putchar.c \
 			ft_strlen.c \
 			ft_strdup.c \
@@ -57,7 +58,6 @@ FILE	=	ft_putstr.c \
 			ft_strtrim.c \
 			ft_itoa.c \
 			ft_itoa_base.c \
-			ft_itoo.c \
 			ft_putendl.c \
 			ft_putnbr.c \
 			ft_putchar_fd.c \
@@ -76,17 +76,24 @@ FILE	=	ft_putstr.c \
 			ft_swap.c \
 			ft_range.c \
 			ft_strrev.c \
-			ft_lstlast.c
-SRC		=	$(FILE)
-OBJ		=	$(SRC:.c=.o)
-CC		=	gcc
-FLAGS	=	-Wall -Werror -Wextra
+			ft_lstlast.c \
+			get_next_line.c \
+			ft_strtabdel.c
+SRC		=	$(addprefix libft/,$(FILE))
+FILEPF	=	ft_printf.c
+SRCPF	=	$(addprefix printf/,$(FILEPF))
+OBJ		=	$(SRC:.c=.o) $(SRCPF:.c=.o)
+
+CC			=	gcc
+FLAGS		=	-Wall -Werror -Wextra
 
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	ar rc $(NAME) $(OBJ)
+	ar rc $(NAME) $(FILE:.c=.o) $(FILEPF:.c=.o)
 	ranlib $(NAME)
+	mv $(FILE:.c=.o) libft
+	mv $(FILEPF:.c=.o) printf
 
 %.o: %.c
 	$(CC) -c $< $(FLAGS)
