@@ -1,24 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strjoin_clean.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rlecart <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/02/01 16:01:40 by rlecart           #+#    #+#             */
-/*   Updated: 2017/02/09 05:30:25 by rlecart          ###   ########.fr       */
+/*   Created: 2017/02/09 00:16:59 by rlecart           #+#    #+#             */
+/*   Updated: 2017/02/09 03:16:27 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../printf/ft_printf.h"
+#include "libft.h"
 
-int				main(void)
+char	*ft_strjoin_clean(char **s1, char **s2)
 {
-	int	oui = 4;
+	char	*tmp;
+	char	*head;
 
-	printf("printf = %+090.5d %s\n", oui, "bonjour");
-	ft_printf("ft_printf =%d %s %i\n", 42, "bonjour", 5);
-	while (1)
-		;
-	return (0);
+	if (!(*s1))
+		*s1 = ft_strnew(0);
+	if (!(*s2))
+		*s2 = ft_strnew(0);
+	head = *s1;
+	tmp = ft_strjoin(*s1, *s2);
+	*s1 = ft_strdup(tmp);
+	ft_strdel(&head);
+	ft_strdel(&tmp);
+	ft_strdel(s2);
+	return (*s1);
 }

@@ -6,7 +6,7 @@
 #    By: rlecart <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/11/10 12:55:07 by rlecart           #+#    #+#              #
-#    Updated: 2017/02/09 00:10:20 by rlecart          ###   ########.fr        #
+#    Updated: 2017/02/09 05:33:48 by rlecart          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -78,9 +78,14 @@ FILE	=	ft_putstr.c \
 			ft_strrev.c \
 			ft_lstlast.c \
 			get_next_line.c \
-			ft_strtabdel.c
+			ft_strtabdel.c \
+			ft_strjoin_clean.c \
+			ft_strjoin_clean_char.c
 SRC		=	$(addprefix libft/,$(FILE))
-FILEPF	=	ft_printf.c
+FILEPF	=	ft_printf.c \
+			ft_decrypt.c \
+			create_str.c \
+			find_specifier.c
 SRCPF	=	$(addprefix printf/,$(FILEPF))
 OBJ		=	$(SRC:.c=.o) $(SRCPF:.c=.o)
 

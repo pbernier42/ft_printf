@@ -6,7 +6,7 @@
 /*   By: rlecart <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/09 00:30:13 by rlecart           #+#    #+#             */
-/*   Updated: 2017/02/08 22:20:02 by rlecart          ###   ########.fr       */
+/*   Updated: 2017/02/09 00:26:56 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,5 +116,7 @@ char				*ft_strrev(char *str);
 t_list				*ft_lstlast(t_list **alst);
 int					get_next_line(const int fd, char **line);
 void				ft_strtabdel(char ***tab);
+char				*ft_strjoin_clean(char **s1, char **s2);
+char				*ft_strjoin_clean_char(char **s, char c);
 
 #endif
