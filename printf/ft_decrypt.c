@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_decrypt.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rlecart <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: rlecart <rlecart@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/09 00:49:24 by rlecart           #+#    #+#             */
-/*   Updated: 2017/02/09 05:58:31 by rlecart          ###   ########.fr       */
+/*   Updated: 2017/02/11 15:31:47 by pbernier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,7 @@ char			*ft_decrypt(char const *format, int *i/*, va_list ap*/)
 	//fonction qui trouve spec
 //	/*x = */va_arg(ap, typeof(/*QQ*/));
 	find_specifier(spec[nb[1]], ft_strsub(format, 1, nb[0]), &arg/*, ap*/);
-	
-	//convertie si besoin;
+//	convert();
 
 	//fonction qui creer le char*
 	//1er flag
