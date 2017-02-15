@@ -6,100 +6,83 @@
 /*   By: rlecart <rlecart@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/09 04:46:28 by rlecart           #+#    #+#             */
-/*   Updated: 2017/02/15 08:58:21 by pbernier         ###   ########.fr       */
+/*   Updated: 2017/02/15 18:47:12 by pbernier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-//p
-//De plus, elle acceptait D, O, U comme synonymes de ld, lo et lu
-
-static void	spec_syn(char spec, char **per)
+void			*ft_flags(char spec, char *per, va_list ap,
+		void *(tab)(va_list, char))
 {
 	int		i;
-	char	spec_CS[15];
-	void	*tmp;
+	int		len;
+	char	lm[2];
+	char	flags[4];
 
 	i = 0;
-	ft_strcpy(spec_CS, "ClcSlsDldOloUlu");
-	while (spec_CpS[i] != spec)
+	len = ft_strlen(per);
+	ft_memcpy(lm, ((char[2]){'\0', '\0'}), sizeof(char[2]));
+	ft_strcpy(flags, "hljz");
+	if (len >= 2)
+		ft_memcpy(lm, ((char[2]){per[len - 2], '\0'}), sizeof(char[2]));
+	while (flags[i] && flags[i] != lm[0])
+		i++;
+	if (!(flags[i]))
+		return (tab(ap, spec));
+
+	// reperer les flags
+	// retour arriere stock dans str[2];
+	// if str[0] = '\0'
+	//	if iouxX => INT
+	// if srt[1] = h || l
+	//	retour arriere;
+
+	return (NULL);
+}
+
+static void		spec_syn(char spec, char **per)
+{
+	int		i;
+	char	spec_CSDOU[15];
+	char	*tmp;
+
+	i = 0;
+	ft_strcpy(spec_CSDOU, "ClcSlsDldOloUlu");
+	tmp = NULL;
+	while (spec_CSDOU[i] && spec_CSDOU[i] != spec)
 		i += 3;
+	if (!(spec_CSDOU[i]))
+		return ;
 	*per[ft_strlen(*per) - 1] = '\0';
-	*per = ft_strjoin_clean(*per, ft_strsub(spec_CSp, i + 1, 2));
+	tmp = ft_strsub(spec_CSDOU, i + 1, 2);
+	*per = ft_strjoin_clean(per, &tmp);
 }
 
-static void	*spec_str(char spec, char **per/*, va_list ap*/)
-{
-	void	*tmp;
-
-	if (spec != 's')
-		return (NULL);
-	//flags ft_flags != NULL
-	//done a tmp const char *
-	return (/*va_arg(ap, typeof(tmp)*/);
-}
-
-static void	*spec_unint(char spec, char **per/*, va_list ap*/)
+void			find_specifier(char spec, char *per, void **arg, va_list ap)
 {
 	int		i;
-	char	spec_ouxX[4];
-	void	*tmp;
-
-	i = 0;
-	ft_strcpy(spec_ouxX, "ouxX");
-	while (spec_ouxX[i] != spec)
-		i++;
-	if (!spec_ouxX[i])
-		return (NULL);
-	//if ft_flags != NULL
-	//done a tmp unsigned char
-	return (/*va_arg(ap, typeof(tmp)*/);
-}
-
-static void	*spec_int(char spec, char **per/*, va_list ap*/)
-{
-	int		i;
-	char	spec_idc[3];
-	void	*tmp;
-
-	i = 0;
-	ft_strcpy(spec_idc, "dic%");
-	while (spec_idc[i] != spec)
-		i++;
-	if (!spec_idc[i])
-		return (NULL);
-	if (spec_idc[i] == '%')
-		return ('%');
-	//if ft_flags != NULL
-		tmp = flag
-	//else done a tmp int
-		tmp = int
-	return (/*va_arg(ap, typeof(*tmp)*/);
-}
-
-void		*find_specifier(char spec, char *per, void **arg/*, va_list ap*/)
-{
-	int		i;
-	//char	str[5] = "qwert";
-	void	*(*tab[3])(char, char *);
-
-//	if (!(tab = (void**)malloc(sizeof(void*) * 4)))
-//		return (NULL);
-/*	tab[0] = (void *)ft_strlen;
-	tab[1] = (void *)ft_strdup;
-	tab[2] = (void *)ft_atoi;
-	tab[3] = NULL;
-	ft_putnbr((int)(tab[0](str)));
-	ft_putstr("\n");*/
-	spec += 0;
-	per += 0;
-
+	char	flags[2];
+	char	spec_nosyn[10];
+	void	*(*tab[4])(va_list, char);
+	
 	i = 0;
 	spec_syn(spec, &per);
-	tab[1] = (void *)spec_unint;
-	tab[2] = (void *)spec_str;
-	tab[3] = (void *)spec_syn;
-	while (!(*arg = *(tab[i])(spec, &per)))
+	ft_strcpy(spec_nosyn, "dic%ouxXsp");
+	//ft_flags 
+	tab[0] = (void*)spec_int;
+	tab[1] = (void*)spec_unint;
+	tab[2] = (void*)spec_str;
+	tab[3] = (void*)spec_void;
+	while (spec_nosyn[i] != spec)
 		i++;
+	if (i >= 0 && i <= 3)
+		i = 0;
+	else if (i >= 4 && i <= 7)
+		i = 1;
+	else if (i == 8)
+		i = 2;
+	else if (i == 9)
+		i = 3;
+	*arg = tab[i](ap, spec);
 }

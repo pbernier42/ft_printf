@@ -6,7 +6,7 @@
 #    By: rlecart <rlecart@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/11/10 12:55:07 by rlecart           #+#    #+#              #
-#    Updated: 2017/02/15 13:29:06 by pbernier         ###   ########.fr        #
+#    Updated: 2017/02/15 17:04:46 by pbernier         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -87,7 +87,8 @@ SRC		=	$(addprefix libft/,$(FILE))
 FILEPF	=	ft_printf.c \
 			ft_decrypt.c \
 			find_specifier.c \
-			convert_arg.c
+			convert_arg.c \
+			spec_type.c
 SRCPF	=	$(addprefix printf/,$(FILEPF))
 OBJ		=	$(SRC:.c=.o) $(SRCPF:.c=.o)
 
