@@ -6,23 +6,11 @@
 /*   By: pbernier <pbernier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/14 19:45:17 by pbernier          #+#    #+#             */
-/*   Updated: 2017/02/15 13:20:59 by pbernier         ###   ########.fr       */
+/*   Updated: 2017/02/15 13:56:44 by pbernier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-
-static int			ft_intlen_base(int nbr, int base)
-{
-	int				len;
-
-	len = 1;
-	if (nbr < 0 && base == 10)
-		len = 2;
-	while ((nbr /= base))
-		len++;
-	return (len);
-}
 
 static void			pf_itoa_base(long lg_nbr, int base, char **str, char spec)
 {
@@ -48,7 +36,7 @@ static void			pf_itoa_base(long lg_nbr, int base, char **str, char spec)
 	}
 }
 
-convert_arg(char spec, void *arg)
+char	*convert_arg(char spec, void *arg)
 {
 	char	*str;
 	int		i;
@@ -56,12 +44,16 @@ convert_arg(char spec, void *arg)
 	int		base[6];
 
 	i = 0;
-	ft_strcpy(spec_nosyn, "diouxXspc%");
+	ft_strcpy(spec_nosyn, "diouxXsc%p");
 	ft_memcpy(base, ((int[6]){10, 10, 8, 10, 16, 16}), sizeof(int[6]));
-	while (spec_idc[i] != spec)
+	while (spec_nosyn[i] != spec)
 		i++;
-	if (i < 6)
-		ft_itoa_base((long)*arg, base[i], spec);
-
+	if (i <= 5)
+		ft_itoa_base((long)*arg, base[i], &str, spec);
+	if (i == 6)
+		str = *arg;
+	if (i == 7 || i == 8)
+		str = ft_strjoin_clean_char(ft_strnew(0), *arg);
+	//p
 	return (str);
 }

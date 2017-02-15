@@ -6,7 +6,7 @@
 /*   By: rlecart <rlecart@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/09 00:30:13 by rlecart           #+#    #+#             */
-/*   Updated: 2017/02/15 13:23:40 by pbernier         ###   ########.fr       */
+/*   Updated: 2017/02/15 13:29:02 by pbernier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,5 +119,6 @@ void				ft_strtabdel(char ***tab);
 char				*ft_strjoin_clean(char **s1, char **s2);
 char				*ft_strjoin_clean_char(char **s, char c);
 int					ft_absolute(int nbr);
+int					ft_intlen_base(int nbr, int base);
 
 #endif

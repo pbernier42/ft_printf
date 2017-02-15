@@ -6,7 +6,7 @@
 #    By: rlecart <rlecart@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/11/10 12:55:07 by rlecart           #+#    #+#              #
-#    Updated: 2017/02/15 13:24:01 by pbernier         ###   ########.fr        #
+#    Updated: 2017/02/15 13:29:06 by pbernier         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -81,7 +81,8 @@ FILE	=	ft_putstr.c \
 			ft_strtabdel.c \
 			ft_strjoin_clean.c \
 			ft_strjoin_clean_char.c \
-			ft_absolute.c
+			ft_absolute.c \
+			ft_intlen_base.c
 SRC		=	$(addprefix libft/,$(FILE))
 FILEPF	=	ft_printf.c \
 			ft_decrypt.c \
