@@ -6,29 +6,27 @@
 /*   By: rlecart <rlecart@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/09 04:46:28 by rlecart           #+#    #+#             */
-/*   Updated: 2017/02/11 15:29:56 by pbernier         ###   ########.fr       */
+/*   Updated: 2017/02/15 08:58:21 by pbernier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static
+//p
+//De plus, elle acceptait D, O, U comme synonymes de ld, lo et lu
 
 static void	spec_syn(char spec, char **per)
 {
-	// #x OU ?
 	int		i;
-	char	spec_CSp[3];
+	char	spec_CS[15];
 	void	*tmp;
 
 	i = 0;
-	ft_strcpy(spec_CSp, "ClcplsSx");
+	ft_strcpy(spec_CS, "ClcSlsDldOloUlu");
 	while (spec_CpS[i] != spec)
 		i += 3;
 	*per[ft_strlen(*per) - 1] = '\0';
 	*per = ft_strjoin_clean(*per, ft_strsub(spec_CSp, i + 1, 2));
-	if  (spec_CSp[i] == 'S')
-		*per = ft_strjoin_clean(ft_strdup("#"), *per);
 }
 
 static void	*spec_str(char spec, char **per/*, va_list ap*/)
@@ -66,11 +64,13 @@ static void	*spec_int(char spec, char **per/*, va_list ap*/)
 	void	*tmp;
 
 	i = 0;
-	ft_strcpy(spec_idc, "dic");
+	ft_strcpy(spec_idc, "dic%");
 	while (spec_idc[i] != spec)
 		i++;
 	if (!spec_idc[i])
 		return (NULL);
+	if (spec_idc[i] == '%')
+		return ('%');
 	//if ft_flags != NULL
 		tmp = flag
 	//else done a tmp int
@@ -96,11 +96,10 @@ void		*find_specifier(char spec, char *per, void **arg/*, va_list ap*/)
 	per += 0;
 
 	i = 0;
-	spec_int();
+	spec_syn(spec, &per);
 	tab[1] = (void *)spec_unint;
 	tab[2] = (void *)spec_str;
 	tab[3] = (void *)spec_syn;
 	while (!(*arg = *(tab[i])(spec, &per)))
 		i++;
-	return (NULL);
 }

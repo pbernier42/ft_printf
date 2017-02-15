@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: rlecart <marvin@42.fr>                     +#+  +:+       +#+         #
+#    By: rlecart <rlecart@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/11/10 12:55:07 by rlecart           #+#    #+#              #
-#    Updated: 2017/02/09 05:33:48 by rlecart          ###   ########.fr        #
+#    Updated: 2017/02/15 13:24:01 by pbernier         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -80,12 +80,13 @@ FILE	=	ft_putstr.c \
 			get_next_line.c \
 			ft_strtabdel.c \
 			ft_strjoin_clean.c \
-			ft_strjoin_clean_char.c
+			ft_strjoin_clean_char.c \
+			ft_absolute.c
 SRC		=	$(addprefix libft/,$(FILE))
 FILEPF	=	ft_printf.c \
 			ft_decrypt.c \
-			create_str.c \
-			find_specifier.c
+			find_specifier.c \
+			convert_arg.c
 SRCPF	=	$(addprefix printf/,$(FILEPF))
 OBJ		=	$(SRC:.c=.o) $(SRCPF:.c=.o)
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rlecart <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: rlecart <rlecart@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/09 00:30:13 by rlecart           #+#    #+#             */
-/*   Updated: 2017/02/09 00:26:56 by rlecart          ###   ########.fr       */
+/*   Updated: 2017/02/15 13:23:40 by pbernier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,5 +118,6 @@ int					get_next_line(const int fd, char **line);
 void				ft_strtabdel(char ***tab);
 char				*ft_strjoin_clean(char **s1, char **s2);
 char				*ft_strjoin_clean_char(char **s, char c);
+int					ft_absolute(int nbr);
 
 #endif

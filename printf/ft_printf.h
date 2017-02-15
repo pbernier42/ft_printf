@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rlecart <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: rlecart <rlecart@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/01 15:13:38 by rlecart           #+#    #+#             */
-/*   Updated: 2017/02/09 05:59:43 by rlecart          ###   ########.fr       */
+/*   Updated: 2017/02/14 19:44:49 by pbernier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,8 @@
 int		ft_printf(char const *format, ...);
 char	*ft_decrypt(char const *format, int *i/*, va_list ap*/);
 void	*find_specifier(char spec, char *per, void **arg/*, va_list ap*/);
-int		create_str(char **str, char *per, char spec, void *arg);
+char	*convert_arg(char spec, void *arg);
+//int		create_str(char **str, char *per, char spec, void *arg);
 
 #endif
 
