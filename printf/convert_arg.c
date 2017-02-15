@@ -6,7 +6,7 @@
 /*   By: pbernier <pbernier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/14 19:45:17 by pbernier          #+#    #+#             */
-/*   Updated: 2017/02/15 13:56:44 by pbernier         ###   ########.fr       */
+/*   Updated: 2017/02/15 15:21:10 by pbernier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,11 @@ static void			pf_itoa_base(long lg_nbr, int base, char **str, char spec)
 	ft_strcpy(hexa, "0123456789abcdef");
 	if (spec == 'X')
 		ft_strcpy(hexa, "0123456789ABCDEF");
+
 	nbr = (int)lg_nbr;
 	if (spec != 'd' && spec != 'i')
 		nbr = (unsigned int)lg_nbr;				//marche pas pour o ni u
+
 	len = ft_intlen_base(nbr, base);
 	*str = ft_strnew(len-- + 1);		//NON SECU//
 	if (base == 10 && nbr < 0)
@@ -36,7 +38,7 @@ static void			pf_itoa_base(long lg_nbr, int base, char **str, char spec)
 	}
 }
 
-char	*convert_arg(char spec, void *arg)
+char	*convert_arg(char spec, void *arg/*, size_t *len*/)
 {
 	char	*str;
 	int		i;
@@ -49,11 +51,12 @@ char	*convert_arg(char spec, void *arg)
 	while (spec_nosyn[i] != spec)
 		i++;
 	if (i <= 5)
-		ft_itoa_base((long)*arg, base[i], &str, spec);
+		pf_itoa_base((long)*arg, base[i], &str, spec);
 	if (i == 6)
 		str = *arg;
 	if (i == 7 || i == 8)
 		str = ft_strjoin_clean_char(ft_strnew(0), *arg);
 	//p
+	//*len += ft_strlen(str);
 	return (str);
 }
