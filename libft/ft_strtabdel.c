@@ -1,25 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_tabdel.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rlecart <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/02/01 16:01:40 by rlecart           #+#    #+#             */
-/*   Updated: 2017/02/15 14:33:25 by pbernier         ###   ########.fr       */
+/*   Created: 2017/02/08 22:11:14 by rlecart           #+#    #+#             */
+/*   Updated: 2017/02/08 22:31:24 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../printf/ft_printf.h"
+#include "libft.h"
 
-int				main(void)
+void	ft_strtabdel(char ***tab)
 {
-//	int	oui = 4;
+	int		i;
 
-	printf("oui%coui", '\0');
-//	printf("printf = %+090.5d %s\n", oui, "bonjour");
-//	ft_printf("ft_printf =%d %s %i\n", 42, "bonjour", 5);
-//	while (1)
-//		;
-	return (0);
+	i = 0;
+	while (tab[i])
+		ft_strdel(tab[i++]);
 }

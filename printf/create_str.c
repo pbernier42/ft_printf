@@ -1,25 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   create_str.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rlecart <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/02/01 16:01:40 by rlecart           #+#    #+#             */
-/*   Updated: 2017/02/15 14:33:25 by pbernier         ###   ########.fr       */
+/*   Created: 2017/02/09 04:45:54 by rlecart           #+#    #+#             */
+/*   Updated: 2017/02/09 05:31:03 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../printf/ft_printf.h"
+#include "ft_printf.h"
 
-int				main(void)
+int		create_str(char **str, char *per, char spec, void *arg)
 {
-//	int	oui = 4;
-
-	printf("oui%coui", '\0');
-//	printf("printf = %+090.5d %s\n", oui, "bonjour");
-//	ft_printf("ft_printf =%d %s %i\n", 42, "bonjour", 5);
-//	while (1)
-//		;
-	return (0);
+	str += 0;
+	per += 0;
+	spec += 0;
+	arg += 0;
+	return (1);
 }

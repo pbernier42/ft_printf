@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rlecart <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: rlecart <rlecart@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/01 15:13:38 by rlecart           #+#    #+#             */
-/*   Updated: 2017/02/02 23:49:50 by rlecart          ###   ########.fr       */
+/*   Updated: 2017/02/14 19:44:49 by pbernier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,14 +17,14 @@
 # include <stdarg.h>
 # include <stdlib.h>
 
-typedef struct		s_struct
-{
-	va_list			ap;
-	int				i;		//iterateur.
-	int				len;	//nombre de caractére lu.
-	int				dig;	//stockage d'un int.
-	char			*str;	//stockage d'une chaine de caractére.
-	char			cha;	//stockage d'un caractére.
+int		ft_printf(char const *format, ...);
+char	*ft_decrypt(char const *format, int *i/*, va_list ap*/);
+void	*find_specifier(char spec, char *per, void **arg/*, va_list ap*/);
+char	*convert_arg(char spec, void *arg);
+//int		create_str(char **str, char *per, char spec, void *arg);
+
+#endif
+
 /*
       c         Character
       d or i    Signed decimal integer
@@ -42,13 +42,3 @@ typedef struct		s_struct
       n         Nothing printed
       %         Character
 */
-	char			*buff;	//??
-	char			*head;	//??
-	char			*tmp;	//??
-	char			*tmp2;	//??
-}					t_struct;
-
-int					ft_printf(char const *format, ...);
-char				*ft_decrypt(t_struct **pf);
-
-#endif

@@ -1,25 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_intlen_base.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rlecart <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: pbernier <pbernier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/02/01 16:01:40 by rlecart           #+#    #+#             */
-/*   Updated: 2017/02/15 14:33:25 by pbernier         ###   ########.fr       */
+/*   Created: 2017/02/15 13:25:18 by pbernier          #+#    #+#             */
+/*   Updated: 2017/02/15 13:25:55 by pbernier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../printf/ft_printf.h"
+#include "libft.h"
 
-int				main(void)
+int		ft_intlen_base(int nbr, int base)
 {
-//	int	oui = 4;
+	int	len;
 
-	printf("oui%coui", '\0');
-//	printf("printf = %+090.5d %s\n", oui, "bonjour");
-//	ft_printf("ft_printf =%d %s %i\n", 42, "bonjour", 5);
-//	while (1)
-//		;
-	return (0);
+	len = 1;
+	if (nbr < 0 && base == 10)
+		len = 2;
+	while ((nbr /= base))
+		len++;
+	return (len);
 }
