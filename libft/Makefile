@@ -3,16 +3,15 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: rlecart <rlecart@student.42.fr>            +#+  +:+       +#+         #
+#    By: pbernier <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2016/11/10 12:55:07 by rlecart           #+#    #+#              #
-#    Updated: 2017/02/21 02:45:43 by pbernier         ###   ########.fr        #
+#    Created: 2017/02/21 03:19:16 by pbernier          #+#    #+#              #
+#    Updated: 2017/02/21 03:21:39 by pbernier         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME	=	libftprintf.a
+NAME	=	libft.a
 FILE	=	ft_putstr.c \
-			ft_puttab.c \
 			ft_putchar.c \
 			ft_strlen.c \
 			ft_strdup.c \
@@ -54,10 +53,8 @@ FILE	=	ft_putstr.c \
 			ft_strnequ.c \
 			ft_strsub.c \
 			ft_strjoin.c \
-			ft_strjoin_char.c \
 			ft_strtrim.c \
 			ft_itoa.c \
-			ft_itoa_base.c \
 			ft_putendl.c \
 			ft_putnbr.c \
 			ft_putchar_fd.c \
@@ -77,32 +74,21 @@ FILE	=	ft_putstr.c \
 			ft_range.c \
 			ft_strrev.c \
 			ft_lstlast.c \
-			get_next_line.c \
-			ft_strtabdel.c \
+			ft_strjoin_char.c \
 			ft_strjoin_clean.c \
 			ft_strjoin_clean_char.c \
 			ft_absolute.c \
 			ft_intlen_base.c
-SRC		=	$(addprefix libft/,$(FILE))
-FILEPF	=	ft_printf.c \
-			ft_decrypt.c \
-			find_specifier.c \
-			spec_type_si.c \
-			spec_type_un.c \
-			spec_type_sp.c
-SRCPF	=	$(addprefix printf/,$(FILEPF))
-OBJ		=	$(SRC:.c=.o) $(SRCPF:.c=.o)
-
-CC			=	gcc
-FLAGS		=	-Wall -Werror -Wextra
+SRC		=	$(FILE)
+OBJ		=	$(SRC:.c=.o)
+CC		=	gcc
+FLAGS	=	-Wall -Werror -Wextra
 
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	ar rc $(NAME) $(FILE:.c=.o) $(FILEPF:.c=.o)
+	ar rc $(NAME) $(OBJ)
 	ranlib $(NAME)
-	mv $(FILE:.c=.o) libft
-	mv $(FILEPF:.c=.o) printf
 
 %.o: %.c
 	$(CC) -c $< $(FLAGS)

@@ -6,7 +6,7 @@
 /*   By: rlecart <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/01 16:01:40 by rlecart           #+#    #+#             */
-/*   Updated: 2017/02/21 02:39:28 by pbernier         ###   ########.fr       */
+/*   Updated: 2017/02/21 04:04:55 by pbernier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int				main(void)
 {
-	printf("OUI\n");
-	ft_printf("OUI\n");
+	printf("OUI %s\n", "haha");
+	ft_printf("OUI %s\n", "haha");
 	return (0);
 }

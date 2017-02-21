@@ -6,36 +6,37 @@
 /*   By: rlecart <rlecart@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/09 04:46:28 by rlecart           #+#    #+#             */
-/*   Updated: 2017/02/21 02:28:42 by pbernier         ###   ########.fr       */
+/*   Updated: 2017/02/21 04:43:42 by pbernier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-static void		init_ptr(void *(*tab[18]))
+
+void		init_ptr(void *(*tab[18])(va_list, char))
 {
-	*tab[0] = spec_int;
-	*tab[1] = spec_sint;
-	*tab[2] = spec_lint;
-	*tab[3] = spec_lint; //maxint
-	*tab[4] = spec_unint;
-	*tab[5] = spec_char;
-	*tab[6] = spec_llint;
+	tab[0] = (void*)&spec_int;
+	tab[1] = (void*)&spec_sint;
+	tab[2] = (void*)&spec_lint;
+	tab[3] = (void*)&spec_lint; //maxint
+	tab[4] = (void*)&spec_unint;
+	tab[5] = (void*)&spec_char;
+	tab[6] = (void*)&spec_llint;
 
-	*tab[7] = spec_unint;
-	*tab[8] = spec_unsint;
-	*tab[9] = spec_unlint;
-	*tab[10] = spec_unlint; //unmaxint
-	*tab[11] = spec_ssizet;
-	*tab[12] = spec_unchar;
-	*tab[13] = spec_unllint;
-	*tab[14] = spec_wintt;  //??
+	tab[7] = (void*)&spec_unint;
+	tab[8] = (void*)&spec_unsint;
+	tab[9] = (void*)&spec_unlint;
+	tab[10] = (void*)&spec_unlint; //unmaxint
+	tab[11] = (void*)&spec_ssizet;
+	tab[12] = (void*)&spec_unchar;
+	tab[13] = (void*)&spec_unllint;
+	tab[14] = (void*)&spec_wintt;  //??
 
-	*tab[15] = spec_str;
-	*tab[16] = spec_void;
-	*tab[17] = spec_wchart; //??
+	tab[15] = (void*)&spec_str;
+	tab[16] = (void*)&spec_void;
+	tab[17] = (void*)&spec_wchart; //??
 }
 
-static int		ft_flags(char *per, int i)
+int		ft_flags(char *per, int i)
 {
 	int		j;
 	int		len;
@@ -56,39 +57,40 @@ static int		ft_flags(char *per, int i)
 		j++;
 	while (lm[1] && flags[1][j] != lm[1])
 		j++;
-	ft_memcpy(pos, ((char[10]){0 + j, 0 + j, 0 + j, 12 + j,
-				7 + j, 7 + j, 7 + j, 7 + j, 16 + j, 15 + j}), sizeof(char[10]));
+	ft_memcpy(pos, ((int[10]){0 + j, 0 + j, 0 + j, 12 + j, 7 + j,
+				7 + j, 7 + j, 7 + j, 16 + j, 15 + j}), sizeof(int[10]));
 	return (pos[i]);
 }
 
-static void		spec_syn(char spec, char **per)
+void		spec_syn(char spec, char **per)
 {
 	int		i;
-	char	spec_CSDOU[15];
+	char	spec_csdou[16];
 	char	*tmp;
 
 	i = 0;
-	ft_strcpy(spec_CSDOU, "ClcSlsDldOloUlu");
+	ft_strcpy(spec_csdou, "ClcSlsDldOloUlu\0");
 	tmp = NULL;
-	while (spec_CSDOU[i] && spec_CSDOU[i] != spec)
+	while (spec_csdou[i] && spec_csdou[i] != spec)
 		i += 3;
-	if (!(spec_CSDOU[i]))
+	if (!(spec_csdou[i]))
 		return ;
 	*per[ft_strlen(*per) - 1] = '\0';
-	tmp = ft_strsub(spec_CSDOU, i + 1, 2);
+	tmp = ft_strsub(spec_csdou, i + 1, 2);
 	*per = ft_strjoin_clean(per, &tmp);
 }
 
 void			find_specifier(char spec, char *per, void **arg, va_list ap)
 {
 	int		i;
-	char	spec_nosyn[10];
+	char	spec_nosyn[11];
 	void	*(*tab[18])(va_list, char);
 
 	i = 0;
-	spec_syn(spec, &per);
-	ft_strcpy(spec_nosyn, "di%couxXps");
-	while (spec_nosyn[i] != spec)
+	ft_strcpy(spec_nosyn, "di%couxXps\0");
+	init_ptr(&(*tab));
+	while (spec_nosyn[i] && spec_nosyn[i] != spec)
 		i++;
+	spec_syn(spec, &per);
 	*arg = tab[ft_flags(per, i)](ap, spec);
 }

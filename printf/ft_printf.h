@@ -6,7 +6,7 @@
 /*   By: rlecart <rlecart@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/01 15:13:38 by rlecart           #+#    #+#             */
-/*   Updated: 2017/02/21 01:50:56 by pbernier         ###   ########.fr       */
+/*   Updated: 2017/02/21 04:00:44 by pbernier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ char						*ft_decrypt(char const *format, int *i, va_list ap,
 								int *len);
 void						find_specifier(char spec, char *per, void **arg,
 								va_list ap);
-char						*convert_arg(char spec, void *arg);
+//char						*convert_arg(char spec, void *arg);
 
 char						spec_char(va_list ap, char spec);
 int							spec_int(va_list ap, char spec);

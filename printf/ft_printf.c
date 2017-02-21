@@ -6,7 +6,7 @@
 /*   By: rlecart <rlecart@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/02 23:35:27 by rlecart           #+#    #+#             */
-/*   Updated: 2017/02/21 02:38:45 by pbernier         ###   ########.fr       */
+/*   Updated: 2017/02/21 03:13:54 by pbernier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,8 @@ int				ft_printf(char const *format, ...)
 
 	i = 0;
 	len = 0;
-	tmp = NULL;
+	buff = ft_strnew(0);
+	tmp = ft_strnew(0);
 	va_start(ap, format);
 	while (format[i])
 	{
