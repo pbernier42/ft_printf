@@ -6,7 +6,7 @@
 /*   By: rlecart <rlecart@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/09 04:46:28 by rlecart           #+#    #+#             */
-/*   Updated: 2017/02/21 02:05:41 by pbernier         ###   ########.fr       */
+/*   Updated: 2017/02/21 02:28:42 by pbernier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,37 +35,30 @@ static void		init_ptr(void *(*tab[18]))
 	*tab[17] = spec_wchart; //??
 }
 
-static int		ft_flags(char spec, char *per)
+static int		ft_flags(char *per, int i)
 {
-	int		i;
 	int		j;
 	int		len;
 	int		pos[10];
 	char	lm[2];
 	char	flags[2][7];
-	char	spec_nosyn[10];
 
-	i = 0;
 	j = 0;
 	len = ft_strlen(per);
 	ft_strcpy(flags[0], " hljz");
 	ft_strcpy(flags[1], "     hl");
-	ft_strcpy(spec_nosyn, "di%couxXps");
 	ft_memcpy(lm, ((char[2]){'\0', '\0'}), sizeof(char[2]));
 	if (len >= 2)
 		ft_memcpy(lm, ((char[2]){per[len - 2], '\0'}), sizeof(char[2]));
 	if (len >= 3)
 		ft_memcpy(lm, ((char[2]){lm[0], per[len - 3]}), sizeof(char[2]));
-	while (spec_nosyn[i] && spec_nosyn[i] != spec)
-		i++;
 	while (lm[0] && flags[0][j] != lm[0])
 		j++;
 	while (lm[1] && flags[1][j] != lm[1])
 		j++;
 	ft_memcpy(pos, ((char[10]){0 + j, 0 + j, 0 + j, 12 + j,
 				7 + j, 7 + j, 7 + j, 7 + j, 16 + j, 15 + j}), sizeof(char[10]));
-
-	return (i);
+	return (pos[i]);
 }
 
 static void		spec_syn(char spec, char **per)
@@ -89,10 +82,13 @@ static void		spec_syn(char spec, char **per)
 void			find_specifier(char spec, char *per, void **arg, va_list ap)
 {
 	int		i;
-	char	flags[2];
-	void	*(*tab[12])(va_list, char);
+	char	spec_nosyn[10];
+	void	*(*tab[18])(va_list, char);
 
+	i = 0;
 	spec_syn(spec, &per);
-	i = ft_flags(spec, per);
-	*arg = tab[i](ap, spec);
+	ft_strcpy(spec_nosyn, "di%couxXps");
+	while (spec_nosyn[i] != spec)
+		i++;
+	*arg = tab[ft_flags(per, i)](ap, spec);
 }

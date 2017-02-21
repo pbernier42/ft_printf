@@ -6,7 +6,7 @@
 /*   By: pbernier <pbernier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/14 19:45:17 by pbernier          #+#    #+#             */
-/*   Updated: 2017/02/15 15:21:10 by pbernier         ###   ########.fr       */
+/*   Updated: 2017/02/21 02:35:20 by pbernier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ char	*convert_arg(char spec, void *arg/*, size_t *len*/)
 	if (i <= 5)
 		pf_itoa_base((long)*arg, base[i], &str, spec);
 	if (i == 6)
-		str = *arg;
+		str = arg;
 	if (i == 7 || i == 8)
 		str = ft_strjoin_clean_char(ft_strnew(0), *arg);
 	//p

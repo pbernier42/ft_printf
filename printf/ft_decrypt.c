@@ -6,7 +6,7 @@
 /*   By: rlecart <rlecart@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/09 00:49:24 by rlecart           #+#    #+#             */
-/*   Updated: 2017/02/15 16:34:03 by pbernier         ###   ########.fr       */
+/*   Updated: 2017/02/21 02:38:27 by pbernier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ char			*ft_decrypt(char const *format, int *i, va_list ap, int *len)
 {
 	int		nb[2];
 	char	spec[16];
-	char	*result;
+//	char	*result;
 	void	*arg;
 
 	ft_strcpy(spec, "sSpdDioOuUxXcC%");
@@ -39,7 +39,7 @@ char			*ft_decrypt(char const *format, int *i, va_list ap, int *len)
 	find_specifier(spec[nb[1]], ft_strsub(format, 1, nb[0]), &arg, ap);
 
 	// convert();
-	/*ret = */convert_arg(spec[nb[1]], arg);
+	/*ret = *///convert_arg(spec[nb[1]], arg);
 
 	// create str
 	// 1er flag
@@ -50,5 +50,6 @@ char			*ft_decrypt(char const *format, int *i, va_list ap, int *len)
 
 	// place x dans le Char *;
 	*i += nb[0] + 1;
-	return (NULL);
+	*len = 1;
+	return ((char*)arg);
 }
