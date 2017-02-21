@@ -1,41 +1,49 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   spec_type.c                                        :+:      :+:    :+:   */
+/*   spec_type_sp.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pbernier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/02/15 17:02:41 by pbernier          #+#    #+#             */
-/*   Updated: 2017/02/15 18:38:17 by pbernier         ###   ########.fr       */
+/*   Created: 2017/02/20 20:25:21 by pbernier          #+#    #+#             */
+/*   Updated: 2017/02/21 01:50:15 by pbernier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-//p
-//De plus, elle acceptait D, O, U comme synonymes de ld, lo et lu
-
-int				spec_int(va_list ap, char spec)
-{
-	if (spec == '%')
-		return ('%');
-	return (va_arg(ap, int));
-}
-
-unsigned int	spec_unint(va_list ap, char spec)
+void		*spec_void(va_list ap, char spec)
 {
 	spec += 0;
-	return (va_arg(ap, unsigned int));
+	return (va_arg(ap, void*));
 }
 
-char			*spec_str(va_list ap, char spec)
+char		*spec_str(va_list ap, char spec)
 {
 	spec += 0;
 	return (va_arg(ap, char*));
 }
-
-void			*spec_void(va_list ap, char spec)
+/*
+size_t		spec_sizet(va_list ap, char spec)
 {
 	spec += 0;
-	return (va_arg(ap, void*));
+	return (va_arg(ap, size_t));
+}
+*/
+ssize_t		spec_ssizet(va_list ap, char spec)
+{
+	spec += 0;
+	return (va_arg(ap, ssize_t));
+}
+
+wchar_t		spec_wintt(va_list ap, char spec)
+{
+	spec += 0;
+	return (va_arg(ap, wchar_t));
+}
+
+wchar_t		*spec_wchart(va_list ap, char spec)
+{
+	spec += 0;
+	return (va_arg(ap, wchar_t*));
 }

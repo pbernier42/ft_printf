@@ -6,39 +6,66 @@
 /*   By: rlecart <rlecart@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/09 04:46:28 by rlecart           #+#    #+#             */
-/*   Updated: 2017/02/15 18:47:12 by pbernier         ###   ########.fr       */
+/*   Updated: 2017/02/21 02:05:41 by pbernier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+static void		init_ptr(void *(*tab[18]))
+{
+	*tab[0] = spec_int;
+	*tab[1] = spec_sint;
+	*tab[2] = spec_lint;
+	*tab[3] = spec_lint; //maxint
+	*tab[4] = spec_unint;
+	*tab[5] = spec_char;
+	*tab[6] = spec_llint;
 
-void			*ft_flags(char spec, char *per, va_list ap,
-		void *(tab)(va_list, char))
+	*tab[7] = spec_unint;
+	*tab[8] = spec_unsint;
+	*tab[9] = spec_unlint;
+	*tab[10] = spec_unlint; //unmaxint
+	*tab[11] = spec_ssizet;
+	*tab[12] = spec_unchar;
+	*tab[13] = spec_unllint;
+	*tab[14] = spec_wintt;  //??
+
+	*tab[15] = spec_str;
+	*tab[16] = spec_void;
+	*tab[17] = spec_wchart; //??
+}
+
+static int		ft_flags(char spec, char *per)
 {
 	int		i;
+	int		j;
 	int		len;
+	int		pos[10];
 	char	lm[2];
-	char	flags[4];
+	char	flags[2][7];
+	char	spec_nosyn[10];
 
 	i = 0;
+	j = 0;
 	len = ft_strlen(per);
+	ft_strcpy(flags[0], " hljz");
+	ft_strcpy(flags[1], "     hl");
+	ft_strcpy(spec_nosyn, "di%couxXps");
 	ft_memcpy(lm, ((char[2]){'\0', '\0'}), sizeof(char[2]));
-	ft_strcpy(flags, "hljz");
 	if (len >= 2)
 		ft_memcpy(lm, ((char[2]){per[len - 2], '\0'}), sizeof(char[2]));
-	while (flags[i] && flags[i] != lm[0])
+	if (len >= 3)
+		ft_memcpy(lm, ((char[2]){lm[0], per[len - 3]}), sizeof(char[2]));
+	while (spec_nosyn[i] && spec_nosyn[i] != spec)
 		i++;
-	if (!(flags[i]))
-		return (tab(ap, spec));
+	while (lm[0] && flags[0][j] != lm[0])
+		j++;
+	while (lm[1] && flags[1][j] != lm[1])
+		j++;
+	ft_memcpy(pos, ((char[10]){0 + j, 0 + j, 0 + j, 12 + j,
+				7 + j, 7 + j, 7 + j, 7 + j, 16 + j, 15 + j}), sizeof(char[10]));
 
-	// reperer les flags
-	// retour arriere stock dans str[2];
-	// if str[0] = '\0'
-	//	if iouxX => INT
-	// if srt[1] = h || l
-	//	retour arriere;
-
-	return (NULL);
+	return (i);
 }
 
 static void		spec_syn(char spec, char **per)
@@ -63,26 +90,9 @@ void			find_specifier(char spec, char *per, void **arg, va_list ap)
 {
 	int		i;
 	char	flags[2];
-	char	spec_nosyn[10];
-	void	*(*tab[4])(va_list, char);
-	
-	i = 0;
+	void	*(*tab[12])(va_list, char);
+
 	spec_syn(spec, &per);
-	ft_strcpy(spec_nosyn, "dic%ouxXsp");
-	//ft_flags 
-	tab[0] = (void*)spec_int;
-	tab[1] = (void*)spec_unint;
-	tab[2] = (void*)spec_str;
-	tab[3] = (void*)spec_void;
-	while (spec_nosyn[i] != spec)
-		i++;
-	if (i >= 0 && i <= 3)
-		i = 0;
-	else if (i >= 4 && i <= 7)
-		i = 1;
-	else if (i == 8)
-		i = 2;
-	else if (i == 9)
-		i = 3;
+	i = ft_flags(spec, per);
 	*arg = tab[i](ap, spec);
 }
