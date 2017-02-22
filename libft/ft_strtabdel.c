@@ -6,7 +6,7 @@
 /*   By: rlecart <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/08 22:11:14 by rlecart           #+#    #+#             */
-/*   Updated: 2017/02/08 22:31:24 by rlecart          ###   ########.fr       */
+/*   Updated: 2017/02/22 17:06:39 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,6 @@ void	ft_strtabdel(char ***tab)
 	int		i;
 
 	i = 0;
-	while (tab[i])
+	while (*tab[i])
 		ft_strdel(tab[i++]);
 }

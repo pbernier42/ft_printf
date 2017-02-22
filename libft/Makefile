@@ -6,7 +6,7 @@
 #    By: pbernier <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/02/21 03:19:16 by pbernier          #+#    #+#              #
-#    Updated: 2017/02/21 03:21:39 by pbernier         ###   ########.fr        #
+#    Updated: 2017/02/22 17:34:56 by rlecart          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -78,7 +78,12 @@ FILE	=	ft_putstr.c \
 			ft_strjoin_clean.c \
 			ft_strjoin_clean_char.c \
 			ft_absolute.c \
-			ft_intlen_base.c
+			ft_intlen_base.c \
+			ft_puttab.c \
+			ft_strtabdel.c \
+			ft_itoa_base.c \
+			ft_strsplitstr.c \
+			get_next_line.c
 SRC		=	$(FILE)
 OBJ		=	$(SRC:.c=.o)
 CC		=	gcc
