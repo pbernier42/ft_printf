@@ -6,7 +6,7 @@
 /*   By: rlecart <rlecart@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/09 04:46:28 by rlecart           #+#    #+#             */
-/*   Updated: 2017/02/21 04:43:42 by pbernier         ###   ########.fr       */
+/*   Updated: 2017/02/23 06:32:41 by pbernier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,15 +25,15 @@ void		init_ptr(void *(*tab[18])(va_list, char))
 	tab[7] = (void*)&spec_unint;
 	tab[8] = (void*)&spec_unsint;
 	tab[9] = (void*)&spec_unlint;
-	tab[10] = (void*)&spec_unlint; //unmaxint
+	tab[10] = (void*)&spec_unlint; // unmaxint
 	tab[11] = (void*)&spec_ssizet;
 	tab[12] = (void*)&spec_unchar;
 	tab[13] = (void*)&spec_unllint;
-	tab[14] = (void*)&spec_wintt;  //??
+	tab[14] = (void*)&spec_wintt;  // C = lc
 
 	tab[15] = (void*)&spec_str;
 	tab[16] = (void*)&spec_void;
-	tab[17] = (void*)&spec_wchart; //??
+	tab[17] = (void*)&spec_wchart; // ??
 }
 
 int		ft_flags(char *per, int i)
@@ -75,7 +75,7 @@ void		spec_syn(char spec, char **per)
 		i += 3;
 	if (!(spec_csdou[i]))
 		return ;
-	*per[ft_strlen(*per) - 1] = '\0';
+	(*per)[ft_strlen(*per) - 1] = '\0';
 	tmp = ft_strsub(spec_csdou, i + 1, 2);
 	*per = ft_strjoin_clean(per, &tmp);
 }
@@ -89,8 +89,11 @@ void			find_specifier(char spec, char *per, void **arg, va_list ap)
 	i = 0;
 	ft_strcpy(spec_nosyn, "di%couxXps\0");
 	init_ptr(&(*tab));
+	spec_syn(spec, &per);
+	if (spec >= 'A' && spec <= 'Z' && spec != 'X')
+		spec += 32;
 	while (spec_nosyn[i] && spec_nosyn[i] != spec)
 		i++;
-	spec_syn(spec, &per);
 	*arg = tab[ft_flags(per, i)](ap, spec);
+	ft_strdel(&per);
 }

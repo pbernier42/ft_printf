@@ -6,7 +6,7 @@
 /*   By: rlecart <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/09 04:45:54 by rlecart           #+#    #+#             */
-/*   Updated: 2017/02/23 03:16:54 by pbernier         ###   ########.fr       */
+/*   Updated: 2017/02/23 06:23:10 by pbernier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 void	create_str(char **str, char *per, char spec, char *arg, int *len)
 {
+	if (spec >= 'A' && spec <= 'Z' && spec != 'X')
+		spec += 32;
 	str += 0;
 	per += 0;
 	spec += 0;

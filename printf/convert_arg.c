@@ -6,13 +6,13 @@
 /*   By: pbernier <pbernier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/14 19:45:17 by pbernier          #+#    #+#             */
-/*   Updated: 2017/02/23 03:15:37 by pbernier         ###   ########.fr       */
+/*   Updated: 2017/02/23 06:45:24 by pbernier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static void			pf_itoa(long long nbr, char **str)
+static void			pf_itoa(int nbr, char **str)
 {
 	int		len;
 
@@ -68,6 +68,8 @@ char	*convert_arg(char spec, void *arg)
 	char	*str;
 	char	spec_nosyn[10];
 
+	if (spec >= 'A' && spec <= 'Z' && spec != 'X')
+		spec += 32;
 	i = 0;
 	ft_memcpy(base, ((int[5]){8, 10, 16, 16, 16}), sizeof(int[5]));
 	str = NULL;
@@ -77,9 +79,9 @@ char	*convert_arg(char spec, void *arg)
 	if (i <= 4)
 		pf_uitoa((unsigned long long)arg, &str, base[i], spec);
 	else if (i == 5 || i == 6)
-		pf_itoa((long long)arg, &str);
+		pf_itoa((int)arg, &str);
 	else if (i == 7)
-		str = (char*)arg;
+		str = ft_strdup((char*)arg);
 	else if (i == 8 || i == 9)
 		str = ft_strjoin_clean_char(&str, (char)arg);
 	return (str);

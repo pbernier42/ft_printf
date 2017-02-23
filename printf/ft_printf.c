@@ -6,7 +6,7 @@
 /*   By: rlecart <rlecart@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/02 23:35:27 by rlecart           #+#    #+#             */
-/*   Updated: 2017/02/23 03:27:16 by pbernier         ###   ########.fr       */
+/*   Updated: 2017/02/23 06:43:24 by pbernier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int				ft_printf(char const *format, ...)
 	i = 0;
 	len = 0;
 	buff = ft_strnew(0);
-	tmp = ft_strnew(0);
+	tmp = NULL;
 	va_start(ap, format);
 	while (format[i])
 	{
@@ -36,11 +36,11 @@ int				ft_printf(char const *format, ...)
 		{
 			tmp = ft_decrypt(&(format[i++]), &i, ap, &len);
 			buff = ft_strjoin_clean(&buff, &tmp);
-			ft_strdel(&tmp);
 		}
 	}
 	write(1, buff, len);
 	ft_strdel(&buff);
+	ft_strdel(&tmp);
 	va_end(ap);
 	return (len);
 }

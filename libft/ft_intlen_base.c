@@ -6,13 +6,13 @@
 /*   By: pbernier <pbernier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/15 13:25:18 by pbernier          #+#    #+#             */
-/*   Updated: 2017/02/23 01:09:08 by pbernier         ###   ########.fr       */
+/*   Updated: 2017/02/23 05:47:49 by pbernier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int		ft_intlen_base(long long nbr, int base)
+int		ft_intlen_base(int nbr, int base)
 {
 	int	len;
 
