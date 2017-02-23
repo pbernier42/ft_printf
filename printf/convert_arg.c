@@ -6,7 +6,7 @@
 /*   By: pbernier <pbernier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/14 19:45:17 by pbernier          #+#    #+#             */
-/*   Updated: 2017/02/23 01:35:20 by pbernier         ###   ########.fr       */
+/*   Updated: 2017/02/23 03:15:37 by pbernier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 static void			pf_itoa(long long nbr, char **str)
 {
-	int				len;
+	int		len;
 
-	len = ft_intlen(nbr);
+	len = ft_intlen_base(nbr, 10);
 	if (!(*str = ft_strnew(len--)))
 		exit(-1);
 	if (nbr < 0)
@@ -30,7 +30,7 @@ static void			pf_itoa(long long nbr, char **str)
 
 static int		ft_unintlen_base(unsigned long long nbr, int base)
 {
-	int	len;
+	int		len;
 
 	len = 1;
 	while ((nbr /= base))
@@ -41,8 +41,8 @@ static int		ft_unintlen_base(unsigned long long nbr, int base)
 static void			pf_uitoa(unsigned long long nbr,
 						char **str, int base, char spec)
 {
-	int 			len;
-	char			hexa[16];
+	int 	len;
+	char	hexa[16];
 
 	ft_strcpy(hexa, "0123456789abcdef");
 	if (spec == 'X')
@@ -61,26 +61,26 @@ static void			pf_uitoa(unsigned long long nbr,
 	}
 }
 
-char	*convert_arg(char spec, void *arg, int *len)
+char	*convert_arg(char spec, void *arg)
 {
-	char	*str;
 	int		i;
-	char	spec_nosyn[10];
 	int		base[5];
+	char	*str;
+	char	spec_nosyn[10];
 
 	i = 0;
-	ft_strcpy(spec_nosyn, "ouxXpdisc%");
 	ft_memcpy(base, ((int[5]){8, 10, 16, 16, 16}), sizeof(int[5]));
+	str = NULL;
+	ft_strcpy(spec_nosyn, "ouxXpdisc%");
 	while (spec_nosyn[i] != spec)
 		i++;
 	if (i <= 4)
-		pf_uitoa(arg, &str, base[i], spec);
+		pf_uitoa((unsigned long long)arg, &str, base[i], spec);
 	else if (i == 5 || i == 6)
-		pf_itoa(arg, &str);
+		pf_itoa((long long)arg, &str);
 	else if (i == 7)
-		str = (char *)arg;
+		str = (char*)arg;
 	else if (i == 8 || i == 9)
-		*str = ft_strjoin_clean_char(ft_strnew(0), arg);
-	*len += ft_strlen(str);
+		str = ft_strjoin_clean_char(&str, (char)arg);
 	return (str);
 }

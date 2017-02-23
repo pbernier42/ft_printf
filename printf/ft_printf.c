@@ -6,7 +6,7 @@
 /*   By: rlecart <rlecart@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/02 23:35:27 by rlecart           #+#    #+#             */
-/*   Updated: 2017/02/21 03:13:54 by pbernier         ###   ########.fr       */
+/*   Updated: 2017/02/23 03:27:16 by pbernier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ int				ft_printf(char const *format, ...)
 		{
 			tmp = ft_decrypt(&(format[i++]), &i, ap, &len);
 			buff = ft_strjoin_clean(&buff, &tmp);
+			ft_strdel(&tmp);
 		}
 	}
 	write(1, buff, len);

@@ -6,7 +6,7 @@
 #    By: rlecart <rlecart@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/11/10 12:55:07 by rlecart           #+#    #+#              #
-#    Updated: 2017/02/21 02:45:43 by pbernier         ###   ########.fr        #
+#    Updated: 2017/02/23 01:48:57 by pbernier         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -89,7 +89,9 @@ FILEPF	=	ft_printf.c \
 			find_specifier.c \
 			spec_type_si.c \
 			spec_type_un.c \
-			spec_type_sp.c
+			spec_type_sp.c \
+			convert_arg.c \
+			create_str.c
 SRCPF	=	$(addprefix printf/,$(FILEPF))
 OBJ		=	$(SRC:.c=.o) $(SRCPF:.c=.o)
 

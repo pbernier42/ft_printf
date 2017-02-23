@@ -6,17 +6,19 @@
 /*   By: rlecart <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/09 04:45:54 by rlecart           #+#    #+#             */
-/*   Updated: 2017/02/20 21:23:08 by pbernier         ###   ########.fr       */
+/*   Updated: 2017/02/23 03:16:54 by pbernier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int		create_str(char **str, char *per, char spec, void *arg)
+void	create_str(char **str, char *per, char spec, char *arg, int *len)
 {
 	str += 0;
 	per += 0;
 	spec += 0;
 	arg += 0;
-	return (1);
+	len += 0;
+	ft_strdel(&per);
+	*str = arg;
 }

@@ -6,7 +6,7 @@
 /*   By: rlecart <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/09 00:16:59 by rlecart           #+#    #+#             */
-/*   Updated: 2017/02/09 03:16:27 by rlecart          ###   ########.fr       */
+/*   Updated: 2017/02/23 03:22:25 by pbernier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,6 @@ char	*ft_strjoin_clean(char **s1, char **s2)
 	*s1 = ft_strdup(tmp);
 	ft_strdel(&head);
 	ft_strdel(&tmp);
-	ft_strdel(s2);
+//	ft_strdel(s2);
 	return (*s1);
 }
