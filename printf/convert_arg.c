@@ -6,57 +6,81 @@
 /*   By: pbernier <pbernier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/14 19:45:17 by pbernier          #+#    #+#             */
-/*   Updated: 2017/02/21 02:35:20 by pbernier         ###   ########.fr       */
+/*   Updated: 2017/02/23 01:35:20 by pbernier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static void			pf_itoa_base(long lg_nbr, int base, char **str, char spec)
+static void			pf_itoa(long long nbr, char **str)
+{
+	int				len;
+
+	len = ft_intlen(nbr);
+	if (!(*str = ft_strnew(len--)))
+		exit(-1);
+	if (nbr < 0)
+		(*str)[0] = '-';
+	while (len >= 0 && (*str)[len] != '-')
+	{
+		(*str)[len--] = ft_absolute(nbr % 10) + '0';
+		nbr /= 10;
+	}
+}
+
+static int		ft_unintlen_base(unsigned long long nbr, int base)
+{
+	int	len;
+
+	len = 1;
+	while ((nbr /= base))
+		len++;
+	return (len);
+}
+
+static void			pf_uitoa(unsigned long long nbr,
+						char **str, int base, char spec)
 {
 	int 			len;
 	char			hexa[16];
-	unsigned int	un_nbr;
-	long			nbr;
 
 	ft_strcpy(hexa, "0123456789abcdef");
 	if (spec == 'X')
 		ft_strcpy(hexa, "0123456789ABCDEF");
-
-	nbr = (int)lg_nbr;
-	if (spec != 'd' && spec != 'i')
-		nbr = (unsigned int)lg_nbr;				//marche pas pour o ni u
-
-	len = ft_intlen_base(nbr, base);
-	*str = ft_strnew(len-- + 1);		//NON SECU//
-	if (base == 10 && nbr < 0)
-		*str[0] = '-';
-	while ((*str)[len] != '-' && len >= 0)
+	len = ft_unintlen_base(nbr, base);
+	if (spec == 'p')
+		len += 2;
+	if (!(*str = ft_strnew(len--)))
+		exit(-1);
+	if (spec == 'p')
+		ft_memcpy(*str, ((char[2]){'0', 'x'}), sizeof(char[2]));
+	while (len >= 0 && (*str)[len] != 'x')
 	{
-		(*str)[len--] = hexa[ft_absolute(nbr % base)];
+		(*str)[len--] = hexa[nbr % base];
 		nbr /= base;
 	}
 }
 
-char	*convert_arg(char spec, void *arg/*, size_t *len*/)
+char	*convert_arg(char spec, void *arg, int *len)
 {
 	char	*str;
 	int		i;
 	char	spec_nosyn[10];
-	int		base[6];
+	int		base[5];
 
 	i = 0;
-	ft_strcpy(spec_nosyn, "diouxXsc%p");
-	ft_memcpy(base, ((int[6]){10, 10, 8, 10, 16, 16}), sizeof(int[6]));
+	ft_strcpy(spec_nosyn, "ouxXpdisc%");
+	ft_memcpy(base, ((int[5]){8, 10, 16, 16, 16}), sizeof(int[5]));
 	while (spec_nosyn[i] != spec)
 		i++;
-	if (i <= 5)
-		pf_itoa_base((long)*arg, base[i], &str, spec);
-	if (i == 6)
-		str = arg;
-	if (i == 7 || i == 8)
-		str = ft_strjoin_clean_char(ft_strnew(0), *arg);
-	//p
-	//*len += ft_strlen(str);
+	if (i <= 4)
+		pf_uitoa(arg, &str, base[i], spec);
+	else if (i == 5 || i == 6)
+		pf_itoa(arg, &str);
+	else if (i == 7)
+		str = (char *)arg;
+	else if (i == 8 || i == 9)
+		*str = ft_strjoin_clean_char(ft_strnew(0), arg);
+	*len += ft_strlen(str);
 	return (str);
 }
