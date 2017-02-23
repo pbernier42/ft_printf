@@ -6,7 +6,7 @@
 /*   By: rlecart <rlecart@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/09 04:46:28 by rlecart           #+#    #+#             */
-/*   Updated: 2017/02/23 06:32:41 by pbernier         ###   ########.fr       */
+/*   Updated: 2017/02/23 07:19:33 by pbernier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,8 +90,6 @@ void			find_specifier(char spec, char *per, void **arg, va_list ap)
 	ft_strcpy(spec_nosyn, "di%couxXps\0");
 	init_ptr(&(*tab));
 	spec_syn(spec, &per);
-	if (spec >= 'A' && spec <= 'Z' && spec != 'X')
-		spec += 32;
 	while (spec_nosyn[i] && spec_nosyn[i] != spec)
 		i++;
 	*arg = tab[ft_flags(per, i)](ap, spec);

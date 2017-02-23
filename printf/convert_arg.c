@@ -6,7 +6,7 @@
 /*   By: pbernier <pbernier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/14 19:45:17 by pbernier          #+#    #+#             */
-/*   Updated: 2017/02/23 06:45:24 by pbernier         ###   ########.fr       */
+/*   Updated: 2017/02/23 07:50:34 by pbernier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,8 +68,6 @@ char	*convert_arg(char spec, void *arg)
 	char	*str;
 	char	spec_nosyn[10];
 
-	if (spec >= 'A' && spec <= 'Z' && spec != 'X')
-		spec += 32;
 	i = 0;
 	ft_memcpy(base, ((int[5]){8, 10, 16, 16, 16}), sizeof(int[5]));
 	str = NULL;
