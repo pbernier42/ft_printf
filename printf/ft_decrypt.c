@@ -6,7 +6,7 @@
 /*   By: rlecart <rlecart@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/09 00:49:24 by rlecart           #+#    #+#             */
-/*   Updated: 2017/02/21 04:51:12 by pbernier         ###   ########.fr       */
+/*   Updated: 2017/02/23 07:50:28 by pbernier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,12 +34,14 @@ char			*ft_decrypt(char const *format, int *i, va_list ap, int *len)
 	// fonction qui trouve spec
 	// (nb[0] = taille flags / nb[1] = pos spec)
 	isolate_per((char*)format, spec, nb);
+	if (spec[nb[1]] >= 'A' && spec[nb[1]] <= 'Z' && spec[nb[1]] != 'X')
+		spec[nb[1]] += 32;
 
 	// arg = va_list.
 	find_specifier(spec[nb[1]], ft_strsub(format, 1, nb[0]), &arg, ap);
 
 	// convert();
-	create_str(result, ft_strsub(format, 1, nb[0]),
+	create_str(&result, ft_strsub(format, 1, nb[0]),
 			spec[nb[1]], convert_arg(spec[nb[1]], arg));
 
 	// create str
@@ -50,7 +52,7 @@ char			*ft_decrypt(char const *format, int *i, va_list ap, int *len)
 //		return (NULL);
 
 	// place x dans le Char *;
+	*len += ft_strlen(result);
 	*i += nb[0];
-	*len += ft_strlen((char*)arg);
-	return (ft_strdup((char*)arg));
+	return (result);
 }

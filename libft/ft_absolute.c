@@ -6,13 +6,13 @@
 /*   By: pbernier <pbernier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/15 13:22:38 by pbernier          #+#    #+#             */
-/*   Updated: 2017/02/15 13:24:15 by pbernier         ###   ########.fr       */
+/*   Updated: 2017/02/23 05:46:54 by pbernier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int			ft_absolute(int nbr)
+int		ft_absolute(int nbr)
 {
 	if (nbr < 0)
 		nbr *= -1;
