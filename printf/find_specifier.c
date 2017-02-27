@@ -6,13 +6,13 @@
 /*   By: rlecart <rlecart@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/09 04:46:28 by rlecart           #+#    #+#             */
-/*   Updated: 2017/02/23 07:19:33 by pbernier         ###   ########.fr       */
+/*   Updated: 2017/02/27 04:21:21 by pbernier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void		init_ptr(void *(*tab[18])(va_list, char))
+static void		init_ptr(void *(*tab[18])(va_list, char))
 {
 	tab[0] = (void*)&spec_int;
 	tab[1] = (void*)&spec_sint;
@@ -36,7 +36,7 @@ void		init_ptr(void *(*tab[18])(va_list, char))
 	tab[17] = (void*)&spec_wchart; // ??
 }
 
-int		ft_flags(char *per, int i)
+int				ft_flags(char *per, int i)
 {
 	int		j;
 	int		len;
@@ -62,7 +62,7 @@ int		ft_flags(char *per, int i)
 	return (pos[i]);
 }
 
-void		spec_syn(char spec, char **per)
+void			spec_syn(char spec, char **per)
 {
 	int		i;
 	char	spec_csdou[16];
