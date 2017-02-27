@@ -6,11 +6,38 @@
 /*   By: rlecart <rlecart@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/09 04:45:54 by rlecart           #+#    #+#             */
-/*   Updated: 2017/02/27 09:43:02 by pbernier         ###   ########.fr       */
+/*   Updated: 2017/02/27 11:25:41 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+
+void	remove_char(char *per, char remove)
+{
+	int		i;
+	int		j;
+	int		k;
+	char	atr[6];
+	char	*tmp;
+
+	i = -1;
+	j = 0;
+	k = 1;
+	ft_strcpy(atr, " -+#0\0");
+	tmp = NULL;
+	while (atr[j] != remove && atr[j])
+		j++;
+	if (!atr[j])
+		return ;
+	while (++i <= j)
+		while ((tmp = ft_strchr(per, atr[i])))
+		{
+			*tmp = 'P';
+			if (atr[i] == '0')
+				while (tmp[k] >= '0' && tmp[k] <= '9')
+					tmp[k++] = 'P';
+		}
+}
 
 static void		init_ptr(void (*tab[5])())
 {
@@ -58,7 +85,6 @@ void	create_str(char **str, char *per, char spec, char *arg)
 {
 	int		i;
 	char	atr[5];
-	char 	*per;
 	int		v_alg[4];
 	void	(*tab[4])();
 
@@ -67,12 +93,12 @@ void	create_str(char **str, char *per, char spec, char *arg)
 	ft_strcpy(atr, "#+- \0");
 	ft_memcpy(v_alg, ((int[4]){0, 0, 0, 0}), sizeof(int[4 ]));
 	init_ptr(tab);
-	*per = ft_strsub(per, 0, isolate_atr(per, atr));
+	per = ft_strsub(per, 0, isolate_atr(per, atr));
 	while (atr[++i])
 	{
 		if (ft_strchr(per, atr[i]) && !v_alg[i]++)
 			tab[i]();
-		remove_char(per, x)
+		remove_char(per, atr[i]);
 	}
 	ft_strdel(&per);
 }
