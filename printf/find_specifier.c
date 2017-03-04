@@ -6,7 +6,7 @@
 /*   By: rlecart <rlecart@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/09 04:46:28 by rlecart           #+#    #+#             */
-/*   Updated: 2017/02/27 04:21:21 by pbernier         ###   ########.fr       */
+/*   Updated: 2017/03/04 18:22:48 by pbernier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,12 +42,12 @@ int				ft_flags(char *per, int i)
 	int		len;
 	int		pos[10];
 	char	lm[2];
-	char	flags[2][7];
+	char	flags[2][8];
 
 	j = 0;
 	len = ft_strlen(per);
-	ft_strcpy(flags[0], " hljz");
-	ft_strcpy(flags[1], "     hl");
+	ft_strcpy(flags[0], " hljz\0");
+	ft_strcpy(flags[1], "     hl\0");
 	ft_memcpy(lm, ((char[2]){'\0', '\0'}), sizeof(char[2]));
 	if (len >= 2)
 		ft_memcpy(lm, ((char[2]){per[len - 2], '\0'}), sizeof(char[2]));

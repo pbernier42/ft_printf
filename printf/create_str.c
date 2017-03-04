@@ -6,49 +6,38 @@
 /*   By: rlecart <rlecart@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/09 04:45:54 by rlecart           #+#    #+#             */
-/*   Updated: 2017/02/27 11:25:41 by rlecart          ###   ########.fr       */
+/*   Updated: 2017/03/04 18:58:01 by pbernier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	remove_char(char *per, char remove)
+void	remove_char(char *per, char rem)
 {
 	int		i;
-	int		j;
 	int		k;
-	char	atr[6];
 	char	*tmp;
 
 	i = -1;
-	j = 0;
 	k = 1;
-	ft_strcpy(atr, " -+#0\0");
-	tmp = NULL;
-	while (atr[j] != remove && atr[j])
-		j++;
-	if (!atr[j])
-		return ;
-	while (++i <= j)
-		while ((tmp = ft_strchr(per, atr[i])))
-		{
-			*tmp = 'P';
-			if (atr[i] == '0')
-				while (tmp[k] >= '0' && tmp[k] <= '9')
-					tmp[k++] = 'P';
-		}
+	tmp = ft_strchr(per, rem);
+	if (rem == '0')
+		while (tmp[k] >= '0' && tmp[k] <= '9')
+			tmp[k++] = 'P';
+	while ((tmp = ft_strchr(per, rem)))
+		*tmp = 'P';
 }
 
-static void		init_ptr(void (*tab[5])())
+static void		init_ptr(void (*tab[5])(char **, char, char **, char *))
 {
 	tab[0] = &atr_sharp;
-	tab[2] = &atr_pos;
-	tab[3] = &atr_neg;
-	tab[1] = &atr_space;
+	tab[1] = &atr_posit;
+	tab[2] = &atr_negat;
+	tab[3] = &atr_space;
+	tab[4] = &atr_zero;
 
-	tab[4] = &atr_pre;
-	tab[5] = &atr_zero;
-	tab[6] = &atr_lar;
+	//tab[6] = &atr_lar;
+	//tab[4] = &atr_pre;
 }
 
 int				extract_nbr(char *per, int *x)
@@ -60,7 +49,7 @@ int				extract_nbr(char *per, int *x)
 
 	ret = 0;
 	dix = 0.1;
-	len = *x;
+	len = ++(*x);
 	while (per[*x] >= '0' && per[*x] <= '9')
 		(*x)++;
 	len = *x - len;
@@ -76,29 +65,43 @@ static int		isolate_atr(char *str, char *spec)
 
 	ft_memcpy(i, ((int[2]){0, -1}), sizeof(int[2]));
 	while (spec[++(i[1])])
+	{
+		if (str[i[1]] == '0')
+			i[0] += ft_intlen_base(extract_nbr(str, &(i[1])), 10) + 1; // {A TESTER} //
 		if (spec[i[1]] == str[i[0]])
 			ft_memcpy(i, ((int[2]){++(i[0]), -1}), sizeof(int[2]));
+	}
 	return (i[0] + 1);
 }
 
 void	create_str(char **str, char *per, char spec, char *arg)
 {
 	int		i;
-	char	atr[5];
-	int		v_alg[4];
-	void	(*tab[4])();
+	char	atr[6];
+	char	*tmp;
+	void	(*tab[5])(char **, char, char **, char *);
 
 	i = -1;
-	*str = ft_strnew(0);
-	ft_strcpy(atr, "#+- \0");
-	ft_memcpy(v_alg, ((int[4]){0, 0, 0, 0}), sizeof(int[4 ]));
+	ft_strcpy(atr, "#+- 0\0");
 	init_ptr(tab);
-	per = ft_strsub(per, 0, isolate_atr(per, atr));
-	while (atr[++i])
+	tmp = ft_strsub(per, 0, isolate_atr(per, atr));
+	ft_strdel(&per);
+	per = ft_strdup(tmp);
+	ft_strdel(&tmp);
+	if (arg[0] == '-')
 	{
-		if (ft_strchr(per, atr[i]) && !v_alg[i]++)
-			tab[i]();
-		remove_char(per, atr[i]);
+		*str = ft_strsub(arg, 1, ft_strlen(arg) - 1);
+		ft_strdel(&arg);
+		arg = ft_strdup(*str);
+		ft_strdel(str);
+		*str = ft_memset(ft_strnew(1), '-', 1);
 	}
+	else if (!(*str = ft_strnew(2)))
+		exit(-1);
+	while (atr[++i])
+		if ((ft_strchr(per, atr[i])))
+			tab[i](&per, spec, str, arg);
+	*str = ft_strjoin_clean(str, &arg);
+	ft_strdel(&arg);
 	ft_strdel(&per);
 }

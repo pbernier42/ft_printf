@@ -6,7 +6,7 @@
 /*   By: pbernier <pbernier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/14 19:45:17 by pbernier          #+#    #+#             */
-/*   Updated: 2017/02/23 07:50:34 by pbernier         ###   ########.fr       */
+/*   Updated: 2017/03/04 18:20:08 by pbernier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,10 @@ static void			pf_itoa(int nbr, char **str)
 
 static int		ft_unintlen_base(unsigned long long nbr, int base)
 {
-	int		len;
+	int			len;
 
 	len = 1;
-	while ((nbr /= base))
+	while (nbr /= base)
 		len++;
 	return (len);
 }
@@ -66,12 +66,12 @@ char	*convert_arg(char spec, void *arg)
 	int		i;
 	int		base[5];
 	char	*str;
-	char	spec_nosyn[10];
+	char	spec_nosyn[11];
 
 	i = 0;
 	ft_memcpy(base, ((int[5]){8, 10, 16, 16, 16}), sizeof(int[5]));
 	str = NULL;
-	ft_strcpy(spec_nosyn, "ouxXpdisc%");
+	ft_strcpy(spec_nosyn, "ouxXpdisc%\0");
 	while (spec_nosyn[i] != spec)
 		i++;
 	if (i <= 4)
