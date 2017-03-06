@@ -6,7 +6,7 @@
 /*   By: rlecart <rlecart@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/01 16:01:40 by rlecart           #+#    #+#             */
-/*   Updated: 2017/03/04 19:17:24 by pbernier         ###   ########.fr       */
+/*   Updated: 2017/03/06 20:11:52 by pbernier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,10 @@ int				main(void)
 {
 	int		oui;
 
-	oui = -55;
-	ft_putnbr(printf("vrai = %0d\n", oui));
+	oui = 555;
+	ft_putnbr(printf("vrai = |%-20.10d|\n", oui));
 	ft_putstr("\n\n");
-	ft_putnbr(ft_printf("faux = %0d\n", oui));
+	ft_putnbr(ft_printf("faux = |%-20.10d|\n", oui));
 	ft_putstr("\n\n");
-	while (1)
-		;
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: pbernier <pbernier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/27 00:22:41 by pbernier          #+#    #+#             */
-/*   Updated: 2017/03/04 19:30:34 by pbernier         ###   ########.fr       */
+/*   Updated: 2017/03/06 19:48:51 by pbernier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,15 +16,22 @@
 void 	atr_sharp(char **per, char spec, char **prefix, char *arg)
 {
 	int		i;
+	char	syn[3];
 	char	rem[4];
 
 	i = 0;
+	ft_strcpy(syn, "oxX\0");
 	ft_strcpy(rem, "#+ \0");
-	if (spec == 'o' && arg[0] != '0')
+	while (syn[i] && syn[i] != spec)
+		i++;
+	if (!syn[i])
+		remove_char(*per, '#');
+	if (syn[i] && spec == 'o' && arg[0] != '0')
 		*(prefix[0]) = '0';
-	else if (arg[0] != '0')
+	else if (syn[i] && arg[0] != '0')
 		ft_memcpy(*prefix, ((char[2]){'0', spec}), sizeof(char[2]));
-	while (rem[i])
+	i = 0;
+	while (syn[i] && rem[i])
 		remove_char(*per, rem[i++]);
 }
 
@@ -86,13 +93,14 @@ void 	atr_zero(char **per, char spec, char **prefix, char *arg)
 	char	*zero;
 
 	i = 0;
-	while (*(per[i]) != '0')
+	while (*(per[i]) != '0'/* && *(per[i])*/)
 		i++;
-	len = extract_nbr(*per, &i) - (ft_strlen(*prefix) + ft_strlen(arg));
+	len = extract_nbr(*per, i) - (ft_strlen(*prefix) + ft_strlen(arg));
 	if (len > 0)
 		zero = ft_memset(ft_strnew(len), '0', len);
 	*prefix = ft_strjoin_clean(prefix, &zero);
 	spec += 0;
-	ft_strdel(&zero);
+	if (len > 0)
+		ft_strdel(&zero);
 	remove_char(*per, '0');
 }

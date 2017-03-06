@@ -6,7 +6,7 @@
 /*   By: rlecart <rlecart@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/01 15:13:38 by rlecart           #+#    #+#             */
-/*   Updated: 2017/03/04 18:44:32 by pbernier         ###   ########.fr       */
+/*   Updated: 2017/03/06 20:03:19 by pbernier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,10 @@ void						find_specifier(char spec, char *per, void **arg,
 char						*convert_arg(char spec, void *arg);
 void						create_str(char **str, char *per, char spec,
 								char *arg);
+int							extract_nbr(char *per, int x);
 void						remove_char(char *per, char rem);
+void						wof_str(char **str, char *per, int len_my_atr);
+void						pre_str(char spec, char *w_atr, char **arg);
 
 char						spec_char(va_list ap, char spec);
 int							spec_int(va_list ap, char spec);
@@ -55,6 +58,6 @@ void 						atr_space(char **per, char spec, char **prefix,
 								char *arg);
 void 						atr_zero(char **per, char spec, char **prefix,
 								char *arg);
-int							extract_nbr(char *per, int *x);
+
 
 #endif
