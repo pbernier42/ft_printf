@@ -6,7 +6,7 @@
 /*   By: rlecart <rlecart@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/09 04:45:54 by rlecart           #+#    #+#             */
-/*   Updated: 2017/03/06 20:04:31 by pbernier         ###   ########.fr       */
+/*   Updated: 2017/03/10 19:12:20 by pbernier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,9 +40,6 @@ static void		init_ptr(void (*tab[5])(char **, char, char **, char *))
 	tab[2] = &atr_negat;
 	tab[3] = &atr_space;
 	tab[4] = &atr_zero;
-
-	//tab[6] = &atr_lar;
-	//tab[4] = &atr_pre;
 }
 
 int				extract_nbr(char *per, int x)

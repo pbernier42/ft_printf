@@ -6,7 +6,7 @@
 /*   By: pbernier <pbernier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/27 00:22:41 by pbernier          #+#    #+#             */
-/*   Updated: 2017/03/06 19:48:51 by pbernier         ###   ########.fr       */
+/*   Updated: 2017/03/10 19:17:28 by pbernier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ void 	atr_sharp(char **per, char spec, char **prefix, char *arg)
 	i = 0;
 	ft_strcpy(syn, "oxX\0");
 	ft_strcpy(rem, "#+ \0");
+
 	while (syn[i] && syn[i] != spec)
 		i++;
 	if (!syn[i])
@@ -93,7 +94,9 @@ void 	atr_zero(char **per, char spec, char **prefix, char *arg)
 	char	*zero;
 
 	i = 0;
-	while (*(per[i]) != '0'/* && *(per[i])*/)
+
+	//printf("%s\n", *per);
+	while (*per && (*per)[i] != '0')
 		i++;
 	len = extract_nbr(*per, i) - (ft_strlen(*prefix) + ft_strlen(arg));
 	if (len > 0)
