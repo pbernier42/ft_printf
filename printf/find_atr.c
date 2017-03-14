@@ -6,7 +6,7 @@
 /*   By: pbernier <pbernier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/27 00:22:41 by pbernier          #+#    #+#             */
-/*   Updated: 2017/03/14 18:49:31 by pbernier         ###   ########.fr       */
+/*   Updated: 2017/03/14 20:18:08 by pbernier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,14 @@
 void 	atr_sharp(char **per, char spec, char **prefix, char *arg)
 {
 	int		i;
+	int		del;
 	char	syn[3];
 	char	rem[4];
 
 	i = 0;
+	del = 0;
 	ft_strcpy(syn, "oxX\0");
 	ft_strcpy(rem, "#+ \0");
-
 	while (syn[i] && syn[i] != spec)
 		i++;
 	if (!syn[i])
@@ -31,9 +32,8 @@ void 	atr_sharp(char **per, char spec, char **prefix, char *arg)
 		*(prefix[0]) = '0';
 	else if (syn[i] && arg[0] != '0')
 		ft_memcpy(*prefix, ((char[2]){'0', spec}), sizeof(char[2]));
-	i = 0;
-	while (syn[i] && rem[i])
-		remove_char(*per, rem[i++]);
+	while (syn[i] && rem[del])
+		remove_char(*per, rem[del++]);
 	//printf("%s\n", *prefix);
 }
 
