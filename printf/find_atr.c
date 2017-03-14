@@ -6,7 +6,7 @@
 /*   By: pbernier <pbernier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/27 00:22:41 by pbernier          #+#    #+#             */
-/*   Updated: 2017/03/10 19:17:28 by pbernier         ###   ########.fr       */
+/*   Updated: 2017/03/14 18:49:31 by pbernier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ void 	atr_sharp(char **per, char spec, char **prefix, char *arg)
 	i = 0;
 	while (syn[i] && rem[i])
 		remove_char(*per, rem[i++]);
+	//printf("%s\n", *prefix);
 }
 
 void 	atr_posit(char **per, char spec, char **prefix, char *arg)
@@ -59,15 +60,23 @@ void 	atr_posit(char **per, char spec, char **prefix, char *arg)
 void 	atr_negat(char **per, char spec, char **prefix, char *arg)
 {
 	int		i;
+	//char	*for_zero;
 	char	rem[4];
 
 	i = 0;
+	//for_zero = NULL;
 	ft_strcpy(rem, "0- \0");
 	arg += 0;
 	spec += 0;
 	*prefix += 0;
 	while (rem[i])
 		remove_char(*per, rem[i++]);
+	 //if ((for_zero = ft_strchr(*per, '0')))
+	 	//*for_zero = 'P';
+	//printf("%s\n", *per);
+	//ft_strdel(&for_zero);
+	//- et 0 => efface le 0 transforme en largeur de chanps
+	//0045
 }
 
 void 	atr_space(char **per, char spec, char **prefix, char *arg)
@@ -95,7 +104,6 @@ void 	atr_zero(char **per, char spec, char **prefix, char *arg)
 
 	i = 0;
 
-	//printf("%s\n", *per);
 	while (*per && (*per)[i] != '0')
 		i++;
 	len = extract_nbr(*per, i) - (ft_strlen(*prefix) + ft_strlen(arg));

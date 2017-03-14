@@ -6,7 +6,7 @@
 /*   By: rlecart <rlecart@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/09 00:49:24 by rlecart           #+#    #+#             */
-/*   Updated: 2017/03/10 19:14:20 by pbernier         ###   ########.fr       */
+/*   Updated: 2017/03/14 18:20:56 by pbernier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,8 @@ char			*ft_decrypt(char const *format, int *i, va_list ap, int *len)
 	create_str(&result, ft_strsub(format, 1, nb[0]),
 			spec[nb[1]], convert_arg(spec[nb[1]], arg));
 	*len += ft_strlen(result);
+	if (!result[0]) // test 080;
+		++(*len);
 	*i += nb[0];
 	return (result);
 }
