@@ -6,7 +6,7 @@
 /*   By: rlecart <rlecart@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/09 04:45:54 by rlecart           #+#    #+#             */
-/*   Updated: 2017/03/14 19:25:51 by pbernier         ###   ########.fr       */
+/*   Updated: 2017/03/14 20:01:56 by pbernier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,16 +92,11 @@ void	create_str(char **str, char *per, char spec, char *arg)
 	my_atr = ft_strsub(per, 0, isolate_atr(per, atr));
 	if (arg[0] == '-')
 	{
-		*str = ft_strsub(arg, 1, ft_strlen(arg) - 1);
-		ft_strdel(&arg);
-		arg = ft_strdup(*str);
-		ft_strdel(str);
+		ft_strreset(&arg, ft_strsub(arg, 1, ft_strlen(arg) - 1));
 		*str = ft_memset(ft_strnew(1), '-', 1);
 	}
 	else if (!(*str = ft_strnew(2)))
 		exit(-1);
-	if (spec == 'x' && arg[0] == '0')
-		ft_strreset(str, 0);
 	while (atr[++i] && arg[0])
 		if ((ft_strchr(my_atr, atr[i])))
 			tab[i](&my_atr, spec, str, arg);
