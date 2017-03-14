@@ -3,13 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rlecart <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: rlecart <rlecart@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/09 00:30:13 by rlecart           #+#    #+#             */
-/*   Updated: 2017/03/06 17:19:50 by pbernier         ###   ########.fr       */
-/*   Updated: 2017/02/23 05:48:59 by pbernier         ###   ########.fr       */
-/*   Updated: 2017/02/23 05:48:59 by pbernier         ###   ########.fr       */
-/*   Updated: 2017/02/17 17:55:41 by rlecart          ###   ########.fr       */
+/*   Updated: 2017/03/14 19:22:50 by pbernier         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,5 +124,6 @@ char				*ft_strjoin_clean_char(char **s, char c);
 char				**ft_strsplitstr(char const *s, char c);
 int					ft_intlen_base(int nbr, int base);
 int					ft_absolute(int nbr);
+void				ft_strreset(char **as, size_t size);
 
 #endif

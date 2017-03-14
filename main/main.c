@@ -6,7 +6,7 @@
 /*   By: rlecart <rlecart@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/01 16:01:40 by rlecart           #+#    #+#             */
-/*   Updated: 2017/03/14 18:42:50 by pbernier         ###   ########.fr       */
+/*   Updated: 2017/03/14 19:44:29 by pbernier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,6 @@ int				main(void)
 	ft_putstr("\n\n");
 	ft_putnbr(ft_printf("faux = |@moulitest: %#.x %#.0x|\n", 0, 0));
 	ft_putstr("\n\n");
-	printf("%#+.x", 0);
+	printf("%#+.d", 0);
 	return (0);
 }

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: pbernier <marvin@42.fr>                    +#+  +:+       +#+         #
+#    By: pbernier <pbernier@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/02/21 03:19:16 by pbernier          #+#    #+#              #
-#    Updated: 2017/03/06 17:19:31 by pbernier         ###   ########.fr        #
+#    Updated: 2017/03/14 19:23:05 by pbernier         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -83,7 +83,8 @@ FILE	=	ft_putstr.c \
 			ft_strtabdel.c \
 			ft_itoa_base.c \
 			ft_strsplitstr.c \
-			get_next_line.c
+			get_next_line.c \
+			ft_strreset.c
 SRC		=	$(FILE)
 OBJ		=	$(SRC:.c=.o)
 CC		=	gcc

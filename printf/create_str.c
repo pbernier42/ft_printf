@@ -6,7 +6,7 @@
 /*   By: rlecart <rlecart@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/09 04:45:54 by rlecart           #+#    #+#             */
-/*   Updated: 2017/03/14 18:32:28 by pbernier         ###   ########.fr       */
+/*   Updated: 2017/03/14 19:25:51 by pbernier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ int				extract_nbr(char *per, int x)
 	dix = 0.1;
 	++x;
 	//while (per[x] == '-' || per[x] == '+')
-		//++x; 
+		//++x;
 	len = x;
 	while (per[x] >= '0' && per[x] <= '9')
 		x++;
@@ -100,8 +100,9 @@ void	create_str(char **str, char *per, char spec, char *arg)
 	}
 	else if (!(*str = ft_strnew(2)))
 		exit(-1);
-	//printf(".%s\n", my_atr);
-	while (atr[++i])
+	if (spec == 'x' && arg[0] == '0')
+		ft_strreset(str, 0);
+	while (atr[++i] && arg[0])
 		if ((ft_strchr(my_atr, atr[i])))
 			tab[i](&my_atr, spec, str, arg);
 	pre_str(spec, ft_strchr(per, '.'), &arg);

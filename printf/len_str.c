@@ -6,7 +6,7 @@
 /*   By: pbernier <pbernier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/06 13:25:24 by pbernier          #+#    #+#             */
-/*   Updated: 2017/03/14 19:05:38 by pbernier         ###   ########.fr       */
+/*   Updated: 2017/03/14 19:50:41 by pbernier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,9 @@ void	pre_str(char spec, char *w_atr, char **arg)
 		i++;
 	if (!(w_atr) || !spec_dos[i] || !w_atr[1])
 		return ;
-	if (i == 4 || i == 5)
+	if (i <= 5 && (*arg)[0] == '0')
 	{
-		ft_strdel(arg);
-		*arg = ft_strnew(0);
+		ft_strreset(arg, 0);
 		return ;
 	}
 	len = extract_nbr(w_atr, 0) - ft_strlen(*arg);
