@@ -6,7 +6,7 @@
 /*   By: pbernier <pbernier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/06 13:25:24 by pbernier          #+#    #+#             */
-/*   Updated: 2017/03/14 20:29:48 by pbernier         ###   ########.fr       */
+/*   Updated: 2017/03/14 20:32:55 by pbernier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,12 @@ void	pre_str(char spec, char *w_atr, char **arg)
 	char	spec_dos[9];
 
 	i = 0;
-	ft_strcpy(spec_dos, "diuxXosS\0");
+	ft_strcpy(spec_dos, "diouxXsS\0");
 	while (spec_dos[i] != spec && spec_dos[i])
 		i++;
 	if (!(w_atr) || !spec_dos[i] || !w_atr[1])
 		return ;
-	if (i <= 4 && (*arg)[0] == '0' && extract_nbr(w_atr, 0) == 0)
+	if (i <= 5 && (*arg)[0] == '0' && extract_nbr(w_atr, 0) == 0)
 	{
 		ft_strreset(arg, ft_strnew(0));
 		return ;
