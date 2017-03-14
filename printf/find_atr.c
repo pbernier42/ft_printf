@@ -6,7 +6,7 @@
 /*   By: pbernier <pbernier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/27 00:22:41 by pbernier          #+#    #+#             */
-/*   Updated: 2017/03/14 20:18:08 by pbernier         ###   ########.fr       */
+/*   Updated: 2017/03/14 20:25:13 by pbernier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,10 +45,10 @@ void 	atr_posit(char **per, char spec, char **prefix, char *arg)
 
 	i = 0;
 	ft_strcpy(syn, "di\0");
+	ft_strcpy(rem, "+ \0");
 	while (syn[i] && syn[i] != spec)
 		i++;
-	ft_strcpy(rem, "+ \0");
-	if (!(*(prefix[0])))
+	if (!(*(prefix[0])) && syn[i])
 		*(prefix[0]) = '+';
 	i = 0;
 	arg += 0;
