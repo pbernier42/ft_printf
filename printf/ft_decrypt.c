@@ -6,7 +6,7 @@
 /*   By: rlecart <rlecart@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/09 00:49:24 by rlecart           #+#    #+#             */
-/*   Updated: 2017/03/14 18:55:12 by pbernier         ###   ########.fr       */
+/*   Updated: 2017/03/17 17:20:03 by pbernier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ char			*ft_decrypt(char const *format, int *i, va_list ap, int *len)
 	char	spec[17];
 	char	no_spec[18];
 	char	*result;
-	void	*arg;
+	char	**arg;
 
 	ft_strcpy(spec, "sSpdDioOuUxXcC%\0");
 	ft_strcpy(no_spec, "#+- 0.123456789%\0");
@@ -45,10 +45,12 @@ char			*ft_decrypt(char const *format, int *i, va_list ap, int *len)
 	nb[2] = start_spec((char*)format, no_spec);
 	if (spec[nb[1]] >= 'A' && spec[nb[1]] <= 'Z' && spec[nb[1]] != 'X')
 		spec[nb[1]] += 32;
+
 	find_specifier(spec[nb[1]],
-		ft_strsub(format, nb[2], (nb[0] + 1) - nb[2]), &arg, ap);
+		ft_strsub(format, nb[2], (nb[0] + 1) - nb[2]), arg, ap);
 	create_str(&result, ft_strsub(format, 1, nb[0]),
-			spec[nb[1]], convert_arg(spec[nb[1]], arg));
+			spec[nb[1]], arg));
+
 	*len += ft_strlen(result);
 	if (!result[0] && spec[nb[1]] == 'c') // test 080;
 		++(*len);

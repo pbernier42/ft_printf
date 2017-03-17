@@ -6,34 +6,34 @@
 /*   By: rlecart <rlecart@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/09 04:46:28 by rlecart           #+#    #+#             */
-/*   Updated: 2017/03/14 16:30:59 by pbernier         ###   ########.fr       */
+/*   Updated: 2017/03/17 17:25:49 by pbernier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static void		init_ptr(void *(*tab[18])(va_list, char))
+static void		init_ptr(char *(*tab[18])(va_list, char))
 {
-	tab[0] = (void*)&spec_int;
-	tab[1] = (void*)&spec_sint;
-	tab[2] = (void*)&spec_lint;
-	tab[3] = (void*)&spec_lint; //maxint
-	tab[4] = (void*)&spec_unint;
-	tab[5] = (void*)&spec_char;
-	tab[6] = (void*)&spec_llint;
+	tab[0] = &spec_int;
+	tab[1] = &spec_sint;
+	tab[2] = &spec_lint;
+	tab[3] = &spec_lint; //maxint
+	tab[4] = &spec_unint;
+	tab[5] = &spec_char;
+	tab[6] = &spec_llint;
 
-	tab[7] = (void*)&spec_unint;
-	tab[8] = (void*)&spec_unsint;
-	tab[9] = (void*)&spec_unlint;
-	tab[10] = (void*)&spec_unlint; // unmaxint
-	tab[11] = (void*)&spec_ssizet;
-	tab[12] = (void*)&spec_unchar;
-	tab[13] = (void*)&spec_unllint;
-	tab[14] = (void*)&spec_wintt;  // C = lc
+	tab[7] = &spec_unint;
+	tab[8] = &spec_unsint;
+	tab[9] = &spec_unlint;
+	tab[10] = &spec_unlint; // unmaxint
+	tab[11] = &spec_ssizet;
+	tab[12] = &spec_unchar;
+	tab[13] = &spec_unllint;
+	tab[14] = &spec_wintt;  // C = lc
 
-	tab[15] = (void*)&spec_str;
-	tab[16] = (void*)&spec_void;
-	tab[17] = (void*)&spec_wchart; // ??
+	tab[15] = &spec_str;
+	tab[16] = &spec_void;
+	tab[17] = &spec_wchart; // ??
 }
 
 int				ft_flags(char *per, int i)
@@ -80,16 +80,17 @@ void			spec_syn(char spec, char **per)
 	*per = ft_strjoin_clean(per, &tmp);
 }
 
-void			find_specifier(char spec, char *per, void **arg, va_list ap)
+void			find_specifier(char spec, char *per, char **arg, va_list ap)
 {
 	int		i;
 	char	spec_nosyn[11];
-	void	*(*tab[18])(va_list, char);
+	char	*(*tab[18])(va_list, char);
 
 	i = 0;
 	ft_strcpy(spec_nosyn, "di%couxXps\0");
 	init_ptr(&(*tab));
 	spec_syn(spec, &per);
+
 	while (spec_nosyn[i] && spec_nosyn[i] != spec)
 		i++;
 	*arg = tab[ft_flags(per, i)](ap, spec);

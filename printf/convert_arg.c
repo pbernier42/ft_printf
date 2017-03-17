@@ -6,7 +6,7 @@
 /*   By: pbernier <pbernier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/14 19:45:17 by pbernier          #+#    #+#             */
-/*   Updated: 2017/03/14 16:34:25 by pbernier         ###   ########.fr       */
+/*   Updated: 2017/03/17 17:54:49 by pbernier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,8 +76,7 @@ char	*convert_arg(char spec, void *arg)
 		i++;
 	if (i <= 4)
 		pf_uitoa((unsigned long long)arg, &str, base[i], spec);
-	else if (i == 5 || i == 6)
-		pf_itoa((int)arg, &str);
+
 	else if (i == 7)
 		str = ft_strdup((char*)arg);
 	else if (i == 8 || i == 9)
