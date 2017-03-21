@@ -6,7 +6,7 @@
 /*   By: rlecart <rlecart@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/09 04:45:54 by rlecart           #+#    #+#             */
-/*   Updated: 2017/03/06 20:04:31 by pbernier         ###   ########.fr       */
+/*   Updated: 2017/03/14 20:14:53 by pbernier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,9 +40,6 @@ static void		init_ptr(void (*tab[5])(char **, char, char **, char *))
 	tab[2] = &atr_negat;
 	tab[3] = &atr_space;
 	tab[4] = &atr_zero;
-
-	//tab[6] = &atr_lar;
-	//tab[4] = &atr_pre;
 }
 
 int				extract_nbr(char *per, int x)
@@ -54,7 +51,10 @@ int				extract_nbr(char *per, int x)
 
 	ret = 0;
 	dix = 0.1;
-	len = ++x;
+	++x;
+	//while (per[x] == '-' || per[x] == '+')
+		//++x;
+	len = x;
 	while (per[x] >= '0' && per[x] <= '9')
 		x++;
 	len = x - len;
@@ -92,15 +92,12 @@ void	create_str(char **str, char *per, char spec, char *arg)
 	my_atr = ft_strsub(per, 0, isolate_atr(per, atr));
 	if (arg[0] == '-')
 	{
-		*str = ft_strsub(arg, 1, ft_strlen(arg) - 1);
-		ft_strdel(&arg);
-		arg = ft_strdup(*str);
-		ft_strdel(str);
+		ft_strreset(&arg, ft_strsub(arg, 1, ft_strlen(arg) - 1));
 		*str = ft_memset(ft_strnew(1), '-', 1);
 	}
 	else if (!(*str = ft_strnew(2)))
 		exit(-1);
-	while (atr[++i])
+	while (atr[++i] && arg[0])
 		if ((ft_strchr(my_atr, atr[i])))
 			tab[i](&my_atr, spec, str, arg);
 	pre_str(spec, ft_strchr(per, '.'), &arg);

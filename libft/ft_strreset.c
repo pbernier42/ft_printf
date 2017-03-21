@@ -1,25 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strreset.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rlecart <rlecart@student.42.fr>            +#+  +:+       +#+        */
+/*   By: pbernier <pbernier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/02/01 16:01:40 by rlecart           #+#    #+#             */
-/*   Updated: 2017/03/14 20:32:12 by pbernier         ###   ########.fr       */
+/*   Created: 2017/03/14 19:18:36 by pbernier          #+#    #+#             */
+/*   Updated: 2017/03/14 20:02:48 by pbernier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../printf/ft_printf.h"
+#include "libft.h"
 
-int				main(void)
+void	ft_strreset(char **as, char *reset)
 {
-	int		oui;
-
-	oui = 555;
-	ft_putnbr(printf("vrai = |%.o|\n", 0));
-	ft_putstr("\n\n");
-	ft_putnbr(ft_printf("faux = |%.o|\n", 0));
-	ft_putstr("\n\n");
-	return (0);
+	ft_strdel(as);
+	*as = ft_strdup(reset);
+	ft_strdel(&reset);
 }

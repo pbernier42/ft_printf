@@ -6,7 +6,7 @@
 /*   By: pbernier <pbernier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/06 13:25:24 by pbernier          #+#    #+#             */
-/*   Updated: 2017/03/06 20:09:26 by pbernier         ###   ########.fr       */
+/*   Updated: 2017/03/14 20:32:55 by pbernier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,11 @@ void	pre_str(char spec, char *w_atr, char **arg)
 		i++;
 	if (!(w_atr) || !spec_dos[i] || !w_atr[1])
 		return ;
+	if (i <= 5 && (*arg)[0] == '0' && extract_nbr(w_atr, 0) == 0)
+	{
+		ft_strreset(arg, ft_strnew(0));
+		return ;
+	}
 	len = extract_nbr(w_atr, 0) - ft_strlen(*arg);
 	if (len > 0 && i <= 5)
 	{
@@ -44,6 +49,8 @@ void	wof_str(char **str, char *per, int len_my_atr)
 
 	wof = 0;
 	len_arg = ft_strlen(*str);
+	//if ((*str)[0] == '\0')
+		//len_arg++;
 	tmp = NULL;
 	w_atr = ft_strsub(per, len_my_atr, ft_strlen(per) - len_my_atr);
 	if (per[0] != '.')
