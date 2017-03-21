@@ -6,7 +6,7 @@
 /*   By: rlecart <rlecart@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/09 00:49:24 by rlecart           #+#    #+#             */
-/*   Updated: 2017/03/14 18:55:12 by pbernier         ###   ########.fr       */
+/*   Updated: 2017/03/21 05:56:06 by pbernier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,8 @@ char			*ft_decrypt(char const *format, int *i, va_list ap, int *len)
 	char	*result;
 	void	*arg;
 
+	result = NULL;
+	arg = NULL;
 	ft_strcpy(spec, "sSpdDioOuUxXcC%\0");
 	ft_strcpy(no_spec, "#+- 0.123456789%\0");
 	isolate_per((char*)format, spec, nb);
