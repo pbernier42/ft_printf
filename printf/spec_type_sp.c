@@ -6,7 +6,7 @@
 /*   By: pbernier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/20 20:25:21 by pbernier          #+#    #+#             */
-/*   Updated: 2017/02/23 06:21:29 by pbernier         ###   ########.fr       */
+/*   Updated: 2017/04/12 21:03:19 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,13 @@ void		*spec_void(va_list ap, char spec)
 
 char		*spec_str(va_list ap, char spec)
 {
+	char	*str;
+
 	spec += 0;
-	return (va_arg(ap, char*));
+	str = va_arg(ap, char*);
+	if (!(str) || (str && (ft_strcmp(str, "(null)") == 0)))
+		return (ft_strdup("(null)"));
+	return (str);
 }
 /*
 size_t		spec_sizet(va_list ap, char spec)

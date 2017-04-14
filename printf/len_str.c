@@ -6,7 +6,7 @@
 /*   By: pbernier <pbernier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/06 13:25:24 by pbernier          #+#    #+#             */
-/*   Updated: 2017/03/14 20:32:55 by pbernier         ###   ########.fr       */
+/*   Updated: 2017/04/12 21:28:14 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	pre_str(char spec, char *w_atr, char **arg)
 		*arg = ft_strsub(*arg, 0, ft_strlen(*arg) + len);
 }
 
-void	wof_str(char **str, char *per, int len_my_atr)
+void	wof_str(char **str, char *per, int len_my_atr, char spec)
 {
 	int		wof;
 	int		len_arg;
@@ -49,15 +49,13 @@ void	wof_str(char **str, char *per, int len_my_atr)
 
 	wof = 0;
 	len_arg = ft_strlen(*str);
-	//if ((*str)[0] == '\0')
-		//len_arg++;
 	tmp = NULL;
 	w_atr = ft_strsub(per, len_my_atr, ft_strlen(per) - len_my_atr);
 	if (per[0] != '.')
-	{
-		wof = (extract_nbr(w_atr, -1) - len_arg);
-		if (wof > 0)
+		if ((wof = (extract_nbr(w_atr, -1) - len_arg)) > 0)
 		{
+			if (spec == 'c' && !(*str)[0])
+				wof--;
 			tmp = ft_strnew(wof);
 			ft_memset(tmp, ' ', wof);
 			if (!ft_strchr(per, '-'))
@@ -68,7 +66,6 @@ void	wof_str(char **str, char *per, int len_my_atr)
 				ft_strdel(&tmp);
 			}
 		}
-	}
 	ft_strdel(&per);
 	ft_strdel(&w_atr);
 }

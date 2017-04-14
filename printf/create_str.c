@@ -6,7 +6,7 @@
 /*   By: rlecart <rlecart@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/09 04:45:54 by rlecart           #+#    #+#             */
-/*   Updated: 2017/03/14 20:14:53 by pbernier         ###   ########.fr       */
+/*   Updated: 2017/04/12 21:33:36 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,8 +71,10 @@ static int		isolate_atr(char *str, char *spec)
 	ft_memcpy(i, ((int[2]){0, -1}), sizeof(int[2]));
 	while (spec[++(i[1])])
 	{
-		if (str[i[0]] == '0')
+		if (str[i[0]] == '0' && !ft_strchr(str, '-'))
 			i[0] += ft_intlen_base(extract_nbr(str, i[1]), 10) + 1;
+//		else if (str[i[0]] == '0')
+//			i[0]++;
 		if (spec[i[1]] == str[i[0]])
 			ft_memcpy(i, ((int[2]){++(i[0]), -1}), sizeof(int[2]));
 	}
@@ -103,6 +105,6 @@ void	create_str(char **str, char *per, char spec, char *arg)
 	pre_str(spec, ft_strchr(per, '.'), &arg);
 	*str = ft_strjoin_clean(str, &arg);
 	ft_strdel(&arg);
-	wof_str(str, per, ft_strlen(my_atr));
+	wof_str(str, per, ft_strlen(my_atr), spec);
 	ft_strdel(&my_atr);
 }

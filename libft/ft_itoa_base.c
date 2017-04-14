@@ -6,7 +6,7 @@
 /*   By: exam <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/03 12:51:01 by exam              #+#    #+#             */
-/*   Updated: 2017/02/03 00:10:44 by rlecart          ###   ########.fr       */
+/*   Updated: 2017/04/12 19:10:53 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,15 @@
 
 int		int_len(int nb, int base)
 {
-	int		len = 0;
+	int		len;
 
+	len = 0;
 	if (nb < 0 && base == 10)
 		len++;
 	while ((nb /= 10) != 0)
 		len++;
 	return (++len);
 }
-
 
 char	*ft_itoa_base(int value, int base)
 {

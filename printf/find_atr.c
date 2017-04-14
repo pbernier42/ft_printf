@@ -6,7 +6,7 @@
 /*   By: pbernier <pbernier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/27 00:22:41 by pbernier          #+#    #+#             */
-/*   Updated: 2017/03/14 20:25:13 by pbernier         ###   ########.fr       */
+/*   Updated: 2017/04/12 20:30:15 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@ void 	atr_sharp(char **per, char spec, char **prefix, char *arg)
 		ft_memcpy(*prefix, ((char[2]){'0', spec}), sizeof(char[2]));
 	while (syn[i] && rem[del])
 		remove_char(*per, rem[del++]);
-	//printf("%s\n", *prefix);
 }
 
 void 	atr_posit(char **per, char spec, char **prefix, char *arg)
@@ -57,29 +56,21 @@ void 	atr_posit(char **per, char spec, char **prefix, char *arg)
 		remove_char(*per, rem[i++]);
 }
 
-void 	atr_negat(char **per, char spec, char **prefix, char *arg)
+void	atr_negat(char **per, char spec, char **prefix, char *arg)
 {
 	int		i;
-	//char	*for_zero;
 	char	rem[4];
 
 	i = 0;
-	//for_zero = NULL;
 	ft_strcpy(rem, "0- \0");
 	arg += 0;
 	spec += 0;
 	*prefix += 0;
 	while (rem[i])
 		remove_char(*per, rem[i++]);
-	 //if ((for_zero = ft_strchr(*per, '0')))
-	 	//*for_zero = 'P';
-	//printf("%s\n", *per);
-	//ft_strdel(&for_zero);
-	//- et 0 => efface le 0 transforme en largeur de chanps
-	//0045
 }
 
-void 	atr_space(char **per, char spec, char **prefix, char *arg)
+void	atr_space(char **per, char spec, char **prefix, char *arg)
 {
 	int		i;
 	char	syn[3];
@@ -96,7 +87,7 @@ void 	atr_space(char **per, char spec, char **prefix, char *arg)
 	remove_char(*per, ' ');
 }
 
-void 	atr_zero(char **per, char spec, char **prefix, char *arg)
+void	atr_zero(char **per, char spec, char **prefix, char *arg)
 {
 	int		i;
 	int		len;
