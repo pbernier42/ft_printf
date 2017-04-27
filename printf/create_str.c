@@ -6,7 +6,7 @@
 /*   By: rlecart <rlecart@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/09 04:45:54 by rlecart           #+#    #+#             */
-/*   Updated: 2017/04/26 18:49:52 by pbernier         ###   ########.fr       */
+/*   Updated: 2017/04/26 19:01:37 by pbernier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,6 @@ int				extract_nbr(char *per, int x)
 
 	ret = 0;
 	dix = 0.1;
-	printf(".%s - %d\n", per, x);
 	++x;
 	while (per[x] == '+' || per[x] == 'R')
 		++x;
@@ -62,7 +61,7 @@ int				extract_nbr(char *per, int x)
 	save = x - 1;
 	while (len-- > 0)
 	 	ret = ret + ((per[save--] - '0') * (dix *= 10));
-	printf("..%i\n", ret);
+
 	return (ret);
 }
 
@@ -70,17 +69,14 @@ static int		isolate_atr(char *str, char *spec)
 {
 	int		i[2];
 
-	printf("[%s - %s]\n", str, spec);
 	ft_memcpy(i, ((int[2]){0, -1}), sizeof(int[2]));
 	while (spec[++(i[1])])
 	{
-		printf("%c - \n", str[i[0]]);
 		if (str[i[0]] == '0' && !ft_strchr(str, '-'))
 		{
-			if (str[i[0] + 1] == '+')
+			if (str[i[0] + 1] == '+' || str[i[0] + 1] == '-')
 				++i[0];
 			i[0] += ft_intlen_base(extract_nbr(str, i[1]), 10) + 1;
-			printf("[[%d]]\n", i[0]);
 		}
 		if (spec[i[1]] == str[i[0]])
 			ft_memcpy(i, ((int[2]){++(i[0]), -1}), sizeof(int[2]));
