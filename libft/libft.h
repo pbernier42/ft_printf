@@ -6,7 +6,7 @@
 /*   By: rlecart <rlecart@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/09 00:30:13 by rlecart           #+#    #+#             */
-/*   Updated: 2017/03/14 20:02:17 by pbernier         ###   ########.fr       */
+/*   Updated: 2017/05/04 02:38:00 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,5 +125,6 @@ char				**ft_strsplitstr(char const *s, char c);
 int					ft_intlen_base(int nbr, int base);
 int					ft_absolute(int nbr);
 void				ft_strreset(char **as, char *reset);
+size_t				ft_llen(long long nbr);
 
 #endif

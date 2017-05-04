@@ -1,22 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_llen.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rlecart <rlecart@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rlecart <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/02/01 16:01:40 by rlecart           #+#    #+#             */
-/*   Updated: 2017/05/04 02:50:07 by rlecart          ###   ########.fr       */
+/*   Created: 2017/05/04 02:39:50 by rlecart           #+#    #+#             */
+/*   Updated: 2017/05/04 02:40:31 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../printf/ft_printf.h"
+#include "libft.h"
 
-int				main(void)
+size_t		ft_llen(long long nbr)
 {
-	ft_putnbr(printf("%s %s %s\n", "haha", "hihi", "huhu"));
-	ft_putstr("\n");
-	ft_putnbr(ft_printf("%s %s %s\n", "haha", "hihi", "huhu"));
-	ft_putstr("\n");
-	return (0);
+	size_t		len;
+
+	len = 1;
+	while (nbr /= 10)
+		len++;
+	return (len);
 }

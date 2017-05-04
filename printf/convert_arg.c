@@ -6,7 +6,7 @@
 /*   By: pbernier <pbernier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/14 19:45:17 by pbernier          #+#    #+#             */
-/*   Updated: 2017/04/12 20:57:22 by rlecart          ###   ########.fr       */
+/*   Updated: 2017/05/04 02:54:15 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,32 @@ static void			pf_uitoa(unsigned long long nbr,
 	}
 }
 
-char	*convert_arg(char spec, void *arg)
+void	spec_dx(void *arg, char *per, char **str)
+{
+	int			len;
+	long long	nbr;
+
+	if ((len = ft_strlen(per) > 0))
+			len--;
+	if (per[len] == 'j' || per[len] == 'l')
+	{
+		nbr = (long long)arg;
+		len = ft_llen(nbr);
+		if (!(*str = ft_strnew(len--)))
+			exit(-1);
+		if (nbr < 0)
+			(*str)[0] = '-';
+		while (len >= 0 && (*str)[len] != '-')
+		{
+			(*str)[len--] = ft_absolute(nbr % 10) + '0';
+			nbr /= 10;
+		}
+	}
+	else
+		pf_itoa((int)arg, str);
+}
+
+char	*convert_arg(char spec, void *arg, char *per)
 {
 	int		i;
 	int		base[5];
@@ -77,7 +102,7 @@ char	*convert_arg(char spec, void *arg)
 	if (i <= 4)
 		pf_uitoa((unsigned long long)arg, &str, base[i], spec);
 	else if (i == 5 || i == 6)
-		pf_itoa((int)arg, &str);
+		spec_dx(arg, per, &str);
 	else if (i == 7)
 		str = ft_strdup((char*)arg);
 	else if (i == 8 || i == 9)

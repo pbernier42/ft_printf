@@ -6,7 +6,7 @@
 #    By: pbernier <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/02/21 03:19:16 by pbernier          #+#    #+#              #
-#    Updated: 2017/04/12 19:21:08 by rlecart          ###   ########.fr        #
+#    Updated: 2017/05/04 02:38:44 by rlecart          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -85,7 +85,8 @@ FILE	=	ft_putstr.c \
 			ft_strsplitstr.c \
 			get_next_line.c \
 			ft_intlen_base.c \
-			ft_strreset.c
+			ft_strreset.c \
+			ft_llen.c
 SRC		=	$(FILE)
 OBJ		=	$(SRC:.c=.o)
 CC		=	gcc
