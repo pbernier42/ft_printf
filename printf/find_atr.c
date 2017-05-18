@@ -6,7 +6,7 @@
 /*   By: pbernier <pbernier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/27 00:22:41 by pbernier          #+#    #+#             */
-/*   Updated: 2017/04/26 18:53:58 by pbernier         ###   ########.fr       */
+/*   Updated: 2017/05/18 16:01:42 by pbernier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,16 +94,20 @@ void	atr_zero(char **per, char spec, char **prefix, char *arg)
 	char	*zero;
 
 	i = 0;
+
 	while (*per && (*per)[i] != '0')
 		i++;
 	while (*per && (*per)[i] == 'R')
 		i++;
 	len = extract_nbr(*per, i) - (ft_strlen(*prefix) + ft_strlen(arg));
 	if (len > 0)
+	{
 		zero = ft_memset(ft_strnew(len), '0', len);
-	*prefix = ft_strjoin_clean(prefix, &zero);
+		*prefix = ft_strjoin_clean(prefix, &zero);
+	}
 	spec += 0;
 	if (len > 0)
 		ft_strdel(&zero);
 	remove_char(*per, '0');
+
 }
