@@ -6,7 +6,7 @@
 /*   By: rlecart <rlecart@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/01 15:13:38 by rlecart           #+#    #+#             */
-/*   Updated: 2017/05/04 01:56:24 by rlecart          ###   ########.fr       */
+/*   Updated: 2017/05/11 16:01:21 by pbernier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,8 @@ int							extract_nbr(char *per, int x);
 void						remove_char(char *per, char rem);
 void						wof_str(char **str, char *per, int len_my_atr,
 								char spec);
-void						pre_str(char spec, char *w_atr, char **arg);
+void						pre_str(char spec, char *w_atr, char **arg,
+								char *my_atr);
 
 char						spec_char(va_list ap, char spec);
 int							spec_int(va_list ap, char spec);

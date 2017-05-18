@@ -6,7 +6,7 @@
 /*   By: rlecart <rlecart@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/09 04:45:54 by rlecart           #+#    #+#             */
-/*   Updated: 2017/04/26 19:01:37 by pbernier         ###   ########.fr       */
+/*   Updated: 2017/05/11 16:07:11 by pbernier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ void	remove_char(char *per, char rem)
 	{
 		if (*tmp == '-' || *tmp == '+')
 			*tmp = 'R';
+		else if (*tmp == '#')
+			*tmp = 'D';
 		else
 			*tmp = 'P';
 	}
@@ -92,10 +94,11 @@ void	create_str(char **str, char *per, char spec, char *arg)
 	void	(*tab[5])(char **, char, char **, char *);
 
 	i = -1;
+	//printf("**str = [%s] | *per = [%s] | spec = [%c] | *arg = [%s]\n", *str, per, spec, arg);
 	ft_strcpy(atr, "#+- 0\0");
 	init_ptr(tab);
 	my_atr = ft_strsub(per, 0, isolate_atr(per, atr));
-
+	//printf("*my_atr = [%s]\n", my_atr);
 	if (arg[0] == '-')
 	{
 		ft_strreset(&arg, ft_strsub(arg, 1, ft_strlen(arg) - 1));
@@ -104,10 +107,14 @@ void	create_str(char **str, char *per, char spec, char *arg)
 
 	else if (!(*str = ft_strnew(2)))
 		exit(-1);
+	//printf("*my_atr = [%s] | spec = [%c] | **str = %s | *arg = [%s]\n", my_atr, spec, *str, arg);
 	while (atr[++i] && arg[0])
 		if ((ft_strchr(my_atr, atr[i])))
 			tab[i](&my_atr, spec, str, arg);
-	pre_str(spec, ft_strchr(per, '.'), &arg);
+	//printf("i = [%d]\n", i);
+	//printf("*my_atr = [%s] | spec = [%c] | **str = %s | *arg = [%s]\n", my_atr, spec, *str, arg);
+	pre_str(spec, ft_strchr(per, '.'), &arg, my_atr);
+	//printf("spec = [%c] | arg = [%s]", spec, arg);
 	*str = ft_strjoin_clean(str, &arg);
 	ft_strdel(&arg);
 	wof_str(str, per, ft_strlen(my_atr), spec);
