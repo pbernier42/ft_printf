@@ -6,7 +6,7 @@
 /*   By: rlecart <rlecart@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/01 16:01:40 by rlecart           #+#    #+#             */
-/*   Updated: 2017/05/18 16:48:53 by pbernier         ###   ########.fr       */
+/*   Updated: 2017/05/18 17:40:01 by pbernier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 int				main(void)
 {
-		ft_putnbr(printf(">%zd<\n", 4294967295));
+		ft_putnbr(printf("r >%03.2d<\n", 1));
 		ft_putstr("\n\n");
-		ft_putnbr(ft_printf(">%zd<\n", 4294967295));
+		ft_putnbr(ft_printf("f >%03.2d<\n", 1));
 		ft_putstr("\n");
 	return (0);
 }

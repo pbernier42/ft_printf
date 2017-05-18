@@ -6,7 +6,7 @@
 /*   By: rlecart <rlecart@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/09 04:45:54 by rlecart           #+#    #+#             */
-/*   Updated: 2017/05/18 16:13:58 by pbernier         ###   ########.fr       */
+/*   Updated: 2017/05/18 17:40:26 by pbernier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,7 @@ void	create_str(char **str, char *per, char spec, char *arg)
 	}
 	else if (!(*str = ft_strnew(2)))
 		exit(-1);
-	//printf("*my_atr = [%s] | spec = [%c] | **str = %s | *arg = [%s]\n", my_atr, spec, *str, arg);
+	//printf("*my_atr = [%s] | spec = [%c] | **str = [%s] | *arg = [%s]\n", my_atr, spec, *str, arg);
 	while (atr[++i] && arg[0])
 	{
 		if ((ft_strchr(my_atr, atr[i])))
@@ -115,6 +115,7 @@ void	create_str(char **str, char *per, char spec, char *arg)
 	}
 	//printf("i = [%d]\n", i);
 	//printf("*my_atr = [%s] | spec = [%c] | **str = %s | *arg = [%s]\n", my_atr, spec, *str, arg);
+	//printf("str = [%s] | spec = [%c] | arg = [%s]", *str, spec, arg);
 	pre_str(spec, ft_strchr(per, '.'), &arg, my_atr);
 	//printf("spec = [%c] | arg = [%s]", spec, arg);
 	*str = ft_strjoin_clean(str, &arg);
