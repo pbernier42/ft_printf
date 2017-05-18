@@ -6,7 +6,7 @@
 /*   By: pbernier <pbernier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/14 19:45:17 by pbernier          #+#    #+#             */
-/*   Updated: 2017/05/04 02:54:15 by rlecart          ###   ########.fr       */
+/*   Updated: 2017/05/04 03:58:20 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,5 +107,6 @@ char	*convert_arg(char spec, void *arg, char *per)
 		str = ft_strdup((char*)arg);
 	else if (i == 8 || i == 9)
 		str = ft_strjoin_clean_char(&str, (char)arg);
+	ft_strdel(&per);
 	return (str);
 }
