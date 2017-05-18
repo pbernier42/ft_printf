@@ -6,7 +6,7 @@
 /*   By: pbernier <pbernier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/14 19:45:17 by pbernier          #+#    #+#             */
-/*   Updated: 2017/05/18 16:33:56 by pbernier         ###   ########.fr       */
+/*   Updated: 2017/05/18 17:10:50 by pbernier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ void	spec_dx(void *arg, char *per, char **str)
 	if ((len = ft_strlen(per)) > 0)
 		len--;
 	//printf("[%lld] = arg | [%s] = per | [%s] = *str | [%d] = len\n", (long long)arg, per, *str, len);
-	if (per[len] == 'j' || per[len] == 'l')
+	if (per[len] == 'j' || per[len] == 'l' || per[len] == 'z')
 	{
 		nbr = (long long)arg;
 		len = ft_llen(nbr);
@@ -95,12 +95,13 @@ char	*convert_arg(char spec, void *arg, char *per)
 	char	spec_nosyn[11];
 
 	i = 0;
-	//printf("[%s] = str | [%c] - spec | [%lld] = arg | [%s] = *per\n", str, spec, (long long)arg, per);
 	ft_memcpy(base, ((int[5]){8, 10, 16, 16, 16}), sizeof(int[5]));
 	str = NULL;
+	//printf("[%s] = str | [%c] - spec | [%lld] = arg | [%s] = *per\n", str, spec, (long long)arg, per);
 	ft_strcpy(spec_nosyn, "ouxXpdisc%\0");
 	while (spec_nosyn[i] != spec)
 		i++;
+	//printf("i = %d\n", i);
 	if (i <= 4)
 		pf_uitoa((unsigned long long)arg, &str, base[i], spec);
 	else if (i == 5 || i == 6)
@@ -109,6 +110,7 @@ char	*convert_arg(char spec, void *arg, char *per)
 		str = ft_strdup((char*)arg);
 	else if (i == 8 || i == 9)
 		str = ft_strjoin_clean_char(&str, (char)arg);
+	//printf("[%s] = str | [%c] - spec | [%lld] = arg | [%s] = *per\n", str, spec, (long long)arg, per);
 	ft_strdel(&per);
 	return (str);
 }

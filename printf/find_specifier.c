@@ -6,7 +6,7 @@
 /*   By: rlecart <rlecart@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/09 04:46:28 by rlecart           #+#    #+#             */
-/*   Updated: 2017/03/14 16:30:59 by pbernier         ###   ########.fr       */
+/*   Updated: 2017/05/18 17:06:24 by pbernier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,11 +42,12 @@ int				ft_flags(char *per, int i)
 	int		len;
 	int		pos[10];
 	char	lm[2];
-	char	flags[2][8];
+	char	flags[2][13];
 
 	j = 0;
 	len = ft_strlen(per);
-	ft_strcpy(flags[0], " hljz\0");
+	//printf("[%d] = i | [%d] = j | [%s] = per\n", i, j, per);
+	ft_strcpy(flags[0], " hlj       z\0");
 	ft_strcpy(flags[1], "     hl\0");
 	ft_memcpy(lm, ((char[2]){'\0', '\0'}), sizeof(char[2]));
 	if (len >= 2)
@@ -57,8 +58,10 @@ int				ft_flags(char *per, int i)
 		j++;
 	while (lm[1] && flags[1][j] != lm[1])
 		j++;
+	//printf("[%d] = i | [%d] = j | [%s] = per\n", i, j, per);
 	ft_memcpy(pos, ((int[10]){0 + j, 0 + j, 0 + j, 12 + j, 7 + j,
 				7 + j, 7 + j, 7 + j, 16 + j, 15 + j}), sizeof(int[10]));
+	//printf("pos[%d] = %d\n", i, pos[i]);
 	return (pos[i]);
 }
 
@@ -90,8 +93,10 @@ void			find_specifier(char spec, char *per, void **arg, va_list ap)
 	ft_strcpy(spec_nosyn, "di%couxXps\0");
 	init_ptr(&(*tab));
 	spec_syn(spec, &per);
+	//printf("[%d] = i | [%c] = spec | [%s] = per\n", i, spec, per);
 	while (spec_nosyn[i] && spec_nosyn[i] != spec)
 		i++;
+	//printf("[%d] = i | [%c] = spec | [%s] = per\n", i, spec, per);
 	*arg = tab[ft_flags(per, i)](ap, spec);
 	ft_strdel(&per);
 }
