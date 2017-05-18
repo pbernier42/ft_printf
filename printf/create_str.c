@@ -6,7 +6,7 @@
 /*   By: rlecart <rlecart@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/09 04:45:54 by rlecart           #+#    #+#             */
-/*   Updated: 2017/05/18 15:47:25 by pbernier         ###   ########.fr       */
+/*   Updated: 2017/05/18 16:13:58 by pbernier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,7 +104,6 @@ void	create_str(char **str, char *per, char spec, char *arg)
 		ft_strreset(&arg, ft_strsub(arg, 1, ft_strlen(arg) - 1));
 		*str = ft_memset(ft_strnew(1), '-', 1);
 	}
-
 	else if (!(*str = ft_strnew(2)))
 		exit(-1);
 	//printf("*my_atr = [%s] | spec = [%c] | **str = %s | *arg = [%s]\n", my_atr, spec, *str, arg);

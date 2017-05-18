@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_llen.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rlecart <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: rlecart <rlecart@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/04 02:39:50 by rlecart           #+#    #+#             */
-/*   Updated: 2017/05/04 02:40:31 by rlecart          ###   ########.fr       */
+/*   Updated: 2017/05/18 16:33:44 by pbernier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ size_t		ft_llen(long long nbr)
 	size_t		len;
 
 	len = 1;
+	if (nbr < 0)
+		len++;
 	while (nbr /= 10)
 		len++;
 	return (len);

@@ -6,7 +6,7 @@
 /*   By: pbernier <pbernier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/14 19:45:17 by pbernier          #+#    #+#             */
-/*   Updated: 2017/05/04 03:58:20 by rlecart          ###   ########.fr       */
+/*   Updated: 2017/05/18 16:33:56 by pbernier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,11 +63,12 @@ static void			pf_uitoa(unsigned long long nbr,
 
 void	spec_dx(void *arg, char *per, char **str)
 {
-	int			len;
+	int			len = 0;
 	long long	nbr;
 
-	if ((len = ft_strlen(per) > 0))
-			len--;
+	if ((len = ft_strlen(per)) > 0)
+		len--;
+	//printf("[%lld] = arg | [%s] = per | [%s] = *str | [%d] = len\n", (long long)arg, per, *str, len);
 	if (per[len] == 'j' || per[len] == 'l')
 	{
 		nbr = (long long)arg;
@@ -94,6 +95,7 @@ char	*convert_arg(char spec, void *arg, char *per)
 	char	spec_nosyn[11];
 
 	i = 0;
+	//printf("[%s] = str | [%c] - spec | [%lld] = arg | [%s] = *per\n", str, spec, (long long)arg, per);
 	ft_memcpy(base, ((int[5]){8, 10, 16, 16, 16}), sizeof(int[5]));
 	str = NULL;
 	ft_strcpy(spec_nosyn, "ouxXpdisc%\0");
