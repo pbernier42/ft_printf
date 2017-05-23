@@ -6,7 +6,7 @@
 /*   By: rlecart <rlecart@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/09 04:46:28 by rlecart           #+#    #+#             */
-/*   Updated: 2017/05/18 17:06:24 by pbernier         ###   ########.fr       */
+/*   Updated: 2017/05/23 16:50:01 by pbernier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,13 +74,18 @@ void			spec_syn(char spec, char **per)
 	i = 0;
 	ft_strcpy(spec_csdou, "ClcSlsDldOloUlu\0");
 	tmp = NULL;
+	//printf("1.[%c] = spec | [%s] = *per | [%c] = spec_csdou[%d] | [%s] = tmp\n", spec, *per, spec_csdou[i], i, tmp);
 	while (spec_csdou[i] && spec_csdou[i] != spec)
+	{
+		//printf("[%c] - [%c]\n", spec_csdou[i], spec);
 		i += 3;
+	}
 	if (!(spec_csdou[i]))
 		return ;
 	(*per)[ft_strlen(*per) - 1] = '\0';
 	tmp = ft_strsub(spec_csdou, i + 1, 2);
 	*per = ft_strjoin_clean(per, &tmp);
+	//printf("4.[%c] = spec | [%s] = *per | [%c] = spec_csdou[%d] | [%s] = tmp\n", spec, *per, spec_csdou[i], i, tmp);
 }
 
 void			find_specifier(char spec, char *per, void **arg, va_list ap)
