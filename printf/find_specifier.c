@@ -6,7 +6,7 @@
 /*   By: rlecart <rlecart@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/09 04:46:28 by rlecart           #+#    #+#             */
-/*   Updated: 2017/05/23 16:50:01 by pbernier         ###   ########.fr       */
+/*   Updated: 2017/05/26 13:08:04 by pbernier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,6 +102,7 @@ void			find_specifier(char spec, char *per, void **arg, va_list ap)
 	while (spec_nosyn[i] && spec_nosyn[i] != spec)
 		i++;
 	//printf("[%d] = i | [%c] = spec | [%s] = per\n", i, spec, per);
-	*arg = tab[ft_flags(per, i)](ap, spec);
+//	if ((ft_strchr(per, spec)))
+		*arg = tab[ft_flags(per, i)](ap, spec);
 	ft_strdel(&per);
 }

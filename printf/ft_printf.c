@@ -6,11 +6,27 @@
 /*   By: rlecart <rlecart@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/02 23:35:27 by rlecart           #+#    #+#             */
-/*   Updated: 2017/05/18 14:29:34 by rlecart          ###   ########.fr       */
+/*   Updated: 2017/05/26 13:06:53 by pbernier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+
+int			undifened(const char *format, int i)
+{
+	int		x;
+	int		save;
+
+	x = 0;
+	save = i + 1;
+	while (format[i] == ' ')
+		i++;
+
+	if (!format[i])
+		return (0);
+	i = save;
+	return (1);
+}
 
 int				ft_printf(char const *format, ...)
 {
@@ -20,21 +36,21 @@ int				ft_printf(char const *format, ...)
 	char		*tmp;
 	va_list		ap;
 
-	i = 0;
+	i = -1;
 	len = 0;
 	buff = ft_strnew(0);
 	tmp = NULL;
 	va_start(ap, format);
-	while (format[i])
+	while (format[++i])
 	{
 		if (format[i] != '%')
 		{
-			buff = ft_strjoin_clean_char(&buff, format[i++]);
+			buff = ft_strjoin_clean_char(&buff, format[i]);
 			len++;
 		}
-		else
+		else if ((undifened(format, i)))
 		{
-			tmp = ft_decrypt(&(format[i++]), &i, ap, &len);
+			tmp = ft_decrypt(&(format[i]), &i, ap, &len);
 			buff = ft_strjoin_clean(&buff, &tmp);
 		}
 	}

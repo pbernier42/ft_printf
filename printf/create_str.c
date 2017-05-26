@@ -6,7 +6,7 @@
 /*   By: rlecart <rlecart@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/09 04:45:54 by rlecart           #+#    #+#             */
-/*   Updated: 2017/05/18 17:40:26 by pbernier         ###   ########.fr       */
+/*   Updated: 2017/05/26 14:09:30 by pbernier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,7 @@ static int		isolate_atr(char *str, char *spec)
 {
 	int		i[2];
 
+	printf("*str = [%s] | *spec = [%s]\n", str, spec);
 	ft_memcpy(i, ((int[2]){0, -1}), sizeof(int[2]));
 	while (spec[++(i[1])])
 	{
@@ -83,6 +84,7 @@ static int		isolate_atr(char *str, char *spec)
 		if (spec[i[1]] == str[i[0]])
 			ft_memcpy(i, ((int[2]){++(i[0]), -1}), sizeof(int[2]));
 	}
+	//0026
 	return (i[0]);
 }
 
@@ -111,7 +113,7 @@ void	create_str(char **str, char *per, char spec, char *arg)
 	{
 		if ((ft_strchr(my_atr, atr[i])))
 			tab[i](&my_atr, spec, str, arg);
-		//printf("[%d] = i | *my_atr = [%s] | spec = [%c] | **str = %s | *arg = [%s]\n", i, my_atr, spec, *str, arg);
+		printf("[%d] = i | *my_atr = [%s] | spec = [%c] | **str = %s | *arg = [%s]\n", i, my_atr, spec, *str, arg);
 	}
 	//printf("i = [%d]\n", i);
 	//printf("*my_atr = [%s] | spec = [%c] | **str = %s | *arg = [%s]\n", my_atr, spec, *str, arg);
