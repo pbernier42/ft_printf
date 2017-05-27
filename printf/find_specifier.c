@@ -6,7 +6,7 @@
 /*   By: rlecart <rlecart@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/09 04:46:28 by rlecart           #+#    #+#             */
-/*   Updated: 2017/05/26 13:08:04 by pbernier         ###   ########.fr       */
+/*   Updated: 2017/05/27 05:07:39 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,18 +40,21 @@ int				ft_flags(char *per, int i)
 {
 	int		j;
 	int		len;
-	int		pos[10];
+	int		pos[11];
 	char	lm[2];
-	char	flags[2][13];
+	char	flags[2][14];
 
 	j = 0;
 	len = ft_strlen(per);
+	if ((ft_strstr(per, "hlu")) && len--)
+		ft_memcpy(per, ((char[3]){'l', 'u', '\0'}), sizeof(char[3]));
 	//printf("[%d] = i | [%d] = j | [%s] = per\n", i, j, per);
 	ft_strcpy(flags[0], " hlj       z\0");
 	ft_strcpy(flags[1], "     hl\0");
 	ft_memcpy(lm, ((char[2]){'\0', '\0'}), sizeof(char[2]));
 	if (len >= 2)
 		ft_memcpy(lm, ((char[2]){per[len - 2], '\0'}), sizeof(char[2]));
+	//printf("lm = %s\n", lm);
 	if (len >= 3)
 		ft_memcpy(lm, ((char[2]){lm[0], per[len - 3]}), sizeof(char[2]));
 	while (lm[0] && flags[0][j] != lm[0])
@@ -59,8 +62,9 @@ int				ft_flags(char *per, int i)
 	while (lm[1] && flags[1][j] != lm[1])
 		j++;
 	//printf("[%d] = i | [%d] = j | [%s] = per\n", i, j, per);
-	ft_memcpy(pos, ((int[10]){0 + j, 0 + j, 0 + j, 12 + j, 7 + j,
-				7 + j, 7 + j, 7 + j, 16 + j, 15 + j}), sizeof(int[10]));
+	ft_memcpy(pos, ((int[11]){0 + j, 0 + j, 0 + j, 12 + j, 7 + j,
+				7 + j, 7 + j, 7 + j, 16 + j, 15 + j, 7 + j}), sizeof(int[11]));
+	//printf("[%d] = i | [%d] = j | [%s] = per\n", i, j, per);
 	//printf("pos[%d] = %d\n", i, pos[i]);
 	return (pos[i]);
 }
@@ -104,5 +108,7 @@ void			find_specifier(char spec, char *per, void **arg, va_list ap)
 	//printf("[%d] = i | [%c] = spec | [%s] = per\n", i, spec, per);
 //	if ((ft_strchr(per, spec)))
 		*arg = tab[ft_flags(per, i)](ap, spec);
+	//printf("*arg = %hU\n", (unsigned short)*arg);
 	ft_strdel(&per);
+	//printf("STRDEL DONE\n");
 }

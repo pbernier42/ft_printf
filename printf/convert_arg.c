@@ -6,7 +6,7 @@
 /*   By: pbernier <pbernier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/14 19:45:17 by pbernier          #+#    #+#             */
-/*   Updated: 2017/05/18 17:40:08 by pbernier         ###   ########.fr       */
+/*   Updated: 2017/05/27 05:13:42 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,13 +92,13 @@ char	*convert_arg(char spec, void *arg, char *per)
 	int		i;
 	int		base[5];
 	char	*str;
-	char	spec_nosyn[11];
+	char	spec_nosyn[12];
 
 	i = 0;
 	ft_memcpy(base, ((int[5]){8, 10, 16, 16, 16}), sizeof(int[5]));
 	str = NULL;
-	//printf("[%s] = str | [%c] - spec | [%lld] = arg | [%s] = *per\n", str, spec, (long long)arg, per);
-	ft_strcpy(spec_nosyn, "ouxXpdisc%\0");
+	//printf("[%s] = str | [%c] - spec | [%ld] = arg | [%s] = *per\n", str, spec, (unsigned long int)arg, per);
+	ft_strcpy(spec_nosyn, "ouxXpdisc%U\0");
 	while (spec_nosyn[i] != spec)
 		i++;
 	//printf("i = %d\n", i);
@@ -110,7 +110,10 @@ char	*convert_arg(char spec, void *arg, char *per)
 		str = ft_strdup((char*)arg);
 	else if (i == 8 || i == 9)
 		str = ft_strjoin_clean_char(&str, (char)arg);
-	//printf("[%s] = str | [%c] - spec | [%lld] = arg | [%s] = *per\n", str, spec, (long long)arg, per);
+	else if (i == 10)
+		pf_uitoa((unsigned long long)arg, &str, 10, spec);
+	//printf("[%s] = str | [%c] - spec | [%d] = arg | [%s] = *per\n", str, spec, (int)arg, per);
 	ft_strdel(&per);
+	//printf("STRDEL DONE\n");
 	return (str);
 }

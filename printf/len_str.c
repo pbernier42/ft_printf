@@ -6,7 +6,7 @@
 /*   By: pbernier <pbernier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/06 13:25:24 by pbernier          #+#    #+#             */
-/*   Updated: 2017/05/18 17:40:10 by pbernier         ###   ########.fr       */
+/*   Updated: 2017/05/27 05:26:08 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ void	pre_str(char spec, char *w_atr, char **arg, char *my_atr)
 	if (i <= 5 && (*arg)[0] == '0' && extract_nbr(w_atr, 0) == 0
 		&& !(i == 2 && ft_strchr(my_atr, 'D')))
 	{
-		//("@moulitest: %.o %.0o", 0, 0)
 		ft_strreset(arg, ft_strnew(0));
 		return ;
 	}
@@ -45,7 +44,7 @@ void	pre_str(char spec, char *w_atr, char **arg, char *my_atr)
 		*arg = ft_strsub(*arg, 0, ft_strlen(*arg) + len);
 }
 
-void	wof_str(char **str, char *per, int len_my_atr, char spec)
+int		wof_str(char **str, char *per, int len_my_atr, char spec)
 {
 	int		wof;
 	int		len_arg;
@@ -56,6 +55,7 @@ void	wof_str(char **str, char *per, int len_my_atr, char spec)
 	len_arg = ft_strlen(*str);
 	tmp = NULL;
 	w_atr = ft_strsub(per, len_my_atr, ft_strlen(per) - len_my_atr);
+	//printf("spec = [%c] | *w_atr = [%s] | *str = [%s] | len_my_atr = [%d]\n", spec, w_atr, *str, len_my_atr);
 	if (per[0] != '.')
 		if ((wof = (extract_nbr(w_atr, -1) - len_arg)) > 0)
 		{
@@ -73,4 +73,5 @@ void	wof_str(char **str, char *per, int len_my_atr, char spec)
 		}
 	ft_strdel(&per);
 	ft_strdel(&w_atr);
+	return (0);
 }
