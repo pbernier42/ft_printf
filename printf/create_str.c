@@ -6,7 +6,7 @@
 /*   By: rlecart <rlecart@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/09 04:45:54 by rlecart           #+#    #+#             */
-/*   Updated: 2017/05/27 05:26:21 by rlecart          ###   ########.fr       */
+/*   Updated: 2017/05/30 17:55:26 by pbernier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,9 +117,10 @@ void	create_str(char **str, char *per, char spec, char *arg)
 	}
 	//printf("i = [%d]\n", i);
 	//printf("*my_atr = [%s] | spec = [%c] | **str = %s | *arg = [%s]\n", my_atr, spec, *str, arg);
-	//printf("str = [%s] | spec = [%c] | arg = [%s]\n", *str, spec, arg);
+printf("str = [%s] | spec = [%c] | arg = [%s]\n", *str, spec, arg);
 	pre_str(spec, ft_strchr(per, '.'), &arg, my_atr);
-	//printf("str = [%s] | spec = [%c] | arg = [%s]\n", *str, spec, arg);
+printf("str = [%s] | spec = [%c] | arg = [%s]\n", *str, spec, arg);
+	delate_zero(str, &arg);
 	*str = ft_strjoin_clean(str, &arg);
 	ft_strdel(&arg);
 	//printf("str = [%s] | spec = [%c] | arg = [%s]\n", *str, spec, arg);

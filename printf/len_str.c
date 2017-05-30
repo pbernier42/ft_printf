@@ -6,7 +6,7 @@
 /*   By: pbernier <pbernier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/06 13:25:24 by pbernier          #+#    #+#             */
-/*   Updated: 2017/05/27 05:26:08 by rlecart          ###   ########.fr       */
+/*   Updated: 2017/05/30 17:51:58 by pbernier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,22 @@ void	pre_str(char spec, char *w_atr, char **arg, char *my_atr)
 	}
 	else if (len < 0 && i >= 6)
 		*arg = ft_strsub(*arg, 0, ft_strlen(*arg) + len);
+}
+
+void	delate_zero(char **str, char **arg)
+{
+	int	len_str;
+	unsigned int	i;
+
+	len_str = (ft_strlen(*str)) - 1;
+	i = 0;
+	while ((*str)[len_str] == '0' && (*arg)[i] == '0' &&
+			i != ft_strlen(*arg) - 1)
+	{
+		(*str)[len_str] = '\0';
+		--len_str;
+		++i;
+	}
 }
 
 int		wof_str(char **str, char *per, int len_my_atr, char spec)
