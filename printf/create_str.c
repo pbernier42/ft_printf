@@ -6,7 +6,7 @@
 /*   By: rlecart <rlecart@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/09 04:45:54 by rlecart           #+#    #+#             */
-/*   Updated: 2017/05/30 17:55:26 by pbernier         ###   ########.fr       */
+/*   Updated: 2017/05/30 18:03:47 by pbernier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,7 +122,7 @@ printf("str = [%s] | spec = [%c] | arg = [%s]\n", *str, spec, arg);
 printf("str = [%s] | spec = [%c] | arg = [%s]\n", *str, spec, arg);
 	delate_zero(str, &arg);
 	*str = ft_strjoin_clean(str, &arg);
-	ft_strdel(&arg);
+	ft_strdel(&arg); 
 	//printf("str = [%s] | spec = [%c] | arg = [%s]\n", *str, spec, arg);
 	wof_str(str, per, ft_strlen(my_atr), spec);
 	//printf("str = [%s] | spec = [%c] | arg = [%s]\n", *str, spec, arg);
