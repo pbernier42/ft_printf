@@ -6,7 +6,7 @@
 /*   By: rlecart <rlecart@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/09 04:45:54 by rlecart           #+#    #+#             */
-/*   Updated: 2017/05/30 18:03:47 by pbernier         ###   ########.fr       */
+/*   Updated: 2017/06/02 02:28:06 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ int				extract_nbr(char *per, int x)
 	ret = 0;
 	dix = 0.1;
 	++x;
+	//printf("per = [%s]\n", per);
 	while (per[x] == '+' || per[x] == 'R')
 		++x;
 	len = x;
@@ -63,7 +64,6 @@ int				extract_nbr(char *per, int x)
 	save = x - 1;
 	while (len-- > 0)
 	 	ret = ret + ((per[save--] - '0') * (dix *= 10));
-
 	return (ret);
 }
 
@@ -91,6 +91,7 @@ static int		isolate_atr(char *str, char *spec)
 void	create_str(char **str, char *per, char spec, char *arg)
 {
 	int		i;
+	int		ret[2];
 	char	atr[6];
 	char	*my_atr;
 	void	(*tab[5])(char **, char, char **, char *);
@@ -117,14 +118,29 @@ void	create_str(char **str, char *per, char spec, char *arg)
 	}
 	//printf("i = [%d]\n", i);
 	//printf("*my_atr = [%s] | spec = [%c] | **str = %s | *arg = [%s]\n", my_atr, spec, *str, arg);
-printf("str = [%s] | spec = [%c] | arg = [%s]\n", *str, spec, arg);
-	pre_str(spec, ft_strchr(per, '.'), &arg, my_atr);
-printf("str = [%s] | spec = [%c] | arg = [%s]\n", *str, spec, arg);
+	//printf("str = [%s] | spec = [%c] | arg = [%s]\n", *str, spec, arg);
+	ret[0] = pre_str(spec, ft_strchr(per, '.'), &arg, my_atr);
+	//printf("str = [%s] | spec = [%c] | arg = [%s]\n", *str, spec, arg);
 	delate_zero(str, &arg);
 	*str = ft_strjoin_clean(str, &arg);
 	ft_strdel(&arg); 
 	//printf("str = [%s] | spec = [%c] | arg = [%s]\n", *str, spec, arg);
-	wof_str(str, per, ft_strlen(my_atr), spec);
-	//printf("str = [%s] | spec = [%c] | arg = [%s]\n", *str, spec, arg);
+	ret[1] = wof_str(str, per, ft_strlen(my_atr), spec);
 	ft_strdel(&my_atr);
+	if (ret[0] >= 0 && ret[1] >= 0 && ret[1] > ret[0])
+	{
+		i = 0;
+		while ((*str)[i] == '0' && ret[1] > ret[0])
+		{
+			(*str)[i++] = ' ';
+			ret[1]--;
+		}
+		/*
+		while (ret[1]-- > 0)
+		{
+			my_atr = ft_strdup(" ");
+			*str = ft_strjoin_clean(&my_atr, str);
+		}*/
+	}
+	//printf("str = [%s] | spec = [%c] | arg = [%s]\n", *str, spec, arg);
 }
