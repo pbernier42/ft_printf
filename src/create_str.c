@@ -6,11 +6,11 @@
 /*   By: rlecart <rlecart@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/09 04:45:54 by rlecart           #+#    #+#             */
-/*   Updated: 2017/06/02 02:28:06 by rlecart          ###   ########.fr       */
+/*   Updated: 2017/06/13 03:52:04 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include <ft_printf.h>
 
 void	remove_char(char *per, char rem)
 {

@@ -6,11 +6,11 @@
 /*   By: rlecart <rlecart@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/09 00:49:24 by rlecart           #+#    #+#             */
-/*   Updated: 2017/05/27 05:13:16 by rlecart          ###   ########.fr       */
+/*   Updated: 2017/06/13 02:15:23 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include <ft_printf.h>
 
 static int		start_spec(char *str, char *spec)
 {
