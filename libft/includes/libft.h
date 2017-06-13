@@ -6,10 +6,7 @@
 /*   By: rlecart <rlecart@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/09 00:30:13 by rlecart           #+#    #+#             */
-/*   Updated: 2017/05/04 02:38:00 by rlecart          ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
+/*   Updated: 2017/06/13 07:47:31 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +33,12 @@ typedef struct		s_gnl
 	struct s_gnl	*before;
 	struct s_gnl	*next;
 }					t_gnl;
+
+typedef struct		s_gsml
+{
+	char			*tmp;
+	char			*keep_tmp;
+}					t_gsml;
 
 typedef struct		s_list
 {

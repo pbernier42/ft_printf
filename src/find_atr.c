@@ -6,14 +6,13 @@
 /*   By: pbernier <pbernier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/27 00:22:41 by pbernier          #+#    #+#             */
-/*   Updated: 2017/06/13 02:15:23 by rlecart          ###   ########.fr       */
+/*   Updated: 2017/06/13 06:07:38 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <ft_printf.h>
 
-
-void 	atr_sharp(char **per, char spec, char **prefix, char *arg)
+void	atr_sharp(char **per, char spec, char **prefix, char *arg)
 {
 	int		i;
 	int		del;
@@ -36,7 +35,7 @@ void 	atr_sharp(char **per, char spec, char **prefix, char *arg)
 		remove_char(*per, rem[del++]);
 }
 
-void 	atr_posit(char **per, char spec, char **prefix, char *arg)
+void	atr_posit(char **per, char spec, char **prefix, char *arg)
 {
 	int		i;
 	char	rem[3];
@@ -94,7 +93,6 @@ void	atr_zero(char **per, char spec, char **prefix, char *arg)
 	char	*zero;
 
 	i = 0;
-
 	while (*per && (*per)[i] != '0')
 		i++;
 	while (*per && (*per)[i] == 'R')
@@ -109,5 +107,4 @@ void	atr_zero(char **per, char spec, char **prefix, char *arg)
 	if (len > 0)
 		ft_strdel(&zero);
 	remove_char(*per, '0');
-
 }

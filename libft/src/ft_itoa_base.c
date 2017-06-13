@@ -6,7 +6,7 @@
 /*   By: exam <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/03 12:51:01 by exam              #+#    #+#             */
-/*   Updated: 2017/04/12 19:10:53 by rlecart          ###   ########.fr       */
+/*   Updated: 2017/06/13 07:43:45 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,10 @@ char	*ft_itoa_base(int value, int base)
 	int		len;
 	int		tmp;
 	char	*str;
-	char	*b = "0123456789ABCDEF";
+	char	*b;
 
+	if (!(b = ft_strdup("0123456789ABCDEF")))
+		return (NULL);
 	len = int_len(value, base);
 	if (!(str = (char *)malloc(sizeof(char) * (len + 1))))
 		return (0);
@@ -45,5 +47,6 @@ char	*ft_itoa_base(int value, int base)
 		if (len == 0 && value == 0)
 			str[len] = '-';
 	}
+	ft_strdel(&b);
 	return (str);
 }

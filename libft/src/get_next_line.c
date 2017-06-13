@@ -6,11 +6,11 @@
 /*   By: rlecart <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/22 23:38:43 by rlecart           #+#    #+#             */
-/*   Updated: 2017/02/06 14:32:31 by rlecart          ###   ########.fr       */
+/*   Updated: 2017/06/13 07:47:34 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include <libft.h>
 
 static t_gnl		*ft_newlst(t_gnl *gnl, int size, const int fd, int wf)
 {
@@ -38,9 +38,9 @@ static t_gnl		*ft_newlst(t_gnl *gnl, int size, const int fd, int wf)
 	return (NULL);
 }
 
-static int			ft_verif(const int fd, t_gnl **gnl, char **tmp)
+static int			ft_verif(const int fd, t_gnl **gnl, t_gsml *g, char **l)
 {
-	if (fd < 0 || BUFF_SIZE <= 0)
+	if (fd < 0 || BUFF_SIZE <= 0 || l == NULL)
 		return (-1);
 	if (!(*gnl))
 		if (!((*gnl) = ft_newlst((*gnl), 1, fd, 1)))
@@ -53,9 +53,8 @@ static int			ft_verif(const int fd, t_gnl **gnl, char **tmp)
 		{
 			if ((*gnl)->next)
 				*gnl = (*gnl)->next;
-			else
-				if (!(*gnl = ft_newlst(*gnl, 1, fd, 2)))
-					return (-1);
+			else if (!(*gnl = ft_newlst(*gnl, 1, fd, 2)))
+				return (-1);
 		}
 	}
 	if (!((*gnl)->keep))
@@ -63,30 +62,31 @@ static int			ft_verif(const int fd, t_gnl **gnl, char **tmp)
 		(*gnl)->keep = ft_strnew(0);
 		(*gnl)->head = (*gnl)->keep;
 	}
-	*tmp = ft_strnew(BUFF_SIZE);
+	g->tmp = ft_strnew(BUFF_SIZE);
 	return (1);
 }
-static int			ft_gsl(int fd, char **l, t_gnl **g, char **t, char **kt)
+
+static int			ft_gsl(int fd, char **l, t_gnl **g, t_gsml *gsml)
 {
-	if (((*g)->ret = read(fd, *t, BUFF_SIZE)) == -1)
+	if (((*g)->ret = read(fd, gsml->tmp, BUFF_SIZE)) == -1)
 		return (-1);
 	else if ((*g)->ret == 0 && ft_strlen((*g)->keep) == 0)
 		(*g)->keep[ft_strlen((*g)->keep)] = '\n';
 	else if (*((*g)->keep) == '\n')
 	{
 		*l = ft_strnew(0);
-		*kt = ft_strjoin((*g)->keep + 1, *t);
+		gsml->keep_tmp = ft_strjoin((*g)->keep + 1, gsml->tmp);
 		ft_strdel(&(*g)->head);
-		(*g)->keep = ft_strdup(*kt);
+		(*g)->keep = ft_strdup(gsml->keep_tmp);
 		(*g)->head = (*g)->keep;
-		ft_strdel(&(*t));
-		ft_strdel(&(*kt));
+		ft_strdel(&(gsml->tmp));
+		ft_strdel(&(gsml->keep_tmp));
 		return (1);
 	}
 	else
-		(*t)[(*g)->ret] = '\0';
-	*kt = ft_strjoin((*g)->keep, *t);
-	(*g)->keep = ft_strdup(*kt);
+		(gsml->tmp)[(*g)->ret] = '\0';
+	gsml->keep_tmp = ft_strjoin((*g)->keep, gsml->tmp);
+	(*g)->keep = ft_strdup(gsml->keep_tmp);
 	ft_strdel(&(*g)->head);
 	(*g)->head = (*g)->keep;
 	if (!((*g)->adr = ft_strchr((*g)->keep, '\n')) && (*g)->ret == 0)
@@ -125,28 +125,27 @@ static int			ft_gml(t_gnl **g, char **t, char **kt, t_gnl **s_tmp)
 
 int					get_next_line(const int fd, char **line)
 {
-	char				*tmp;
-	char				*keep_tmp;
+	t_gsml				gsml;
 	static t_gnl		*gnl;
 	t_gnl				*s_tmp;
 
-	if ((ft_verif(fd, &gnl, &tmp)) == -1)
+	if ((ft_verif(fd, &gnl, &gsml, line)) == -1)
 		return (-1);
-	if ((gnl->gol = ft_gsl(fd, line, &gnl, &tmp, &keep_tmp)) == -1)
+	if ((gnl->gol = ft_gsl(fd, line, &gnl, &gsml)) == -1)
 		return (-1);
 	else if (gnl->gol == 1)
 		return (1);
 	if (!(gnl->adr = ft_strchr(gnl->keep, '\n')) && gnl->ret != 0)
 	{
 		get_next_line(fd, line);
-		ft_strdel(&keep_tmp);
+		ft_strdel(&(gsml.keep_tmp));
 		return (1);
 	}
 	*(gnl->adr) = '\0';
 	*line = ft_strdup(gnl->keep);
-	if ((gnl->gol = ft_gml(&gnl, &tmp, &keep_tmp, &s_tmp)) == 0)
+	if ((gnl->gol = ft_gml(&gnl, &(gsml.tmp), &(gsml.keep_tmp), &s_tmp)) == 0)
 		return (0);
-	ft_strdel(&tmp);
-	ft_strdel(&keep_tmp);
+	ft_strdel(&(gsml.tmp));
+	ft_strdel(&(gsml.keep_tmp));
 	return (1);
 }

@@ -6,7 +6,7 @@
 #    By: rlecart <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/03/29 00:43:30 by rlecart           #+#    #+#              #
-#    Updated: 2017/06/13 04:35:22 by rlecart          ###   ########.fr        #
+#    Updated: 2017/06/13 07:51:11 by rlecart          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,9 @@ SRC			=	convert_arg.c \
 				len_str.c \
 				spec_type_si.c \
 				spec_type_sp.c \
-				spec_type_un.c
+				spec_type_un.c \
+				init_cstr.c \
+				init_pwstr.c
 SRCLIB		=	ft_putstr.c \
 				ft_puttab.c \
 				ft_putchar.c \

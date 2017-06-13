@@ -6,7 +6,7 @@
 /*   By: rlecart <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/14 14:55:52 by rlecart           #+#    #+#             */
-/*   Updated: 2017/02/17 19:22:25 by rlecart          ###   ########.fr       */
+/*   Updated: 2017/06/13 07:44:26 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ char			**ft_strsplit(char const *s, char c)
 	int		*len_by_word;
 	char	**str;
 
-	i = 0;
+	i = -1;
 	len_by_word = NULL;
 	str = NULL;
 	if (s)
@@ -96,13 +96,10 @@ char			**ft_strsplit(char const *s, char c)
 		len_by_word = ft_countlen(s, c, word);
 		if (!(str = (char**)malloc(sizeof(char*) * (word + 1))))
 			return (NULL);
-		while (i < word)
-		{
+		while (++i < word)
 			if (!(str[i] = ft_strnew(len_by_word[i])))
 				return (NULL);
-			i++;
-		}
-		str[i] = NULL;
+		str[++i] = NULL;
 		ft_cat(s, str, c);
 		ft_memdel((void**)&len_by_word);
 		return (str);

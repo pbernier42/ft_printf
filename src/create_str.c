@@ -6,13 +6,13 @@
 /*   By: rlecart <rlecart@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/09 04:45:54 by rlecart           #+#    #+#             */
-/*   Updated: 2017/06/13 03:52:04 by rlecart          ###   ########.fr       */
+/*   Updated: 2017/06/13 07:07:59 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <ft_printf.h>
 
-void	remove_char(char *per, char rem)
+void			remove_char(char *per, char rem)
 {
 	int		i;
 	int		k;
@@ -46,15 +46,14 @@ static void		init_ptr(void (*tab[5])(char **, char, char **, char *))
 
 int				extract_nbr(char *per, int x)
 {
-	int 	len;
-	int 	ret;
-	int 	save;
+	int		len;
+	int		ret;
+	int		save;
 	double	dix;
 
 	ret = 0;
 	dix = 0.1;
 	++x;
-	//printf("per = [%s]\n", per);
 	while (per[x] == '+' || per[x] == 'R')
 		++x;
 	len = x;
@@ -63,32 +62,11 @@ int				extract_nbr(char *per, int x)
 	len = x - len;
 	save = x - 1;
 	while (len-- > 0)
-	 	ret = ret + ((per[save--] - '0') * (dix *= 10));
+		ret = ret + ((per[save--] - '0') * (dix *= 10));
 	return (ret);
 }
 
-static int		isolate_atr(char *str, char *spec)
-{
-	int		i[2];
-
-	//printf("*str = [%s] | *spec = [%s]\n", str, spec);
-	ft_memcpy(i, ((int[2]){0, -1}), sizeof(int[2]));
-	while (spec[++(i[1])])
-	{
-		if (str[i[0]] == '0' && !ft_strchr(str, '-'))
-		{
-			if (str[i[0] + 1] == '+' || str[i[0] + 1] == '-')
-				++i[0];
-			i[0] += ft_intlen_base(extract_nbr(str, i[1]), 10) + 1;
-		}
-		if (spec[i[1]] == str[i[0]])
-			ft_memcpy(i, ((int[2]){++(i[0]), -1}), sizeof(int[2]));
-	}
-	//0026
-	return (i[0]);
-}
-
-void	create_str(char **str, char *per, char spec, char *arg)
+void			create_str(char **str, char *per, char spec, char *arg)
 {
 	int		i;
 	int		ret[2];
@@ -97,50 +75,21 @@ void	create_str(char **str, char *per, char spec, char *arg)
 	void	(*tab[5])(char **, char, char **, char *);
 
 	i = -1;
-	//printf("**str = [%s] | *per = [%s] | spec = [%c] | *arg = [%s]\n", *str, per, spec, arg);
-	ft_strcpy(atr, "#+- 0\0");
 	init_ptr(tab);
-	my_atr = ft_strsub(per, 0, isolate_atr(per, atr));
-	//printf("*my_atr = [%s]\n", my_atr);
-	if (arg[0] == '-')
-	{
-		ft_strreset(&arg, ft_strsub(arg, 1, ft_strlen(arg) - 1));
-		*str = ft_memset(ft_strnew(1), '-', 1);
-	}
-	else if (!(*str = ft_strnew(2)))
-		exit(-1);
-	//printf("*my_atr = [%s] | spec = [%c] | **str = [%s] | *arg = [%s]\n", my_atr, spec, *str, arg);
+	my_atr = init_cstr(&atr, str, per, arg);
 	while (atr[++i] && arg[0])
-	{
 		if ((ft_strchr(my_atr, atr[i])))
 			tab[i](&my_atr, spec, str, arg);
-//		printf("[%d] = i | *my_atr = [%s] | spec = [%c] | **str = %s | *arg = [%s]\n", i, my_atr, spec, *str, arg);
-	}
-	//printf("i = [%d]\n", i);
-	//printf("*my_atr = [%s] | spec = [%c] | **str = %s | *arg = [%s]\n", my_atr, spec, *str, arg);
-	//printf("str = [%s] | spec = [%c] | arg = [%s]\n", *str, spec, arg);
 	ret[0] = pre_str(spec, ft_strchr(per, '.'), &arg, my_atr);
-	//printf("str = [%s] | spec = [%c] | arg = [%s]\n", *str, spec, arg);
 	delate_zero(str, &arg);
 	*str = ft_strjoin_clean(str, &arg);
-	ft_strdel(&arg); 
-	//printf("str = [%s] | spec = [%c] | arg = [%s]\n", *str, spec, arg);
+	ft_strdel(&arg);
 	ret[1] = wof_str(str, per, ft_strlen(my_atr), spec);
 	ft_strdel(&my_atr);
 	if (ret[0] >= 0 && ret[1] >= 0 && ret[1] > ret[0])
 	{
 		i = 0;
-		while ((*str)[i] == '0' && ret[1] > ret[0])
-		{
+		while ((*str)[i] == '0' && ret[1]-- > ret[0])
 			(*str)[i++] = ' ';
-			ret[1]--;
-		}
-		/*
-		while (ret[1]-- > 0)
-		{
-			my_atr = ft_strdup(" ");
-			*str = ft_strjoin_clean(&my_atr, str);
-		}*/
 	}
-	//printf("str = [%s] | spec = [%c] | arg = [%s]\n", *str, spec, arg);
 }

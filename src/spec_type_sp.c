@@ -6,19 +6,19 @@
 /*   By: pbernier <pbernier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/20 20:25:21 by pbernier          #+#    #+#             */
-/*   Updated: 2017/06/13 02:15:23 by rlecart          ###   ########.fr       */
+/*   Updated: 2017/06/13 07:37:31 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <ft_printf.h>
 
-void		*spec_void(va_list ap, char spec)
+void		*spec_void(char spec, va_list ap)
 {
 	spec += 0;
 	return (va_arg(ap, void*));
 }
 
-char		*spec_str(va_list ap, char spec)
+char		*spec_str(char spec, va_list ap)
 {
 	char	*str;
 
@@ -28,26 +28,20 @@ char		*spec_str(va_list ap, char spec)
 		return (ft_strdup("(null)"));
 	return (str);
 }
-/*
-size_t		spec_sizet(va_list ap, char spec)
-{
-	spec += 0;
-	return (va_arg(ap, size_t));
-}
-*/
-ssize_t		spec_ssizet(va_list ap, char spec)
+
+ssize_t		spec_ssizet(char spec, va_list ap)
 {
 	spec += 0;
 	return (va_arg(ap, ssize_t));
 }
 
-wchar_t		spec_wintt(va_list ap, char spec)
+wchar_t		spec_wintt(char spec, va_list ap)
 {
 	spec += 0;
 	return (va_arg(ap, wchar_t));
 }
 
-wchar_t		*spec_wchart(va_list ap, char spec)
+wchar_t		*spec_wchart(char spec, va_list ap)
 {
 	spec += 0;
 	return (va_arg(ap, wchar_t*));

@@ -6,13 +6,13 @@
 /*   By: pbernier <pbernier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/14 19:45:17 by pbernier          #+#    #+#             */
-/*   Updated: 2017/06/13 03:37:51 by rlecart          ###   ########.fr       */
+/*   Updated: 2017/06/13 06:03:51 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <ft_printf.h>
 
-static void			pf_itoa(int nbr, char **str)
+static void		pf_itoa(int nbr, char **str)
 {
 	int		len;
 
@@ -30,7 +30,7 @@ static void			pf_itoa(int nbr, char **str)
 
 static int		ft_unintlen_base(unsigned long long nbr, int base)
 {
-	int			len;
+	int		len;
 
 	len = 1;
 	while (nbr /= base)
@@ -38,10 +38,10 @@ static int		ft_unintlen_base(unsigned long long nbr, int base)
 	return (len);
 }
 
-static void			pf_uitoa(unsigned long long nbr,
-						char **str, int base, char spec)
+static void		pf_uitoa(unsigned long long nbr,
+					char **str, int base, char spec)
 {
-	int 	len;
+	int		len;
 	char	hexa[16];
 
 	ft_strcpy(hexa, "0123456789abcdef");
@@ -61,14 +61,13 @@ static void			pf_uitoa(unsigned long long nbr,
 	}
 }
 
-void	spec_dx(void *arg, char *per, char **str)
+void			spec_dx(void *arg, char *per, char **str)
 {
-	int			len = 0;
+	int			len;
 	long long	nbr;
 
 	if ((len = ft_strlen(per)) > 0)
 		len--;
-	//printf("[%lld] = arg | [%s] = per | [%s] = *str | [%d] = len\n", (long long)arg, per, *str, len);
 	if (per[len] == 'j' || per[len] == 'l' || per[len] == 'z')
 	{
 		nbr = (long long)arg;
@@ -87,7 +86,7 @@ void	spec_dx(void *arg, char *per, char **str)
 		pf_itoa((int)arg, str);
 }
 
-char	*convert_arg(char spec, void *arg, char *per)
+char			*convert_arg(char spec, void *arg, char *per)
 {
 	int		i;
 	int		base[5];
@@ -97,11 +96,9 @@ char	*convert_arg(char spec, void *arg, char *per)
 	i = 0;
 	ft_memcpy(base, ((int[5]){8, 10, 16, 16, 16}), sizeof(int[5]));
 	str = NULL;
-	//printf("[%s] = str | [%c] - spec | [%ld] = arg | [%s] = *per\n", str, spec, (unsigned long int)arg, per);
 	ft_strcpy(spec_nosyn, "ouxXpdisc%U\0");
 	while (spec_nosyn[i] != spec)
 		i++;
-	//printf("i = %d\n", i);
 	if (i <= 4)
 		pf_uitoa((unsigned long long)arg, &str, base[i], spec);
 	else if (i == 5 || i == 6)
@@ -112,8 +109,6 @@ char	*convert_arg(char spec, void *arg, char *per)
 		str = ft_strjoin_clean_char(&str, (char)arg);
 	else if (i == 10)
 		pf_uitoa((unsigned long long)arg, &str, 10, spec);
-	//printf("[%s] = str | [%c] - spec | [%d] = arg | [%s] = *per\n", str, spec, (int)arg, per);
 	ft_strdel(&per);
-	//printf("STRDEL DONE\n");
 	return (str);
 }
