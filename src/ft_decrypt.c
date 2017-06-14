@@ -6,7 +6,7 @@
 /*   By: rlecart <rlecart@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/09 00:49:24 by rlecart           #+#    #+#             */
-/*   Updated: 2017/06/13 08:11:02 by rlecart          ###   ########.fr       */
+/*   Updated: 2017/06/14 05:15:40 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,25 @@ static void		isolate_per(char *str, char *spec, int *i)
 			ft_memcpy(i, ((int[2]){++(i[0]), 0}), sizeof(int[2]));
 }
 
+static int		isper(char const *format, int *len, char s[17], char ns[18])
+{
+	int		i;
+	char	last[5];
+
+	i = 0;
+	ft_strcpy(s, "sSpdDioOuUxXcC%\0");
+	ft_strcpy(ns, "#+- 0.123456789%\0");
+	ft_strcpy(last, "hljz\0");
+	if (format[0] == '%' && !ft_strchr(s, format[1])
+			&& !ft_strchr(ns, format[1])
+			&& !ft_strchr(last, format[1]))
+	{
+		(*len)++;
+		return (0);
+	}
+	return (-1);
+}
+
 char			*ft_decrypt(char const *format, int *i, va_list ap, int *len)
 {
 	int		nb[3];
@@ -40,8 +59,8 @@ char			*ft_decrypt(char const *format, int *i, va_list ap, int *len)
 	void	*arg;
 
 	arg = NULL;
-	ft_strcpy(spec, "sSpdDioOuUxXcC%\0");
-	ft_strcpy(no_spec, "#+- 0.123456789%\0");
+	if (!isper(format, len, spec, no_spec))
+		return (ft_strdup("%"));
 	isolate_per((char*)format, spec, nb);
 	nb[2] = start_spec((char*)format, no_spec);
 	if (spec[nb[1]] >= 'A' && spec[nb[1]] <= 'Z' &&
