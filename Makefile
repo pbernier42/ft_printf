@@ -6,7 +6,7 @@
 #    By: rlecart <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/03/29 00:43:30 by rlecart           #+#    #+#              #
-#    Updated: 2017/06/13 07:51:11 by rlecart          ###   ########.fr        #
+#    Updated: 2017/06/15 14:17:44 by rlecart          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -100,7 +100,9 @@ SRCLIB		=	ft_putstr.c \
 				ft_intlen_base.c \
 				ft_strreset.c \
 				ft_llen.c
-OBJ			=	$(addprefix $(BINDIR),$(SRC:.c=.o)) $(addprefix libft/bin/,$(SRCLIB:.c=.o))
+OBJ			=	$(addprefix $(BINDIR),$(SRC:.c=.o))
+OBJLIB		=	$(addprefix libft/bin/,$(SRCLIB:.c=.o))
+OBJALL		=	$(OBJ) $(OBJLIB)
 CC			=	gcc
 CFLAGS		=	-Wall -Werror -Wextra
 INCLUDES	=	-I includes/ -I libft/includes/
@@ -114,12 +116,13 @@ GREEN_BG	=	\033[1;49;32m
 GRAY		=	\033[7;49;90m
 NO_COLOR	=	\033[m
 
-all: lib $(NAME)
+all: $(NAME)
 
 $(NAME): $(BINDIR) $(OBJ)
+	@make -C libft
 	@printf "\r$(GREEN)[$(PROJECT)] Bin compilation done.                                                  \n"
 	@printf "$(YELLOW)[$(PROJECT)] Compiling $(NAME)..."
-	@ar rc $(NAME) $(OBJ)
+	@ar rc $(NAME) $(OBJALL)
 	@ranlib $(NAME)
 	@printf "\r$(GREEN)[$(PROJECT)] $(NAME) compiled.                                           \n$(NO_COLOR)"
 
@@ -128,7 +131,7 @@ $(BINDIR)%.o: $(SRCDIR)%.c
 	@$(CC) $(CFLAGS) $(INCLUDES) -o $@ -c $<
 
 lib:
-	@make -s -C libft
+	@make -C libft
 
 $(BINDIR):
 	@mkdir bin
@@ -137,14 +140,14 @@ clean:
 	@printf "$(RED)[$(PROJECT)] Removing bin..."
 	@rm -rf $(OBJ)
 	@rm -rf $(BINDIR)
-	@make -s -C libft clean
+	@make -C libft clean
 	@printf "\r$(GREEN)[$(PROJECT)] Obj removed.                                                \n$(NO_COLOR)"
 
 fclean:
 	@printf "$(RED)[$(PROJECT)] Removing bin..."
 	@rm -rf $(OBJ)
 	@rm -rf $(BINDIR)
-	@make -s -C libft fclean
+	@make -C libft fclean
 	@printf "\r$(GREEN)[$(PROJECT)] Obj removed.                                                \n$(NO_COLOR)"
 	@printf "$(RED)[$(PROJECT)] Removing $(NAME)..."
 	@rm -rf $(NAME)

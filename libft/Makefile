@@ -6,7 +6,7 @@
 #    By: pbernier <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/02/21 03:19:16 by pbernier          #+#    #+#              #
-#    Updated: 2017/06/13 04:06:01 by rlecart          ###   ########.fr        #
+#    Updated: 2017/06/15 12:24:41 by rlecart          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -97,7 +97,7 @@ CFLAGS		=	-Wall -Werror -Wextra -I includes/ -O2 -Ofast
 WHITE		=	\033[7;49;39m
 BLUE		=	\033[7;49;34m
 RED			=	\x1B[31m
-RED			=	\x1B[33m
+YELLOW		=	\x1B[33m
 GREEN		=	\033[0;49;32m
 GREEN_BG	=	\033[1;49;32m
 GRAY		=	\033[7;49;90m
@@ -107,26 +107,26 @@ all: $(NAME)
 
 $(NAME): $(BINDIR) $(OBJ)
 	@printf "\r$(GREEN)[$(PROJECT)] Bin compilation done.                                                  \n"
-	@printf "$(RED)[$(PROJECT)] Compiling $(NAME)..."
+	@printf "$(YELLOW)[$(PROJECT)] Compiling $(NAME)..."
 	@ar rc $(NAME) $(OBJ)
 	@ranlib $(NAME)
 	@printf "\r$(GREEN)[$(PROJECT)] $(NAME) compiled.                                           \n$(NO_COLOR)"
 
 $(BINDIR)%.o: $(SRCDIR)%.c
-	@printf "$(RED)\r[$(PROJECT)] Compiling $< to $@                                                       \r"
+	@printf "$(YELLOW)\r[$(PROJECT)] Compiling $< to $@                                                       \r"
 	@$(CC) $(CFLAGS) -o $@ -c $<
 
 $(BINDIR):
 	@mkdir bin
 
 clean:
-	@printf "$(RED)[$(PROJECT)] Removing bin..."
+	@printf "$(YELLOW)[$(PROJECT)] Removing bin..."
 	@rm -rf $(OBJ)
 	@rm -rf $(BINDIR)
 	@printf "\r$(GREEN)[$(PROJECT)] Obj removed.                                                \n$(NO_COLOR)"
 
 fclean: clean
-	@printf "$(RED)[$(PROJECT)] Removing $(NAME)..."
+	@printf "$(YELLOW)[$(PROJECT)] Removing $(NAME)..."
 	@rm -rf $(NAME)
 	@printf "\r$(GREEN)[$(PROJECT)] $(NAME) removed.                                            \n$(NO_COLOR)"
 

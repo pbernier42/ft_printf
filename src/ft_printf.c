@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rlecart <rlecart@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rlecart <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/02/02 23:35:27 by rlecart           #+#    #+#             */
-/*   Updated: 2017/06/13 06:02:07 by rlecart          ###   ########.fr       */
+/*   Created: 2017/06/15 11:41:20 by rlecart           #+#    #+#             */
+/*   Updated: 2017/06/15 14:36:56 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,35 @@ void	display(char **buff, char **tmp, int len, va_list ap)
 	va_end(ap);
 }
 
+int		ft_checkb(char const *format, int *index, int i, int j)
+{
+	char	s[16];
+	char	ns[21];
+
+	ft_strcpy(s, "sSpdDioOuUxXcC%\0");
+	ft_strcpy(ns, "#+- 0.123456789%hljz\0");
+	while (format[i])
+	{
+		while (s[j] && format[i] != s[j])
+			j++;
+		if (!s[j])
+			j = 0;
+		else
+			return (0);
+		while (ns[j] && format[i] != ns[j])
+			j++;
+		if (!ns[j])
+		{
+			*index += i;
+			return (-1);
+		}
+		else
+			j = 0;
+		i++;
+	}
+	return (-1);
+}
+
 int		ft_printf(char const *format, ...)
 {
 	int			i;
@@ -60,7 +89,7 @@ int		ft_printf(char const *format, ...)
 			buff = ft_strjoin_clean_char(&buff, format[i]);
 			len++;
 		}
-		else if ((undefined(format, i)))
+		else if ((undefined(format, i)) && !ft_checkb(&format[i + 1], &i, 0, 0))
 		{
 			tmp = ft_decrypt(&(format[i]), &i, ap, &len);
 			buff = ft_strjoin_clean(&buff, &tmp);
