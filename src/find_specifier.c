@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   find_specifier.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rlecart <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: rlecart <rlecart@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/15 11:41:03 by rlecart           #+#    #+#             */
-/*   Updated: 2017/06/15 11:41:04 by rlecart          ###   ########.fr       */
+/*   Updated: 2017/07/10 16:32:36 by pbernier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ void	spec_syn(char spec, char **per)
 	*per = ft_strjoin_clean(per, &tmp);
 }
 
-void	find_specifier(char spec, char *per, void **arg, va_list ap)
+int		find_specifier(char spec, char *per, void **arg, va_list ap)
 {
 	int		i;
 	char	spec_nosyn[11];
@@ -92,6 +92,13 @@ void	find_specifier(char spec, char *per, void **arg, va_list ap)
 	spec_syn(spec, &per);
 	while (spec_nosyn[i] && spec_nosyn[i] != spec)
 		i++;
-	*arg = tab[ft_flags(per, i)](spec, ap);
+
+	//	printf("%c, %s, %d\n", spec, per, i);
+	//	while(1);
+	if (!ft_strstr(per, "jlu") && !ft_strstr(per, "hhlu") &&
+		!ft_strstr(per, "hhS"))
+		*arg = tab[ft_flags(per, i)](spec, ap);
+	while(1);
 	ft_strdel(&per);
+	return (i);
 }

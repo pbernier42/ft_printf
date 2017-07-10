@@ -6,13 +6,13 @@
 /*   By: pbernier <pbernier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/15 14:43:58 by pbernier          #+#    #+#             */
-/*   Updated: 2017/07/06 18:36:51 by pbernier         ###   ########.fr       */
+/*   Updated: 2017/07/10 15:45:05 by pbernier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <ft_printf.h>
 
-static void		pf_itoa(int nbr, char **str)
+static void		pf_itoa_di(int nbr, char **str)
 {
 	int		len;
 
@@ -50,10 +50,10 @@ void			spec_dx(void *arg, char *per, char **str)
 		}
 	}
 	else
-		pf_itoa((int)arg, str);
+		pf_itoa_di((int)arg, str);
 }
 
-char			*convert_arg(char spec, void *arg, char *per)
+char			*convert_arg(char spec, void *arg, char *per, int fct)
 {
 	int		i;
 	int		base[5];
@@ -61,13 +61,14 @@ char			*convert_arg(char spec, void *arg, char *per)
 	char	spec_nosyn[12];
 
 	i = 0;
+	fct += 0;
 	ft_memcpy(base, ((int[5]){8, 10, 16, 16, 16}), sizeof(int[5]));
 	str = NULL;
 	ft_strcpy(spec_nosyn, "ouxXpdisc%U\0");
 	while (spec_nosyn[i] != spec)
 		i++;
 	if (i <= 4)
-		pf_ullitoa((unsigned long long)arg, &str, base[i], spec);
+		pf_ullitoa((long long)arg, &str, base[i], spec);
 	else if (i == 5 || i == 6)
 		spec_dx(arg, per, &str);
 	else if (i == 7)

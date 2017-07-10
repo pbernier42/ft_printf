@@ -6,7 +6,7 @@
 /*   By: pbernier <pbernier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/15 14:51:23 by pbernier          #+#    #+#             */
-/*   Updated: 2017/07/06 18:38:37 by pbernier         ###   ########.fr       */
+/*   Updated: 2017/07/10 15:22:22 by pbernier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,10 @@
 int							ft_printf(char const *format, ...);
 char						*ft_decrypt(char const *format, int *i, va_list ap,
 								int *len);
-void						find_specifier(char spec, char *per, void **arg,
+int							find_specifier(char spec, char *per, void **arg,
 								va_list ap);
-char						*convert_arg(char spec, void *arg, char *per);
+char						*convert_arg(char spec, void *arg, char *per,
+								int fct);
 void						create_str(char **str, char *per, char spec,
 								char *arg);
 char						*init_cstr(char (*atr)[6], char **str, char *per,
@@ -71,5 +72,17 @@ void						atr_zero(char **per, char spec, char **prefix,
 
 void						pf_ullitoa(unsigned long long nbr, char **str,
 								int base, char spec);
+void						pf_ulitoa(unsigned long nbr, char **str, int base,
+								char spec);
+void						pf_uitoa(unsigned int nbr, char **str, int base,
+								char spec);
+void						pf_usitoa(unsigned short nbr, char **str, int base,
+								char spec);
+void						pf_llitoa(long long nbr, char **str, int base,
+								char spec);
+void						pf_litoa(long nbr, char **str, int base, char spec);
+void						pf_itoa(int nbr, char **str, int base, char spec);
+void						pf_sitoa(short nbr, char **str, int base,
+								     char spec);
 
 #endif

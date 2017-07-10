@@ -6,7 +6,7 @@
 #    By: pbernier <pbernier@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/06/15 14:52:00 by pbernier          #+#    #+#              #
-#    Updated: 2017/07/06 18:35:23 by pbernier         ###   ########.fr        #
+#    Updated: 2017/07/10 15:20:11 by pbernier         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,8 @@ SRC			=	convert_arg.c \
 				spec_type_un.c \
 				init_cstr.c \
 				init_pwstr.c \
-				ft_uitoa.c
+				ft_uitoa.c \
+				ft_itoa.c
 SRCLIB		=	ft_putstr.c \
 				ft_puttab.c \
 				ft_putchar.c \

@@ -1,22 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_uitoa.c                                         :+:      :+:    :+:   */
+/*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pbernier <pbernier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/06 16:58:10 by pbernier          #+#    #+#             */
-/*   Updated: 2017/07/10 15:21:44 by pbernier         ###   ########.fr       */
+/*   Updated: 2017/07/10 15:21:12 by pbernier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <ft_printf.h>
 
-void		pf_usitoa(unsigned short nbr, char **str, int base, char spec)
+void		pf_sitoa(short nbr, char **str, int base, char spec)
 {
-	unsigned short int	save;
-	int					len;
-	char				hexa[16];
+	short int	save;
+	int			len;
+	char		hexa[16];
 
 	len = 1;
 	save = nbr;
@@ -38,11 +38,11 @@ void		pf_usitoa(unsigned short nbr, char **str, int base, char spec)
 	}
 }
 
-void		pf_uitoa(unsigned int nbr, char **str, int base, char spec)
+void		pf_itoa(int nbr, char **str, int base, char spec)
 {
-	unsigned int	save;
-	int				len;
-	char			hexa[16];
+	int		save;
+	int		len;
+	char	hexa[16];
 
 	len = 1;
 	save = nbr;
@@ -64,11 +64,11 @@ void		pf_uitoa(unsigned int nbr, char **str, int base, char spec)
 	}
 }
 
-void		pf_ulitoa(unsigned long nbr, char **str, int base, char spec)
+void		pf_litoa(long nbr, char **str, int base, char spec)
 {
-	unsigned long	save;
-	int				len;
-	char			hexa[16];
+	long	save;
+	int		len;
+	char	hexa[16];
 
 	len = 1;
 	save = nbr;
@@ -90,11 +90,11 @@ void		pf_ulitoa(unsigned long nbr, char **str, int base, char spec)
 	}
 }
 
-void		pf_ullitoa(unsigned long long nbr, char **str, int base, char spec)
+void		pf_llitoa(long long nbr, char **str, int base, char spec)
 {
-	unsigned long long	save;
-	int					len;
-	char				hexa[16];
+	long long	save;
+	int			len;
+	char		hexa[16];
 
 	len = 1;
 	save = nbr;
