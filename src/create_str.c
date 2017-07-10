@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   create_str.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pbernier <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: pbernier <pbernier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/15 14:44:24 by pbernier          #+#    #+#             */
-/*   Updated: 2017/06/15 14:44:28 by pbernier         ###   ########.fr       */
+/*   Updated: 2017/07/10 18:30:51 by pbernier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,8 @@ void			create_str(char **str, char *per, char spec, char *arg)
 	i = -1;
 	init_ptr(tab);
 	my_atr = init_cstr(&atr, str, per, arg);
+	while (1);
+	//WORKING HERE
 	while (atr[++i] && arg[0])
 		if ((ft_strchr(my_atr, atr[i])))
 			tab[i](&my_atr, spec, str, arg);

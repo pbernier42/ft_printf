@@ -6,7 +6,7 @@
 /*   By: pbernier <pbernier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/15 11:41:15 by pbernier          #+#    #+#             */
-/*   Updated: 2017/07/10 16:18:42 by pbernier         ###   ########.fr       */
+/*   Updated: 2017/07/10 18:14:11 by pbernier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,6 @@ char			*ft_decrypt(char const *format, int *i, va_list ap, int *len)
 	arg = NULL;
 	if (!isper(format, len, spec, no_spec))
 		return (ft_strdup("%"));
-
 	isolate_per((char*)format, spec, n);
 	n[2] = start_spec((char*)format, no_spec);
 	if (spec[n[1]] >= 'A' && spec[n[1]] <= 'Z' &&

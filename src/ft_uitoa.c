@@ -6,7 +6,7 @@
 /*   By: pbernier <pbernier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/06 16:58:10 by pbernier          #+#    #+#             */
-/*   Updated: 2017/07/10 15:21:44 by pbernier         ###   ########.fr       */
+/*   Updated: 2017/07/10 17:43:46 by pbernier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void		pf_usitoa(unsigned short nbr, char **str, int base, char spec)
 	if (spec == 'X')
 		ft_strcpy(hexa, "0123456789ABCDEF");
 	while (save /= base)
-			len++;
+		len++;
 	if (spec == 'p')
 		len += 2;
 	if (!(*str = ft_strnew(len--)))
@@ -50,7 +50,7 @@ void		pf_uitoa(unsigned int nbr, char **str, int base, char spec)
 	if (spec == 'X')
 		ft_strcpy(hexa, "0123456789ABCDEF");
 	while (save /= base)
-			len++;
+		len++;
 	if (spec == 'p')
 		len += 2;
 	if (!(*str = ft_strnew(len--)))
@@ -76,7 +76,7 @@ void		pf_ulitoa(unsigned long nbr, char **str, int base, char spec)
 	if (spec == 'X')
 		ft_strcpy(hexa, "0123456789ABCDEF");
 	while (save /= base)
-			len++;
+		len++;
 	if (spec == 'p')
 		len += 2;
 	if (!(*str = ft_strnew(len--)))
@@ -102,7 +102,7 @@ void		pf_ullitoa(unsigned long long nbr, char **str, int base, char spec)
 	if (spec == 'X')
 		ft_strcpy(hexa, "0123456789ABCDEF");
 	while (save /= base)
-			len++;
+		len++;
 	if (spec == 'p')
 		len += 2;
 	if (!(*str = ft_strnew(len--)))

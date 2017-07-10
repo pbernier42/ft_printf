@@ -6,7 +6,7 @@
 /*   By: pbernier <pbernier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/15 14:51:23 by pbernier          #+#    #+#             */
-/*   Updated: 2017/07/10 15:22:22 by pbernier         ###   ########.fr       */
+/*   Updated: 2017/07/10 17:42:55 by pbernier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,6 @@ void						pf_llitoa(long long nbr, char **str, int base,
 void						pf_litoa(long nbr, char **str, int base, char spec);
 void						pf_itoa(int nbr, char **str, int base, char spec);
 void						pf_sitoa(short nbr, char **str, int base,
-								     char spec);
+							    char spec);
 
 #endif
