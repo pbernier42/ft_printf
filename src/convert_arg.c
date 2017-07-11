@@ -6,7 +6,7 @@
 /*   By: pbernier <pbernier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/15 14:43:58 by pbernier          #+#    #+#             */
-/*   Updated: 2017/07/10 15:45:05 by pbernier         ###   ########.fr       */
+/*   Updated: 2017/07/11 16:51:53 by pbernier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ char			*convert_arg(char spec, void *arg, char *per, int fct)
 		pf_ullitoa((long long)arg, &str, base[i], spec);
 	else if (i == 5 || i == 6)
 		spec_dx(arg, per, &str);
-	else if (i == 7)
+	else if (i == 7 && (char*)arg)
 		str = ft_strdup((char*)arg);
 	else if (i == 8 || i == 9)
 		str = ft_strjoin_clean_char(&str, (char)arg);

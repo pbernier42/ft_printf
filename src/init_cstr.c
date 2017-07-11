@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_cstr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pbernier <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: pbernier <pbernier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/15 11:41:27 by pbernier          #+#    #+#             */
-/*   Updated: 2017/06/15 14:47:38 by pbernier         ###   ########.fr       */
+/*   Updated: 2017/07/11 16:58:31 by pbernier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ char	*init_cstr(char (*atr)[6], char **str, char *per, char *arg)
 
 	ft_strcpy(*atr, "#+- 0\0");
 	my_atr = ft_strsub(per, 0, isolate_atr(per, *atr));
-	if (arg[0] == '-')
+	if ((arg) && arg[0] == '-')
 	{
 		ft_strreset(&arg, ft_strsub(arg, 1, ft_strlen(arg) - 1));
 		*str = ft_memset(ft_strnew(1), '-', 1);
