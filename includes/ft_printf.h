@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pbernier <pbernier@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rlecart <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/06/15 14:51:23 by pbernier          #+#    #+#             */
-/*   Updated: 2017/07/10 15:22:22 by pbernier         ###   ########.fr       */
+/*   Created: 2017/07/12 18:19:16 by rlecart           #+#    #+#             */
+/*   Updated: 2017/07/12 18:19:19 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,6 @@ void						pf_llitoa(long long nbr, char **str, int base,
 void						pf_litoa(long nbr, char **str, int base, char spec);
 void						pf_itoa(int nbr, char **str, int base, char spec);
 void						pf_sitoa(short nbr, char **str, int base,
-								     char spec);
+								char spec);
 
 #endif
